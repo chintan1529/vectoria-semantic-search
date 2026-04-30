@@ -1,0 +1,42 @@
+# ──────────────────────────────────────────────
+# Vectoria — .gitignore
+# ──────────────────────────────────────────────
+
+# Persisted artifacts (embeddings, FAISS index, chunk store)
+storage/
+
+# Fetched dataset (users regenerate via scripts/fetch_wikipedia.py)
+data/wikipedia/ai/*.txt
+data/wikipedia/sustainability/*.txt
+!data/wikipedia/.gitkeep
+
+# Runtime logs
+logs/
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Distribution / packaging
+*.egg-info/
+dist/
+build/
+
+# Environment variables
+.env
+
+# OS artifacts
+Thumbs.db
+.DS_Store

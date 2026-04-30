@@ -1,0 +1,14 @@
+# Vectoria — Dependencies
+# Minimal footprint for CPU-only, 8GB RAM environments
+
+# Core: Embedding model
+sentence-transformers>=2.2.0
+
+# Core: Vector similarity search (CPU build)
+faiss-cpu>=1.7.0
+
+# Core: Array operations
+numpy>=1.24.0
+
+# Dataset: Wikipedia article fetching
+wikipedia>=1.4.0
