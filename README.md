@@ -267,11 +267,7 @@ vectoria/
 
 ---
 
-## Resume-Ready Summary
 
-> - **Built a production-grade semantic search engine** processing 181 Wikipedia articles (1M+ words) into 3,592 chunks with transformer embeddings (all-MiniLM-L6-v2) and FAISS vector indexing, achieving **97% Precision@5** and **0.99 MRR** across 40 evaluation queries with zero retrieval failures.
-> - **Engineered a robust data pipeline** with sentence-boundary chunking (15% overlap), SHA-256 checksum verification, explicit float32 dtype enforcement, bidirectional index mapping, and a 9-point system integrity validator ensuring end-to-end data consistency.
-> - **Implemented a comprehensive evaluation framework** with multi-level relevance grading, per-query analysis, domain-level metric breakdown, failure case identification, and BM25 baseline comparison demonstrating semantic retrieval's precision advantage over keyword matching.
 
 ---
 
