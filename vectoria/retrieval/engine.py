@@ -60,6 +60,7 @@ from vectoria.embedding.encoder import EmbeddingEncoder, EmbeddingMapping
 from vectoria.indexing.faiss_index import VectorIndex
 from vectoria.logger import get_logger
 from vectoria.models import Chunk, SearchResult
+from vectoria.reranking.reranker import CrossEncoderReranker
 from vectoria.storage import analyze_score_distribution, load_chunks
 
 logger = get_logger(__name__)
@@ -75,12 +76,20 @@ class SearchEngine:
         chunk_map:  Fast lookup from chunk_id to Chunk object.
     """
 
-    def __init__(self, max_cache_size: int = 128) -> None:
+    def __init__(
+        self,
+        max_cache_size: int = 128,
+        use_reranker: bool = True,
+        batch_size: int = 32,
+        fetch_k_multiplier: int = 10,
+    ) -> None:
         self._encoder: Optional[EmbeddingEncoder] = None
         self._index: Optional[VectorIndex] = None
         self._chunks: Optional[List[Chunk]] = None
         self._chunk_map: Optional[Dict[str, Chunk]] = None
         self._mapping: Optional[EmbeddingMapping] = None
+        self._reranker = CrossEncoderReranker(batch_size=batch_size) if use_reranker else None
+        self._fetch_k_multiplier = fetch_k_multiplier
 
         # Query cache: (query, top_k, min_score) -> List[SearchResult]
         self._cache: Dict[Tuple, List[SearchResult]] = {}
@@ -176,6 +185,7 @@ class SearchEngine:
         self,
         query: str,
         top_k: int = TOP_K_DEFAULT,
+        fetch_k: Optional[int] = None,
         min_score: Optional[float] = None,
     ) -> List[SearchResult]:
         """Execute a semantic search query.
@@ -206,33 +216,64 @@ class SearchEngine:
         query = self._validate_query(query)
 
         # -- 2. Check cache --------------------------------------------
-        cache_key = (query, top_k, min_score)
+        # Cache key tracks reranker state to avoid serving unranked FAISS results
+        # when a reranker is expected. Note: Changes to underlying model weights
+        # or batch sizes do not invalidate the cache.
+        cache_key = (query, top_k, min_score, self._reranker is not None)
         if cache_key in self._cache:
             logger.debug("Cache hit | query=%s", repr(query[:50]))
             return self._cache[cache_key]
 
-        # -- 3. Encode query -------------------------------------------
+        # -- 3. Resolve fetch_k ----------------------------------------
+        if fetch_k is None:
+            fetch_k = top_k * self._fetch_k_multiplier if self._reranker else top_k
+        fetch_k = max(fetch_k, top_k)
+
+        # -- 4. Encode query -------------------------------------------
         encode_start = time.perf_counter()
         query_vec = self._encoder.encode_query(query)
         encode_ms = int((time.perf_counter() - encode_start) * 1000)
 
-        # -- 4. Search FAISS index -------------------------------------
+        # -- 5. Search FAISS index -------------------------------------
         search_start = time.perf_counter()
-        scores, indices = self._index.search(query_vec, top_k=top_k)
+        scores, indices = self._index.search(query_vec, top_k=fetch_k)
         search_ms = int((time.perf_counter() - search_start) * 1000)
 
-        # -- 5. Build results ------------------------------------------
-        results = self._build_results(scores, indices, min_score)
+        # -- 6. Build initial results ----------------------------------
+        candidates = self._build_results(scores, indices, min_score)
 
-        # -- 6. Log + cache --------------------------------------------
+        # -- 7. Apply Reranking ----------------------------------------
+        rerank_ms = 0
+        if self._reranker and candidates:  # Skip model call if no candidates found
+            try:
+                rerank_start = time.perf_counter()
+                
+                # Reranker processes all pairs in a batched forward pass
+                reranked_candidates = self._reranker.rerank(query, candidates)
+                if len(reranked_candidates) != len(candidates):
+                    raise ValueError(
+                        f"Reranker returned {len(reranked_candidates)} results, expected {len(candidates)}"
+                    )
+                candidates = reranked_candidates
+                rerank_ms = int((time.perf_counter() - rerank_start) * 1000)
+            except Exception as e:
+                # Graceful fallback: serve FAISS results if the heavy compute layer fails
+                logger.error("Reranker failed | type=%s | msg=%s", type(e).__name__, str(e))
+
+        # -- 8. Final Slicing and Rank Assignment ----------------------
+        final_results = candidates[:top_k]
+        for rank, res in enumerate(final_results, 1):
+            res.rank = rank
+
+        # -- 9. Log + cache --------------------------------------------
         total_ms = int((time.perf_counter() - total_start) * 1000)
 
-        self._log_search(query, top_k, min_score, results,
-                         scores, encode_ms, search_ms, total_ms)
+        self._log_search(query, top_k, min_score, final_results,
+                         scores, encode_ms, search_ms, rerank_ms, total_ms, self._reranker is not None)
 
-        self._cache_put(cache_key, results)
+        self._cache_put(cache_key, final_results)
 
-        return results
+        return final_results
 
     # ------------------------------------------------------------------
     # Internal: result building
@@ -353,31 +394,39 @@ class SearchEngine:
         top_k: int,
         min_score: Optional[float],
         results: List[SearchResult],
-        raw_scores: np.ndarray,
+        faiss_scores: np.ndarray,
         encode_ms: int,
         search_ms: int,
+        rerank_ms: int,
         total_ms: int,
+        rerank_applied: bool,
     ) -> None:
         """Log search metrics and score distribution."""
         top_score = results[0].score if results else 0.0
+        faiss_top_score = float(faiss_scores[0]) if len(faiss_scores) > 0 else 0.0
+        final_scores = [round(r.score, 4) for r in results[:3]]
 
         logger.info(
             "Search executed | query=%s top_k=%d min_score=%s "
-            "results=%d top_score=%.4f "
-            "encode_ms=%d search_ms=%d total_ms=%d",
+            "results=%d top_score=%.4f faiss_top=%.4f final_scores_top3=%s "
+            "encode_ms=%d search_ms=%d rerank_ms=%d total_ms=%d rerank_applied=%s",
             repr(query[:50]),
             top_k,
             min_score if min_score is not None else "none",
             len(results),
             top_score,
+            faiss_top_score,
+            final_scores,
             encode_ms,
             search_ms,
+            rerank_ms,
             total_ms,
+            rerank_applied,
         )
 
         # Score distribution for debugging
-        if len(raw_scores) > 0:
-            analyze_score_distribution(raw_scores, label=query[:30])
+        if len(faiss_scores) > 0:
+            analyze_score_distribution(faiss_scores, label=query[:30] + " (FAISS)")
 
     # ------------------------------------------------------------------
     # Internal: caching
