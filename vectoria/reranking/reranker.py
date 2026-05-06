@@ -30,8 +30,7 @@ class CrossEncoderReranker:
         scores = model.predict(
             pairs,
             batch_size=self.batch_size,
-            show_progress_bar=False,
-            truncation=True
+            show_progress_bar=False
         )
 
         for i, result in enumerate(results):

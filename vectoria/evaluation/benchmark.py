@@ -21,6 +21,11 @@ Retrieval Differences:
     - FAISS-Only Pipeline: Retrieves exactly `top_k` results based on cosine similarity (high recall focus).
     - Reranked Pipeline: Retrieves `fetch_k` (usually 10x top_k) from FAISS, computes
       deep cross-attention scores for all candidates, and returns the highest `top_k` (high precision focus).
+
+Latency Semantics:
+    - `avg_latency_ms` measures the full end-to-end pipeline execution time.
+    - This includes: query embedding, FAISS retrieval, candidate mapping, 
+      cross-encoder reranking (if enabled), and deterministic sorting.
 """
 
 import time
@@ -144,6 +149,8 @@ def evaluate_search(
     engine_rerank._index = engine_faiss._index
     engine_rerank._chunk_map = engine_faiss._chunk_map
     engine_rerank._mapping = engine_faiss._mapping
+    # Share encoder to ensure embedding consistency and eliminate evaluation drift
+    engine_rerank._encoder = engine_faiss._encoder
 
     # 1. Evaluate FAISS-only
     engine_faiss.clear_cache()
@@ -160,8 +167,11 @@ def evaluate_search(
             # Latency increases are expected, we still compute the % difference
             base = faiss_metrics[metric]
             new = reranked_metrics[metric]
-            imp = ((new - base) / base) * 100 if base > 0 else 0.0
-            improvement[metric] = f"{imp:+.2f}%"
+            if base == 0 and new > 0:
+                improvement[metric] = "+inf%"
+            else:
+                imp = ((new - base) / base) * 100 if base > 0 else 0.0
+                improvement[metric] = f"{imp:+.2f}%"
             continue
             
         base = faiss_metrics[metric]
