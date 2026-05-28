@@ -1,16 +1,15 @@
 <div align="center">
 
-# Vectoria
+# Vectoria 2.0 (Enterprise Edition)
 
-### Production-Grade Semantic Search & Retrieval Engine
+### Production-Grade Neural Retrieval & Grounded Generation Platform
 
-*A modular, end-to-end dense retrieval system that transforms natural language queries into precise document matches using transformer embeddings and FAISS vector indexing.*
+*A world-class, investor-grade AI platform featuring hybrid search, concurrent execution, advanced orchestration, and cinematic streaming UX.*
 
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)](https://python.org)
+[![Next.js](https://img.shields.io/badge/Next.js-14+-black?logo=next.js&logoColor=white)](https://nextjs.org)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.111+-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
 [![FAISS](https://img.shields.io/badge/FAISS-CPU-4285F4?logo=meta&logoColor=white)](https://github.com/facebookresearch/faiss)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-
-**Precision@5: 0.97** · **MRR: 0.99** · **Hit@5: 100%** · **Zero retrieval failures across 40 evaluation queries**
 
 </div>
 
@@ -34,14 +33,27 @@ The system is designed for:
 
 ## System Architecture
 
-```
-┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-│  Documents  │───▶│  Chunking   │───▶│  Embedding  │───▶│ FAISS Index │───▶│  Retrieval  │
-│   (.txt)    │    │  (300w avg) │    │  (384-dim)  │    │  (IndexFlatIP)   │  (top-K)    │
-└─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
-       │                  │                  │                  │                  │
-   181 docs         3,592 chunks      float32 vectors     Cosine search     Ranked results
-   1M+ words        96.5% in range    L2-normalized      < 5ms latency     with metadata
+Vectoria 2.0 uses an advanced, provider-agnostic hybrid architecture.
+
+```mermaid
+graph TD
+    UI[Next.js Client] -->|SSE Stream| Route[FastAPI Routes]
+    Route --> Rate[Rate Limiter]
+    Rate --> Orch[Streaming Orchestrator]
+    
+    Orch -->|1. Query| RetOrch[Retrieval Orchestrator]
+    Orch -->|3. Context| GenOrch[Generation Orchestrator]
+    
+    RetOrch -->|Rewrite| LLM[LLM Provider Layer]
+    RetOrch -->|Hybrid Search| Engine[Search Engine]
+    
+    Engine -->|BM25| Sparse[Lexical Index]
+    Engine -->|FAISS| Dense[Dense Index]
+    Engine -->|Fuse| RRF[Reciprocal Rank Fusion]
+    Engine -->|Rerank| Cross[Cross-Encoder]
+    
+    GenOrch -->|Prompt| LLM
+    LLM -->|Stream| Orch
 ```
 
 Each module is **independently testable**, **explicitly typed**, and connected through immutable dataclasses — no implicit state, no hidden coupling.
@@ -256,14 +268,14 @@ vectoria/
 
 ---
 
-## Future Improvements
+## Advanced Features
 
-- **Hybrid retrieval** — Combine BM25 lexical matching with semantic search using reciprocal rank fusion
-- **Cross-encoder re-ranking** — Add a second-stage re-ranker for higher precision on the top-K candidates
-- **RAG integration** — Pipe retrieved chunks into an LLM for grounded question answering
-- **Embedding fine-tuning** — Domain-adapt the encoder on in-domain query-document pairs
-- **Approximate indexing** — Replace `IndexFlatIP` with `IndexIVFFlat` or `IndexHNSWFlat` for million-scale corpora
-- **Streaming ingestion** — Incremental index updates without full rebuild
+- **Hybrid Retrieval:** Reciprocal Rank Fusion (RRF) combining BM25 lexical match with FAISS dense vector search.
+- **Provider Agnostic LLM:** Seamless fallback and hot-swapping between Anthropic, OpenAI, local Ollama, and Groq.
+- **Cinematic UX:** Vercel/Linear-inspired monochrome aesthetic with fluid Framer Motion animations.
+- **Enterprise Streaming:** Real-time Server-Sent Events (SSE) streaming with progressive markdown and syntax highlighting.
+- **Observability:** Distributed tracing, detailed Server-Timing headers, and deep JSON-based structlog telemetry.
+- **Advanced Orchestration:** Decoupled Retrieval, Generation, and Streaming orchestrators for infinite scale.
 
 ---
 

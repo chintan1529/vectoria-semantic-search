@@ -5,6 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* ── Shadcn token mappings ────────────────────────────── */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
@@ -46,76 +47,66 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* ── Vectoria Linear-style Monochrome Accent Palette ──────────────────────────── */
+  --color-v-blue: #0070F3;
+  --color-v-blue-dim: rgba(0, 112, 243, 0.15);
+  --color-v-emerald: #10B981;
+  --color-v-emerald-dim: rgba(16, 185, 129, 0.15);
+  --color-v-amber: #F5A623;
+  --color-v-amber-dim: rgba(245, 166, 35, 0.15);
+  --color-v-violet: #7928CA;
+  --color-v-violet-dim: rgba(121, 40, 202, 0.15);
+  --color-v-rose: #E00;
+  --color-v-rose-dim: rgba(238, 0, 0, 0.15);
+  
+  --color-surface: #0a0a0a;
+  --color-surface-hover: #111111;
+
+  /* ── Vectoria custom animations ───────────────────────── */
+  --animate-orb-1: orb-drift-1 25s ease-in-out infinite;
+  --animate-orb-2: orb-drift-2 30s ease-in-out infinite;
+  --animate-orb-3: orb-drift-3 20s ease-in-out infinite;
+  --animate-pulse-slow: pulse-glow 3s ease-in-out infinite;
 }
 
-:root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
+/* ── Dark theme — Vectoria Premium Monochrome ──────────────────────────────────────── */
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
+  --background: oklch(0.12 0 0); /* deep black/graphite */
+  --foreground: oklch(0.95 0 0);
+  --card: oklch(0.15 0 0);
+  --card-foreground: oklch(0.95 0 0);
+  --popover: oklch(0.15 0 0);
+  --popover-foreground: oklch(0.95 0 0);
+  --primary: oklch(0.95 0 0);
+  --primary-foreground: oklch(0.12 0 0);
+  --secondary: oklch(0.20 0 0);
+  --secondary-foreground: oklch(0.95 0 0);
+  --muted: oklch(0.20 0 0);
+  --muted-foreground: oklch(0.65 0 0);
+  --accent: oklch(0.20 0 0);
+  --accent-foreground: oklch(0.95 0 0);
+  --destructive: oklch(0.60 0.191 22.216);
+  --border: oklch(1 0 0 / 12%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --ring: oklch(1 0 0 / 30%);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar: oklch(0.15 0 0);
+  --sidebar-foreground: oklch(0.95 0 0);
+  --sidebar-primary: oklch(0.95 0 0);
+  --sidebar-primary-foreground: oklch(0.12 0 0);
+  --sidebar-accent: oklch(0.20 0 0);
+  --sidebar-accent-foreground: oklch(0.95 0 0);
+  --sidebar-border: oklch(1 0 0 / 12%);
+  --sidebar-ring: oklch(1 0 0 / 30%);
 }
+
+/* ── Base layer ─────────────────────────────────────────────────── */
 
 @layer base {
   * {
@@ -126,5 +117,126 @@
   }
   html {
     @apply font-sans;
+  }
+}
+
+/* ── Vectoria utility classes ───────────────────────────────────── */
+
+@layer components {
+  /* Cinematic Glass surface */
+  .v-glass {
+    background: rgba(15, 15, 15, 0.4);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .v-glass-heavy {
+    background: rgba(15, 15, 15, 0.7);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Solid elevated surface — no blur, high-perf */
+  .v-surface {
+    background: rgba(20, 20, 20, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .v-surface:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+
+  /* Active/focused glow border */
+  .v-glow-blue {
+    border-color: rgba(0, 112, 243, 0.4);
+    box-shadow:
+      0 0 16px rgba(0, 112, 243, 0.15),
+      inset 0 0 0 1px rgba(0, 112, 243, 0.2);
+  }
+
+  .v-glow-emerald {
+    border-color: rgba(16, 185, 129, 0.4);
+    box-shadow:
+      0 0 16px rgba(16, 185, 129, 0.15),
+      inset 0 0 0 1px rgba(16, 185, 129, 0.2);
+  }
+
+  /* Dot grid background */
+  .v-dot-grid {
+    background-image: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.06) 1px,
+      transparent 1px
+    );
+    background-size: 32px 32px;
+  }
+}
+
+/* ── Gradient orb keyframes ─────────────────────────────────────── */
+
+@keyframes orb-drift-1 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(20px, -25px) scale(1.02);
+  }
+  50% {
+    transform: translate(-10px, 15px) scale(0.98);
+  }
+  75% {
+    transform: translate(15px, 10px) scale(1.01);
+  }
+}
+
+@keyframes orb-drift-2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  30% {
+    transform: translate(-25px, 12px) scale(1.03);
+  }
+  60% {
+    transform: translate(17px, -22px) scale(0.97);
+  }
+  80% {
+    transform: translate(-7px, -10px) scale(1.01);
+  }
+}
+
+@keyframes orb-drift-3 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  35% {
+    transform: translate(27px, 15px) scale(0.98);
+  }
+  65% {
+    transform: translate(-20px, -17px) scale(1.02);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Shimmer for skeleton loading */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
   }
 }

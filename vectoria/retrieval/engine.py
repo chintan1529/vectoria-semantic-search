@@ -62,6 +62,7 @@ from vectoria.logger import get_logger
 from vectoria.models import Chunk, SearchResult
 from vectoria.reranking.reranker import CrossEncoderReranker
 from vectoria.storage import analyze_score_distribution, load_chunks
+from vectoria.retrieval.bm25 import BM25Retriever
 
 logger = get_logger(__name__)
 
@@ -89,6 +90,7 @@ class SearchEngine:
         self._chunk_map: Optional[Dict[str, Chunk]] = None
         self._mapping: Optional[EmbeddingMapping] = None
         self._reranker = CrossEncoderReranker(batch_size=batch_size) if use_reranker else None
+        self._bm25 = BM25Retriever()
         self._fetch_k_multiplier = fetch_k_multiplier
 
         # Query cache: (query, top_k, min_score) -> List[SearchResult]
@@ -121,6 +123,7 @@ class SearchEngine:
         # 1. Chunks
         self._chunks = load_chunks(CHUNKS_PATH)
         self._chunk_map = {c.chunk_id: c for c in self._chunks}
+        self._bm25.fit(self._chunks)
 
         # 2. FAISS index + mapping
         self._index = VectorIndex.load(
@@ -162,6 +165,7 @@ class SearchEngine:
         """
         self._chunks = chunks
         self._chunk_map = {c.chunk_id: c for c in chunks}
+        self._bm25.fit(chunks)
         self._mapping = mapping
 
         self._index = VectorIndex()
@@ -237,10 +241,14 @@ class SearchEngine:
         # -- 5. Search FAISS index -------------------------------------
         search_start = time.perf_counter()
         scores, indices = self._index.search(query_vec, top_k=fetch_k)
+        
+        # -- 5b. Search BM25 -------------------------------------------
+        bm25_scores = self._bm25.get_scores(query)
         search_ms = int((time.perf_counter() - search_start) * 1000)
 
         # -- 6. Build initial results ----------------------------------
-        candidates = self._build_results(scores, indices, min_score)
+        faiss_candidates = self._build_results(scores, indices, min_score)
+        candidates = self._reciprocal_rank_fusion(faiss_candidates, bm25_scores, top_k=fetch_k)
 
         # -- 7. Apply Reranking ----------------------------------------
         rerank_ms = 0
@@ -336,6 +344,43 @@ class SearchEngine:
         ]
 
         return results
+
+    def _reciprocal_rank_fusion(
+        self, faiss_candidates: List[SearchResult], bm25_scores: np.ndarray, top_k: int, k: int = 60
+    ) -> List[SearchResult]:
+        """Combine dense (FAISS) and sparse (BM25) results using RRF."""
+        # 1. Rank FAISS
+        faiss_ranks = {res.chunk.chunk_id: rank for rank, res in enumerate(faiss_candidates, 1)}
+        
+        # 2. Rank BM25
+        bm25_indices = np.argsort(bm25_scores)[::-1][:top_k*2]  # Get top candidates
+        bm25_ranks = {}
+        for rank, idx in enumerate(bm25_indices, 1):
+            if bm25_scores[idx] > 0:
+                chunk = self._chunks[idx]
+                bm25_ranks[chunk.chunk_id] = rank
+                
+        # 3. Fuse scores
+        rrf_scores = {}
+        all_chunks = {}
+        
+        for res in faiss_candidates:
+            chunk_id = res.chunk.chunk_id
+            all_chunks[chunk_id] = res.chunk
+            rrf_scores[chunk_id] = rrf_scores.get(chunk_id, 0) + (1.0 / (k + faiss_ranks[chunk_id]))
+            
+        for chunk_id, rank in bm25_ranks.items():
+            if chunk_id not in all_chunks:
+                all_chunks[chunk_id] = self._chunk_map[chunk_id]
+            rrf_scores[chunk_id] = rrf_scores.get(chunk_id, 0) + (1.0 / (k + rank))
+            
+        # 4. Sort
+        fused = sorted(rrf_scores.items(), key=lambda x: x[1], reverse=True)
+        
+        return [
+            SearchResult(chunk=all_chunks[chunk_id], score=score, rank=i)
+            for i, (chunk_id, score) in enumerate(fused, 1)
+        ][:top_k]
 
     # ------------------------------------------------------------------
     # Internal: validation
