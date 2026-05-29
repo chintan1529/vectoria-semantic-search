@@ -13,7 +13,11 @@ router = APIRouter()
 
 # Instantiate provider and orchestrators
 # In a real enterprise system, these would be injected or managed via a factory.
-llm_provider = OpenAIProvider(api_key=settings.vectoria_llm_api_key, model=settings.vectoria_model_name)
+llm_provider = OpenAIProvider(
+    api_key=settings.vectoria_llm_api_key, 
+    model=settings.vectoria_model_name,
+    base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+)
 retrieval_orchestrator = RetrievalOrchestrator(provider=llm_provider)
 streaming_orchestrator = StreamingOrchestrator(provider=llm_provider)
 

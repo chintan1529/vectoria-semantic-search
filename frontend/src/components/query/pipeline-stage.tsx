@@ -7,7 +7,7 @@ export type StageState = "idle" | "active" | "complete" | "error";
 
 interface PipelineStageProps {
   label: string;
-  loadingLabel: string; // Cinematic loading message (R4)
+  loadingLabel: string;
   state: StageState;
   latencyMs?: number;
   isLast?: boolean;
@@ -20,19 +20,11 @@ export function PipelineStage({
   latencyMs,
   isLast = false,
 }: PipelineStageProps) {
-  // Glow variants based on state
-  const glowVariants = {
-    idle: { opacity: 0, scale: 0.8 },
-    active: { opacity: 1, scale: 1.2, transition: { repeat: Infinity, duration: 1.5, repeatType: "reverse" as const } },
-    complete: { opacity: 0, scale: 1.5, transition: { duration: 0.5 } },
-    error: { opacity: 0.8, scale: 1.1 },
-  };
-
   const containerVariants = {
     idle: { opacity: 0.5, y: 0 },
     active: { opacity: 1, y: -2, transition: { type: "spring" as const, damping: 20 } },
     complete: { opacity: 1, y: 0 },
-    error: { opacity: 1, x: [-2, 2, -2, 2, 0], transition: { duration: 0.4 } },
+    error: { opacity: 1, x: [-1, 1, -1, 0], transition: { duration: 0.3 } },
   };
 
   return (
@@ -43,26 +35,25 @@ export function PipelineStage({
         animate={state}
         className="flex flex-col flex-1 relative group"
       >
-        {/* Node & Glow Container */}
+        {/* Node & Connector Container */}
         <div className="relative flex items-center mb-3">
-          {/* Animated Glow */}
-          <motion.div
-            variants={glowVariants}
-            className={cn(
-              "absolute -inset-4 rounded-full blur-md -z-10",
-              state === "active" || state === "complete" ? "bg-v-blue/30" : "",
-              state === "error" ? "bg-v-rose/30" : ""
-            )}
-          />
+          {/* Ambient glow (only when active) */}
+          {state === "active" && (
+            <motion.div
+              animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.15, 1] }}
+              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+              className="absolute -inset-3 rounded-full bg-v-blue/20 blur-md -z-10"
+            />
+          )}
 
           {/* Node Icon */}
           <div
             className={cn(
-              "relative z-10 flex h-8 w-8 items-center justify-center rounded-full border bg-zinc-950 transition-colors duration-300 shadow-sm",
-              state === "idle" && "border-zinc-700 text-zinc-600",
-              state === "active" && "border-v-blue text-v-blue shadow-[0_0_10px_rgba(59,130,246,0.3)]",
-              state === "complete" && "border-v-emerald text-v-emerald bg-v-emerald/10",
-              state === "error" && "border-v-rose text-v-rose bg-v-rose/10"
+              "relative z-10 flex h-8 w-8 items-center justify-center rounded-full border bg-zinc-950 transition-all duration-300 shadow-sm",
+              state === "idle" && "border-zinc-700/60 text-zinc-600",
+              state === "active" && "border-v-blue text-v-blue shadow-[0_0_12px_rgba(0,112,243,0.25)]",
+              state === "complete" && "border-v-emerald/60 text-v-emerald bg-v-emerald/5",
+              state === "error" && "border-v-rose/60 text-v-rose bg-v-rose/5"
             )}
           >
             {state === "idle" && <div className="h-2 w-2 rounded-full bg-zinc-700" />}
@@ -75,9 +66,14 @@ export function PipelineStage({
             )}
 
             {state === "complete" && (
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+              <motion.svg
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ type: "spring", damping: 15, stiffness: 300 }}
+                className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"
+              >
                 <polyline points="20 6 9 17 4 12" />
-              </svg>
+              </motion.svg>
             )}
 
             {state === "error" && (
@@ -88,17 +84,27 @@ export function PipelineStage({
             )}
           </div>
 
-          {/* Connector Line (Right side) */}
+          {/* Connector Line (gradient sweep instead of binary fill) */}
           {!isLast && (
-            <div className="flex-1 ml-2 mr-2 h-px relative bg-zinc-800">
-              {/* Progress fill */}
+            <div className="flex-1 ml-2 mr-2 h-px relative bg-zinc-800/60">
+              {/* Animated gradient sweep when transitioning */}
+              {state === "active" && (
+                <motion.div
+                  animate={{ x: ["-100%", "200%"] }}
+                  transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                  className="absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-v-blue/50 to-transparent"
+                />
+              )}
+              {/* Completed fill */}
               <motion.div
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: state === "complete" ? 1 : 0 }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 className={cn(
                   "absolute inset-0 origin-left",
-                  state === "error" ? "bg-v-rose/50" : "bg-gradient-to-r from-v-emerald to-v-blue shadow-[0_0_8px_rgba(59,130,246,0.5)]"
+                  state === "error"
+                    ? "bg-v-rose/40"
+                    : "bg-gradient-to-r from-v-emerald/60 to-v-blue/40"
                 )}
               />
             </div>
@@ -108,7 +114,7 @@ export function PipelineStage({
         {/* Labels & Telemetry */}
         <div className="flex flex-col gap-1 pr-4">
           <div className={cn(
-            "text-xs font-semibold tracking-wide transition-colors duration-300",
+            "text-[11px] font-semibold tracking-wide transition-colors duration-300",
             state === "active" ? "text-v-blue" :
             state === "complete" ? "text-zinc-300" :
             state === "error" ? "text-v-rose" : "text-zinc-600"
@@ -121,7 +127,7 @@ export function PipelineStage({
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="text-[10px] text-zinc-400 italic"
+                className="text-[10px] text-zinc-500 italic"
               >
                 {loadingLabel}
               </motion.div>
@@ -129,9 +135,10 @@ export function PipelineStage({
             
             {state === "complete" && latencyMs !== undefined && (
               <motion.div
-                initial={{ opacity: 0, y: 5 }}
+                initial={{ opacity: 0, y: 3 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="inline-flex items-center gap-1 rounded bg-zinc-900/50 border border-white/5 px-1.5 py-0.5 text-[10px] font-mono text-zinc-400"
+                transition={{ duration: 0.3 }}
+                className="inline-flex items-center gap-1 rounded bg-zinc-900/60 border border-white/5 px-1.5 py-0.5 text-[10px] font-mono text-zinc-400 tabular-nums"
               >
                 {latencyMs}ms
               </motion.div>

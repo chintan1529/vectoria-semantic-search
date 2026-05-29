@@ -16,7 +16,7 @@ export default function QueryWorkspace() {
   const { state, submitQuery, reset } = useRAGQuery();
   const [isInspectorOpen, setIsInspectorOpen] = useState(false);
 
-  // R3: Escape closes the inspector panel
+  // Escape closes the inspector panel
   const handleEscape = useCallback(() => {
     if (isInspectorOpen) setIsInspectorOpen(false);
   }, [isInspectorOpen]);
@@ -41,7 +41,7 @@ export default function QueryWorkspace() {
 
   const MainContent = (
     <>
-      <div className="pt-8">
+      <div className="pt-4 sm:pt-8">
         <QueryInput 
           onQuerySubmit={state.phase === "idle" ? submitQuery : handleNewQuery} 
           isProcessing={isProcessing} 
@@ -73,10 +73,10 @@ export default function QueryWorkspace() {
   );
 
   const InspectorPanel = (
-    <div className="flex flex-col h-full bg-surface border-l border-white/5">
-      <div className="flex items-center justify-between pb-4 border-b border-white/5 mb-2 sticky top-0 z-20 backdrop-blur-xl pt-4 px-4">
-        <h2 className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
-          <svg className="w-4 h-4 text-v-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div className="flex flex-col h-full">
+      <div className="flex items-center justify-between pb-3 border-b border-white/5 mb-2 sticky top-0 z-20 backdrop-blur-xl pt-4 px-4 bg-zinc-900/80">
+        <h2 className="text-[11px] font-semibold text-zinc-400 flex items-center gap-2 uppercase tracking-[0.15em]">
+          <svg className="w-3.5 h-3.5 text-v-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           Retrieval Intelligence
@@ -86,7 +86,7 @@ export default function QueryWorkspace() {
           className="text-zinc-500 hover:text-zinc-300 transition-colors p-1 rounded hover:bg-white/5"
           title="Close (Esc)"
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
@@ -95,9 +95,7 @@ export default function QueryWorkspace() {
       {state.diagnostics || state.context ? (
         <RetrievalIntelligenceView context={state.context} diagnostics={state.diagnostics} />
       ) : (
-        <div className="p-4 text-sm text-zinc-500 text-center mt-10">
-          Awaiting query context...
-        </div>
+        <RetrievalIntelligenceView context={null} diagnostics={null} />
       )}
     </div>
   );
@@ -109,7 +107,15 @@ export default function QueryWorkspace() {
       <WorkspaceLayout
         mainContent={MainContent}
         inspectorPanel={InspectorPanel}
-        metricsSidebar={<MetricsSidebar phase={state.phase} response={null} />}
+        metricsSidebar={
+          <MetricsSidebar
+            phase={state.phase}
+            response={null}
+            firstTokenTime={state.firstTokenTime}
+            startTime={state.startTime}
+            tokenCount={state.tokenCount}
+          />
+        }
         isInspectorOpen={isInspectorOpen}
       />
     </>

@@ -23,10 +23,10 @@ export function HeroSection() {
   };
 
   return (
-    <div className="relative min-h-screen flex flex-col items-center justify-center pt-20 pb-12 px-6 overflow-hidden z-10">
+    <div className="relative min-h-screen flex flex-col items-center justify-center pt-24 pb-16 px-6 overflow-hidden z-10">
       
       {/* Background Flow Visual (R6) */}
-      <div className="absolute right-12 lg:right-32 top-1/2 -translate-y-1/2 hidden md:block opacity-40 pointer-events-none">
+      <div className="absolute right-[-10%] lg:right-12 top-1/2 -translate-y-1/2 hidden sm:block opacity-30 lg:opacity-40 pointer-events-none">
         <RetrievalFlow />
       </div>
 
@@ -39,7 +39,7 @@ export function HeroSection() {
         {/* Title */}
         <motion.h1 
           variants={item}
-          className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-zinc-100 to-zinc-500 mb-6"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-white via-zinc-200 to-zinc-600 mb-6 drop-shadow-sm leading-tight"
         >
           Neural Retrieval &<br /> Grounded Generation
         </motion.h1>
@@ -47,22 +47,25 @@ export function HeroSection() {
         {/* Subtitle */}
         <motion.p 
           variants={item}
-          className="max-w-2xl text-lg md:text-xl text-zinc-400 mb-10 leading-relaxed"
+          className="max-w-2xl text-base sm:text-lg md:text-xl text-zinc-400 mb-10 leading-relaxed px-4 sm:px-0"
         >
           A production-grade semantic search engine built for precision.
           Evaluate document contexts before generation, not after.
         </motion.p>
 
         {/* CTA */}
-        <motion.div variants={item} className="flex items-center gap-6 mb-16">
+        <motion.div variants={item} className="flex items-center gap-6 mb-16 relative">
+          {/* Subtle pulse ring behind button */}
+          <div className="absolute -inset-1 rounded-full bg-v-blue/20 blur-md animate-pulse-slow" />
+          
           <Link
             href="/query"
-            className="group relative inline-flex items-center justify-center gap-2 px-8 py-3.5 text-sm font-semibold text-white bg-zinc-900 rounded-full border border-white/10 hover:bg-zinc-800 transition-all overflow-hidden"
+            className="group relative inline-flex items-center justify-center gap-2 px-8 py-3.5 text-sm font-semibold text-white bg-zinc-900 rounded-full border border-white/10 hover:bg-zinc-800 transition-all overflow-hidden active:scale-95 shadow-[0_0_20px_rgba(0,112,243,0.15)] hover:shadow-[0_0_30px_rgba(0,112,243,0.3)]"
           >
             {/* CTA Glow */}
             <div className="absolute inset-0 bg-gradient-to-r from-v-blue/20 to-v-violet/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             
-            <span className="relative z-10">Open Query Console</span>
+            <span className="relative z-10 tracking-wide">Open Query Console</span>
             
             {/* Arrow icon */}
             <svg
@@ -78,12 +81,12 @@ export function HeroSection() {
         </motion.div>
 
         {/* Metrics Grid */}
-        <motion.div variants={item} className="w-full">
+        <motion.div variants={item} className="w-full px-4 sm:px-0">
           <HeroMetrics />
         </motion.div>
 
         {/* Tech Stack */}
-        <motion.div variants={item}>
+        <motion.div variants={item} className="mt-8">
           <TechStackBar />
         </motion.div>
 

@@ -35,7 +35,7 @@ class StreamingOrchestrator:
         yield f"event: diagnostics\ndata: {diagnostics.model_dump_json()}\n\n"
         
         # Stream LLM tokens
-        messages = self.generation.build_prompt(query, results)
+        messages = self.generation.build_prompt(query, results, diagnostics)
         
         async for token in self.generation.provider.stream(messages, **kwargs):
             # Send standard JSON string for the token to preserve whitespace

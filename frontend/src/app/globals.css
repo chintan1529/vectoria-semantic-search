@@ -117,6 +117,38 @@
   }
   html {
     @apply font-sans;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Premium custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  /* Ensure focus-visible is accessibility-friendly */
+  :focus-visible {
+    outline: 2px solid rgba(0, 112, 243, 0.5);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Tabular numbers for metric displays */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
   }
 }
 
@@ -142,10 +174,12 @@
   .v-surface {
     background: rgba(20, 20, 20, 0.95);
     border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
   }
 
   .v-surface:hover {
-    border-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
   }
 
   /* Active/focused glow border */
@@ -171,6 +205,117 @@
       transparent 1px
     );
     background-size: 32px 32px;
+  }
+
+  /* Shimmer loading skeleton */
+  .v-shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.04) 25%,
+      rgba(255, 255, 255, 0.08) 50%,
+      rgba(255, 255, 255, 0.04) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.8s ease-in-out infinite;
+  }
+
+  /* Streaming cursor */
+  .v-cursor::after {
+    content: '';
+    display: inline-block;
+    width: 2px;
+    height: 1.1em;
+    background: rgba(0, 112, 243, 0.8);
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    animation: cursor-blink 1s step-end infinite;
+  }
+
+  /* Prose enhancements for streaming markdown */
+  .v-prose {
+    font-size: 15px;
+    line-height: 1.75;
+    color: rgba(228, 228, 231, 0.9);
+    contain: layout style;
+  }
+
+  .v-prose h1, .v-prose h2, .v-prose h3 {
+    color: rgba(244, 244, 245, 1);
+    font-weight: 600;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+  }
+
+  .v-prose p {
+    margin-bottom: 0.75em;
+  }
+
+  .v-prose strong {
+    color: rgba(244, 244, 245, 1);
+    font-weight: 600;
+  }
+
+  .v-prose code:not(pre code) {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 4px;
+    padding: 0.15em 0.35em;
+    font-size: 0.875em;
+    font-weight: 500;
+  }
+
+  .v-prose pre {
+    background: rgba(0, 0, 0, 0.5) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 1em 1.25em;
+    margin: 1em 0;
+    overflow-x: auto;
+    font-size: 0.85em;
+    line-height: 1.6;
+  }
+
+  .v-prose pre code {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    font-size: inherit;
+  }
+
+  .v-prose ul, .v-prose ol {
+    padding-left: 1.5em;
+    margin-bottom: 0.75em;
+  }
+
+  .v-prose li {
+    margin-bottom: 0.25em;
+  }
+
+  .v-prose a {
+    color: #0070F3;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0, 112, 243, 0.3);
+    transition: border-color 0.2s ease;
+  }
+
+  .v-prose a:hover {
+    border-bottom-color: rgba(0, 112, 243, 0.8);
+  }
+
+  .v-prose blockquote {
+    border-left: 3px solid rgba(0, 112, 243, 0.4);
+    padding-left: 1em;
+    margin: 1em 0;
+    color: rgba(161, 161, 170, 0.9);
+    font-style: italic;
+  }
+
+  /* Gradient text utility */
+  .v-gradient-text {
+    background: linear-gradient(135deg, #fafafa 0%, #71717a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }
 
@@ -239,4 +384,41 @@
   100% {
     background-position: 200% 0;
   }
+}
+
+/* Streaming cursor blink */
+@keyframes cursor-blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Smooth fade-in for streaming elements */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.3s ease-out forwards;
+}
+
+/* Subtle scale bounce for button press */
+@keyframes press-bounce {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+.active\:animate-press:active {
+  animation: press-bounce 0.15s ease-out;
 }

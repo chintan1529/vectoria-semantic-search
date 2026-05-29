@@ -5,7 +5,7 @@ import { PipelineStage, StageState } from "./pipeline-stage";
 import { cn } from "@/lib/utils";
 
 // Re-export type since we might need it elsewhere
-export type QueryPhase = "idle" | "embedding" | "retrieving" | "reranking" | "building_context" | "generating" | "complete" | "error";
+export type QueryPhase = "idle" | "classifying" | "embedding" | "retrieving" | "validating" | "reranking" | "building_context" | "generating" | "complete" | "error";
 
 interface PipelineVisualizerProps {
   phase: QueryPhase;
@@ -30,7 +30,7 @@ export function PipelineVisualizer({ phase, latencies, className }: PipelineVisu
     if (isActive) return "active";
     
     // If the current phase is "past" this stage's active phase, it's complete
-    const allPhases: QueryPhase[] = ["idle", "embedding", "retrieving", "reranking", "building_context", "generating", "complete"];
+    const allPhases: QueryPhase[] = ["idle", "classifying", "embedding", "retrieving", "validating", "reranking", "building_context", "generating", "complete"];
     const currentIdx = allPhases.indexOf(phase);
     const stageMaxIdx = Math.max(...stagePhases.map(p => allPhases.indexOf(p)));
     
@@ -42,22 +42,20 @@ export function PipelineVisualizer({ phase, latencies, className }: PipelineVisu
     <GlassCard solid className={cn("p-6 border-white/5", className)}>
       <div className="flex items-start w-full">
         <PipelineStage
-          label="Embedding"
-          loadingLabel="Encoding semantics..."
-          state={getStageState(["embedding"], phase === "embedding")}
-          latencyMs={latencies?.embedding}
+          label="Classification"
+          loadingLabel="Understanding intent..."
+          state={getStageState(["classifying"], phase === "classifying")}
         />
         <PipelineStage
           label="Retrieval"
           loadingLabel="Searching vector space..."
-          state={getStageState(["retrieving"], phase === "retrieving")}
+          state={getStageState(["embedding", "retrieving", "reranking"], ["embedding", "retrieving", "reranking"].includes(phase))}
           latencyMs={latencies?.retrieving}
         />
         <PipelineStage
-          label="Reranking"
-          loadingLabel="Cross-encoder scoring..."
-          state={getStageState(["reranking"], phase === "reranking")}
-          latencyMs={latencies?.reranking}
+          label="Validation"
+          loadingLabel="Checking grounding..."
+          state={getStageState(["validating"], phase === "validating")}
         />
         <PipelineStage
           label="Generation"

@@ -1,78 +1,84 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { useSystemStatus } from "@/lib/hooks/use-system-status";
-import { StatusDot } from "@/components/ui/status-dot";
 
 export function Navbar() {
   const pathname = usePathname();
-  const status = useSystemStatus();
+  const [scrolled, setScrolled] = useState(false);
+
+  // Track scroll to add subtle border glow
+  useEffect(() => {
+    const handler = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", handler, { passive: true });
+    return () => window.removeEventListener("scroll", handler);
+  }, []);
+
+  const navLinks = [
+    { href: "/", label: "Home" },
+    { href: "/query", label: "Query Console" },
+    { href: "/evaluate", label: "Evaluation" },
+  ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex h-14 items-center justify-between px-6 lg:px-12 v-glass rounded-none border-t-0 border-x-0 border-b border-white/5 bg-zinc-950/60">
-      <div className="flex items-center gap-8">
-        <Link 
-          href="/" 
-          className="flex items-center gap-2 text-zinc-50 font-semibold tracking-tight transition-opacity hover:opacity-80"
-        >
-          <div className="flex size-6 items-center justify-center rounded bg-v-blue/20 text-v-blue shadow-[0_0_12px_rgba(59,130,246,0.3)]">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <polygon points="12 2 2 7 12 12 22 7 12 2" />
-              <polyline points="2 17 12 22 22 17" />
-              <polyline points="2 12 12 17 22 12" />
-            </svg>
+    <nav
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 h-14 flex items-center px-6 transition-all duration-500",
+        "bg-zinc-950/80 backdrop-blur-xl border-b",
+        scrolled
+          ? "border-white/10 shadow-[0_1px_20px_rgba(0,0,0,0.3)]"
+          : "border-transparent"
+      )}
+    >
+      {/* Logo */}
+      <Link href="/" className="flex items-center gap-2.5 mr-8 group">
+        <div className="relative">
+          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-zinc-100 to-zinc-400 flex items-center justify-center shadow-[0_0_10px_rgba(255,255,255,0.1)] group-hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] transition-shadow duration-300">
+            <span className="text-xs font-black text-zinc-900 tracking-tighter">V</span>
           </div>
-          Vectoria
-        </Link>
-
-        <div className="hidden md:flex items-center gap-1 text-sm font-medium text-zinc-400">
-          <Link
-            href="/query"
-            className={cn(
-              "px-3 py-1.5 rounded-md transition-colors",
-              pathname === "/query" 
-                ? "text-zinc-50 bg-white/5" 
-                : "hover:text-zinc-100 hover:bg-white/5"
-            )}
-          >
-            Workspace
-          </Link>
-          <Link
-            href="/evaluate"
-            className={cn(
-              "px-3 py-1.5 rounded-md transition-colors",
-              pathname === "/evaluate" 
-                ? "text-zinc-50 bg-white/5" 
-                : "hover:text-zinc-100 hover:bg-white/5"
-            )}
-          >
-            Evaluation
-          </Link>
         </div>
+        <span className="text-sm font-bold tracking-wide text-zinc-100 hidden sm:inline">
+          VECTORIA
+        </span>
+      </Link>
+
+      {/* Navigation Links */}
+      <div className="flex items-center gap-1">
+        {navLinks.map((link) => {
+          const isActive = pathname === link.href;
+          return (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={cn(
+                "relative px-3 py-1.5 text-[13px] font-medium rounded-md transition-colors duration-200",
+                isActive
+                  ? "text-zinc-100"
+                  : "text-zinc-500 hover:text-zinc-300 hover:bg-white/5"
+              )}
+            >
+              {link.label}
+              {/* Active indicator */}
+              {isActive && (
+                <motion.div
+                  layoutId="nav-active"
+                  className="absolute inset-0 bg-white/8 rounded-md -z-10"
+                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                />
+              )}
+            </Link>
+          );
+        })}
       </div>
 
-      <div className="flex items-center gap-4">
-        <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-900/50 border border-white/5 text-xs font-mono text-zinc-400">
-          <StatusDot status={status} />
-          <span className="uppercase tracking-wider">
-            {status === "online" ? "System Online" : status === "degraded" ? "Degraded" : "System Offline"}
-          </span>
-        </div>
-        
-        <div className="text-xs font-mono text-zinc-500 bg-zinc-900/50 px-2 py-1 rounded border border-white/5">
-          v0.1.0
+      {/* Right side: Status */}
+      <div className="ml-auto flex items-center gap-4">
+        <div className="hidden sm:flex items-center gap-2 text-[11px] text-zinc-500 font-mono">
+          <div className="h-1.5 w-1.5 rounded-full bg-v-emerald animate-pulse" />
+          <span>v2.0</span>
         </div>
       </div>
     </nav>

@@ -101,6 +101,9 @@ const MOCK_RESPONSE: RAGResponse = {
     unique_sources: 4
   },
   latency_ms: 1250,
+  retrieval_latency_ms: 250,
+  rerank_latency_ms: 150,
+  generation_latency_ms: 850,
   model_name: "gemini-2.5-pro",
   refused: false,
   refusal_reason: null,

@@ -4,35 +4,50 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface ScoreBarProps {
-  score: number; // 0.0 to 1.0
+  score: number;
+  maxScore?: number;
+  showLabel?: boolean;
+  size?: "sm" | "md";
   className?: string;
 }
 
-export function ScoreBar({ score, className }: ScoreBarProps) {
-  // Determine color based on score threshold
-  const getColor = (s: number) => {
-    if (s >= 0.8) return "from-v-emerald to-emerald-400";
-    if (s >= 0.6) return "from-v-blue to-blue-400";
-    if (s >= 0.4) return "from-v-amber to-amber-400";
-    return "from-v-rose to-rose-400";
-  };
+export function ScoreBar({ score, maxScore = 1, showLabel = true, size = "md", className }: ScoreBarProps) {
+  const normalized = Math.min(Math.abs(score) / Math.abs(maxScore || 1), 1);
+  
+  const color =
+    normalized >= 0.8 ? "bg-v-emerald" :
+    normalized >= 0.5 ? "bg-v-blue" :
+    normalized >= 0.3 ? "bg-v-amber" :
+    "bg-zinc-600";
 
-  // Convert score to percentage for width
-  const percentage = Math.max(0, Math.min(100, score * 100));
+  const glowColor =
+    normalized >= 0.8 ? "shadow-[0_0_6px_rgba(16,185,129,0.3)]" :
+    normalized >= 0.5 ? "shadow-[0_0_6px_rgba(0,112,243,0.3)]" :
+    "";
+
+  const height = size === "sm" ? "h-1" : "h-1.5";
 
   return (
     <div className={cn("flex items-center gap-2", className)}>
-      <div className="relative h-1.5 w-full bg-zinc-800 rounded-full overflow-hidden flex-1">
+      <div className={cn("flex-1 bg-zinc-800 rounded-full overflow-hidden", height)}>
         <motion.div
           initial={{ width: 0 }}
-          animate={{ width: `${percentage}%` }}
-          transition={{ duration: 1, type: "spring", damping: 20 }}
-          className={cn("absolute inset-y-0 left-0 bg-gradient-to-r rounded-full", getColor(score))}
+          animate={{ width: `${normalized * 100}%` }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className={cn("h-full rounded-full", color, glowColor)}
         />
       </div>
-      <div className="text-[10px] font-mono font-medium text-zinc-400 w-8 text-right tabular-nums">
-        {score.toFixed(3)}
-      </div>
+      {showLabel && (
+        <span className={cn(
+          "text-[10px] font-mono tabular-nums shrink-0",
+          normalized >= 0.8 ? "text-v-emerald" :
+          normalized >= 0.5 ? "text-v-blue" :
+          normalized >= 0.3 ? "text-v-amber" :
+          "text-zinc-500"
+        )}>
+          {score.toFixed(3)}
+        </span>
+      )}
     </div>
   );
 }

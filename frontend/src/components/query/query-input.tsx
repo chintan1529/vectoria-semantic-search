@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { GlassCard } from "@/components/ui/glass-card";
 import { useKeyboard } from "@/lib/hooks/use-keyboard";
 import { cn } from "@/lib/utils";
@@ -10,12 +11,30 @@ interface QueryInputProps {
   isProcessing: boolean;
 }
 
+const EXAMPLE_QUERIES = [
+  "How do neural networks learn from data?",
+  "What causes climate change?",
+  "Explain the transformer architecture",
+  "How does reinforcement learning work?",
+];
+
 export function QueryInput({ onQuerySubmit, isProcessing }: QueryInputProps) {
   const [query, setQuery] = useState("");
   const [isFocused, setIsFocused] = useState(false);
+  const [placeholderIdx, setPlaceholderIdx] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Premium Keyboard Shortcuts (R3)
+  // Rotate placeholder text for visual interest
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
+    setPlaceholderIdx((prev) => (prev + 1) % EXAMPLE_QUERIES.length);
+  };
+
+  // Premium Keyboard Shortcuts
   useKeyboard({
     inputRef,
     onSubmit: () => {
@@ -36,13 +55,16 @@ export function QueryInput({ onQuerySubmit, isProcessing }: QueryInputProps) {
     <GlassCard 
       className={cn(
         "relative flex items-center p-2 transition-all duration-300",
-        isFocused ? "v-glow-blue scale-[1.005]" : "border-white/10",
-        isProcessing && "opacity-50 pointer-events-none"
+        isFocused ? "v-glow-blue scale-[1.003]" : "border-white/10 hover:border-white/15",
+        isProcessing && "opacity-60 pointer-events-none"
       )}
     >
       <form onSubmit={handleSubmit} className="flex w-full relative items-center">
         {/* Search Icon */}
-        <div className="pl-4 pr-2 text-zinc-500">
+        <div className={cn(
+          "pl-4 pr-2 transition-colors duration-300",
+          isFocused ? "text-v-blue" : "text-zinc-500"
+        )}>
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="11" cy="11" r="8"></circle>
             <path d="m21 21-4.3-4.3"></path>
@@ -55,37 +77,55 @@ export function QueryInput({ onQuerySubmit, isProcessing }: QueryInputProps) {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-          placeholder="Ask anything about AI or sustainability..."
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          placeholder={EXAMPLE_QUERIES[placeholderIdx]}
           disabled={isProcessing}
           className="flex-1 bg-transparent border-none outline-none text-zinc-100 placeholder:text-zinc-600 text-lg py-3 px-2 focus:ring-0"
+          aria-label="Search query"
         />
 
         {/* Keyboard hints & Submit button */}
         <div className="pr-2 flex items-center gap-3">
           {/* '/' hint */}
-          {!isFocused && !query && (
-            <kbd className="hidden sm:inline-flex items-center gap-1 px-2 py-1 text-[10px] font-mono text-zinc-500 bg-white/5 rounded border border-white/10 uppercase">
-              Press <span className="text-zinc-300">/</span>
-            </kbd>
-          )}
+          <AnimatePresence>
+            {!isFocused && !query && (
+              <motion.kbd
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="hidden sm:inline-flex items-center gap-1 px-2 py-1 text-[10px] font-mono text-zinc-500 bg-white/5 rounded border border-white/10 uppercase"
+              >
+                Press <span className="text-zinc-300">/</span>
+              </motion.kbd>
+            )}
+          </AnimatePresence>
 
           {/* 'Cmd+Enter' hint (shows when typing) */}
-          {isFocused && query && (
-            <kbd className="hidden sm:inline-flex items-center gap-1 px-2 py-1 text-[10px] font-mono text-zinc-500 bg-white/5 rounded border border-white/10">
-              <span className="text-zinc-300">⌘</span> ↵
-            </kbd>
-          )}
+          <AnimatePresence>
+            {isFocused && query && (
+              <motion.kbd
+                initial={{ opacity: 0, x: 4 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 4 }}
+                transition={{ duration: 0.15 }}
+                className="hidden sm:inline-flex items-center gap-1 px-2 py-1 text-[10px] font-mono text-zinc-500 bg-white/5 rounded border border-white/10"
+              >
+                <span className="text-zinc-300">⌘</span> ↵
+              </motion.kbd>
+            )}
+          </AnimatePresence>
 
           {/* Submit Button */}
-          <button
+          <motion.button
             type="submit"
             disabled={!query.trim() || isProcessing}
+            whileTap={{ scale: 0.93 }}
             className={cn(
               "p-2.5 rounded-lg transition-all duration-300",
               query.trim() && !isProcessing
-                ? "bg-v-blue text-white hover:bg-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.4)]"
+                ? "bg-v-blue text-white hover:bg-blue-400 shadow-[0_0_15px_rgba(0,112,243,0.3)] hover:shadow-[0_0_25px_rgba(0,112,243,0.4)]"
                 : "bg-white/5 text-zinc-600 cursor-not-allowed"
             )}
           >
@@ -102,7 +142,7 @@ export function QueryInput({ onQuerySubmit, isProcessing }: QueryInputProps) {
                 <path d="M22 2 11 13"></path>
               </svg>
             )}
-          </button>
+          </motion.button>
         </div>
       </form>
     </GlassCard>

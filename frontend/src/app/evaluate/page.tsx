@@ -8,7 +8,10 @@ import {
   EvalHero, 
   MetricsTable, 
   BaselineComparison, 
-  RerankingStory 
+  RerankingStory,
+  DomainBreakdown,
+  LatencyProfile,
+  ScoreDistribution
 } from "@/components/eval/dashboard-components";
 
 export default function EvaluatePage() {
@@ -26,8 +29,20 @@ export default function EvaluatePage() {
         >
           <EvalHero />
           <MetricsTable />
+          
+          <div className="mt-16 mb-8 flex items-center">
+            <div className="h-px bg-white/10 flex-1" />
+            <div className="px-4 text-[10px] font-semibold tracking-[0.2em] uppercase text-zinc-500">
+              Deep Dive Analysis
+            </div>
+            <div className="h-px bg-white/10 flex-1" />
+          </div>
+          
           <RerankingStory />
           <BaselineComparison />
+          <DomainBreakdown />
+          <LatencyProfile />
+          <ScoreDistribution />
         </motion.div>
       </div>
     </main>

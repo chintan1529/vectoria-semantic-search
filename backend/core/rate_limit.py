@@ -29,7 +29,7 @@ class RateLimiterService:
         if not limiter.has_capacity():
             raise HTTPException(status_code=429, detail="Too many requests. Please try again later.")
         # Consume 1 token
-        limiter.acquire_nowait()
+        await limiter.acquire()
 
 # Global singleton
 rate_limiter = RateLimiterService()
