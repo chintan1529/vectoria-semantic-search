@@ -4,11 +4,15 @@ from backend.core.config import settings
 from backend.core.startup import startup_event, shutdown_event, state
 from backend.middleware.telemetry import TelemetryMiddleware
 from backend.routes.query import router as query_router
+from backend.observability.metrics import setup_metrics
+from backend.observability.tracing import setup_tracing
 
 from contextlib import asynccontextmanager
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    # Setup tracing and metrics before starting core components
+    setup_tracing(app)
     startup_event()
     yield
     shutdown_event()
@@ -20,6 +24,9 @@ app = FastAPI(
     version="0.1.0",
     lifespan=lifespan,
 )
+
+# Setup Prometheus metrics endpoint and middleware
+setup_metrics(app)
 
 # Middleware configuration
 app.add_middleware(
