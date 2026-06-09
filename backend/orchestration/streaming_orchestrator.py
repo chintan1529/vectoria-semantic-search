@@ -29,17 +29,22 @@ class StreamingOrchestrator:
             for r in results
         ]
         
-        yield f"event: context\ndata: {json.dumps(context_data)}\n\n"
+        yield {"event": "context", "data": json.dumps(context_data)}
         
         # Yield diagnostics
-        yield f"event: diagnostics\ndata: {diagnostics.model_dump_json()}\n\n"
+        yield {"event": "diagnostics", "data": diagnostics.model_dump_json()}
         
         # Stream LLM tokens
         messages = self.generation.build_prompt(query, results, diagnostics)
         
-        async for token in self.generation.provider.stream(messages, **kwargs):
-            # Send standard JSON string for the token to preserve whitespace
-            clean_token = json.dumps(token)
-            yield f"event: token\ndata: {clean_token}\n\n"
-            
-        yield "event: done\ndata: {}\n\n"
+        try:
+            async for token in self.generation.provider.stream(messages, **kwargs):
+                # Send standard JSON string for the token to preserve whitespace
+                clean_token = json.dumps(token)
+                yield {"event": "token", "data": clean_token}
+                
+            yield {"event": "done", "data": "{}"}
+        except Exception as e:
+            from backend.core.logging import logger
+            logger.error(f"Streaming generation failed: {e}")
+            yield {"event": "error", "data": json.dumps(str(e))}

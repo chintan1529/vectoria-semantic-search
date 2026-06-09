@@ -151,6 +151,9 @@ export function useRAGQuery() {
           } else if (eventType === "token") {
             const token = JSON.parse(data);
             appendToken(token);
+          } else if (eventType === "error") {
+            const errorMessage = JSON.parse(data);
+            throw new Error(errorMessage);
           } else if (eventType === "done") {
             // Flush any remaining buffered tokens before completing
             flushTokenBuffer();
@@ -161,6 +164,13 @@ export function useRAGQuery() {
 
       // Final flush in case stream ended without "done" event
       flushTokenBuffer();
+      // Ensure we don't get stuck in 'generating' if the stream closes prematurely
+      setState(s => {
+        if (s.phase === "generating") {
+           return { ...s, phase: "complete" };
+        }
+        return s;
+      });
 
     } catch (err: any) {
       flushTokenBuffer();
