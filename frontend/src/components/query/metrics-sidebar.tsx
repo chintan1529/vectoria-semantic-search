@@ -7,7 +7,8 @@ import { AnimatedNumber } from "@/components/ui/animated-number";
 
 interface MetricsSidebarProps {
   phase: QueryPhase;
-  response: RAGResponse | null;
+  diagnostics: any | null;
+  generationMeta: any | null;
   firstTokenTime?: number | null;
   startTime?: number | null;
   tokenCount?: number;
@@ -45,12 +46,12 @@ function SectionDivider() {
   );
 }
 
-export function MetricsSidebar({ phase, response, firstTokenTime, startTime, tokenCount }: MetricsSidebarProps) {
+export function MetricsSidebar({ phase, diagnostics, generationMeta, firstTokenTime, startTime, tokenCount }: MetricsSidebarProps) {
   const isActive = phase !== "idle" && phase !== "error";
   const ttft = firstTokenTime && startTime ? firstTokenTime - startTime : null;
 
-  // If no response yet, show the empty shell state
-  if (!response) {
+  // If no diagnostics yet, show the empty shell state
+  if (!diagnostics) {
     return (
       <div className="flex flex-col gap-5 w-full">
         <div className="flex items-center justify-between pb-3 border-b border-white/5">
@@ -93,7 +94,10 @@ export function MetricsSidebar({ phase, response, firstTokenTime, startTime, tok
   }
 
   // Active state with real data
-  const meta = response.generation_meta;
+  const meta = generationMeta || {};
+  const totalLatency = meta.generation_latency_ms 
+    ? diagnostics.retrieval_latency_ms + meta.generation_latency_ms 
+    : 0;
 
   return (
     <motion.div 
@@ -114,7 +118,11 @@ export function MetricsSidebar({ phase, response, firstTokenTime, startTime, tok
       <motion.div variants={fadeUp} className="space-y-3">
         <MetricRow label="Total Latency">
           <div className="text-xl font-mono font-bold text-zinc-100 flex items-baseline gap-1 tabular-nums">
-            <AnimatedNumber value={response.latency_ms} format="integer" />
+            {totalLatency > 0 ? (
+              <AnimatedNumber value={totalLatency} format="integer" />
+            ) : (
+              "—"
+            )}
             <span className="text-[10px] font-sans text-zinc-500 font-normal">ms</span>
           </div>
         </MetricRow>
@@ -122,19 +130,23 @@ export function MetricsSidebar({ phase, response, firstTokenTime, startTime, tok
         <div className="grid grid-cols-2 gap-2">
            <MetricRow label="Retrieval">
              <div className="text-sm font-mono text-zinc-400 tabular-nums">
-               <AnimatedNumber value={response.retrieval_latency_ms} format="integer" /> ms
+               <AnimatedNumber value={diagnostics.retrieval_latency_ms} format="integer" /> ms
              </div>
            </MetricRow>
            <MetricRow label="Rerank">
              <div className="text-sm font-mono text-zinc-400 tabular-nums">
-               <AnimatedNumber value={response.rerank_latency_ms} format="integer" /> ms
+               {diagnostics.reranking_latency_ms ? <AnimatedNumber value={diagnostics.reranking_latency_ms} format="integer" /> : 0} ms
              </div>
            </MetricRow>
         </div>
         
         <MetricRow label="Generation Latency">
           <div className="text-lg font-mono font-medium text-zinc-300 flex items-baseline gap-1 tabular-nums">
-            <AnimatedNumber value={response.generation_latency_ms} format="integer" />
+            {meta.generation_latency_ms ? (
+              <AnimatedNumber value={meta.generation_latency_ms} format="integer" />
+            ) : (
+              "—"
+            )}
             <span className="text-[10px] font-sans text-zinc-500 font-normal">ms</span>
           </div>
         </MetricRow>
@@ -154,18 +166,18 @@ export function MetricsSidebar({ phase, response, firstTokenTime, startTime, tok
       <motion.div variants={fadeUp} className="space-y-3">
         <MetricRow label="Total Tokens">
           <div className="text-lg font-mono font-medium text-zinc-200 tabular-nums">
-            <AnimatedNumber value={meta.total_tokens} format="integer" />
+            {tokenCount ? <AnimatedNumber value={tokenCount} format="integer" /> : "—"}
           </div>
         </MetricRow>
         <div className="grid grid-cols-2 gap-2">
           <MetricRow label="Prompt">
             <div className="text-sm font-mono text-zinc-400 tabular-nums">
-              <AnimatedNumber value={meta.prompt_tokens} format="integer" />
+              {meta.prompt_tokens ? <AnimatedNumber value={meta.prompt_tokens} format="integer" /> : "—"}
             </div>
           </MetricRow>
           <MetricRow label="Completion">
             <div className="text-sm font-mono text-zinc-400 tabular-nums">
-              <AnimatedNumber value={meta.completion_tokens} format="integer" />
+              {meta.completion_tokens ? <AnimatedNumber value={meta.completion_tokens} format="integer" /> : "—"}
             </div>
           </MetricRow>
         </div>
@@ -186,12 +198,12 @@ export function MetricsSidebar({ phase, response, firstTokenTime, startTime, tok
       <motion.div variants={fadeUp} className="space-y-3">
         <MetricRow label="Model Identity">
           <div className="text-xs font-mono text-v-violet bg-v-violet/10 px-2 py-1 rounded inline-block">
-            {meta.model_used}
+            {meta.model_used || "streaming..."}
           </div>
         </MetricRow>
         <MetricRow label="Prompt Version">
           <div className="text-xs font-mono text-zinc-400">
-            {meta.prompt_version}
+            {meta.prompt_version || "—"}
           </div>
         </MetricRow>
         <MetricRow label="Finish Reason">
@@ -207,7 +219,7 @@ export function MetricsSidebar({ phase, response, firstTokenTime, startTime, tok
       <motion.div variants={fadeUp}>
         <MetricRow label="Verified Citations">
           <div className="text-lg font-mono font-medium text-v-emerald flex items-center gap-2 tabular-nums">
-            <AnimatedNumber value={meta.citation_count} format="integer" />
+            {meta.citation_count !== undefined ? <AnimatedNumber value={meta.citation_count} format="integer" /> : "—"}
             <svg className="w-4 h-4 text-v-emerald" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>

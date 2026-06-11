@@ -8,6 +8,7 @@ import { MetricsSidebar } from "@/components/query/metrics-sidebar";
 import { PipelineVisualizer } from "@/components/query/pipeline-visualizer";
 import { ChatInterface } from "@/components/query/chat-interface";
 import { RetrievalIntelligenceView } from "@/components/features/retrieval-intelligence-view";
+import { DeveloperPanel } from "@/components/query/developer-panel";
 import { useRAGQuery } from "@/lib/hooks/use-rag-query";
 import { useKeyboard } from "@/lib/hooks/use-keyboard";
 import { AnimatedBackground } from "@/components/landing/animated-background";
@@ -54,9 +55,9 @@ export default function QueryWorkspace() {
           latencies={
             state.diagnostics 
               ? {
-                  embedding: Math.round(state.diagnostics.retrieval_latency_ms * 0.4),
-                  retrieving: Math.round(state.diagnostics.retrieval_latency_ms * 0.6),
-                  reranking: 0,
+                  embedding: state.diagnostics.classification_latency_ms || 0,
+                  retrieving: state.diagnostics.retrieval_latency_ms || 0,
+                  reranking: state.diagnostics.reranking_latency_ms || 0,
                   generating: 0,
                 }
               : undefined
@@ -108,13 +109,17 @@ export default function QueryWorkspace() {
         mainContent={MainContent}
         inspectorPanel={InspectorPanel}
         metricsSidebar={
-          <MetricsSidebar
-            phase={state.phase}
-            response={null}
-            firstTokenTime={state.firstTokenTime}
-            startTime={state.startTime}
-            tokenCount={state.tokenCount}
-          />
+          <div className="flex flex-col gap-6">
+            <MetricsSidebar
+              phase={state.phase}
+              diagnostics={state.diagnostics}
+              generationMeta={state.generationMeta}
+              firstTokenTime={state.firstTokenTime}
+              startTime={state.startTime}
+              tokenCount={state.tokenCount}
+            />
+            <DeveloperPanel state={state} />
+          </div>
         }
         isInspectorOpen={isInspectorOpen}
       />

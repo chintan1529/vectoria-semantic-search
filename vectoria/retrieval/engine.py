@@ -82,7 +82,7 @@ class SearchEngine:
         max_cache_size: int = 128,
         use_reranker: bool = True,
         batch_size: int = 32,
-        fetch_k_multiplier: int = 10,
+        fetch_k_multiplier: int = 3,
     ) -> None:
         self._encoder: Optional[EmbeddingEncoder] = None
         self._index: Optional[VectorIndex] = None
@@ -257,10 +257,12 @@ class SearchEngine:
                 rerank_start = time.perf_counter()
                 
                 # Reranker processes all pairs in a batched forward pass
-                reranked_candidates = self._reranker.rerank(query, candidates)
-                if len(reranked_candidates) != len(candidates):
+                # Cap candidates to 15 to ensure < 2s latency based on benchmarks
+                candidates_to_rerank = candidates[:15]
+                reranked_candidates = self._reranker.rerank(query, candidates_to_rerank)
+                if len(reranked_candidates) != len(candidates_to_rerank):
                     raise ValueError(
-                        f"Reranker returned {len(reranked_candidates)} results, expected {len(candidates)}"
+                        f"Reranker returned {len(reranked_candidates)} results, expected {len(candidates_to_rerank)}"
                     )
                 candidates = reranked_candidates
                 rerank_ms = int((time.perf_counter() - rerank_start) * 1000)

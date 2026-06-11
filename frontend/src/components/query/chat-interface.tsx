@@ -92,7 +92,7 @@ export function ChatInterface({ phase, streamingText, error }: ChatInterfaceProp
           style={{ contain: "layout style" }}
         >
           <AnimatePresence mode="wait">
-            {/* Skeleton loading state */}
+            {/* Phase-specific loading state */}
             {isWaitingForTokens && (
               <motion.div
                 key="skeleton"
@@ -100,8 +100,21 @@ export function ChatInterface({ phase, streamingText, error }: ChatInterfaceProp
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="space-y-3"
+                className="space-y-4"
               >
+                {/* Phase indicator */}
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-5 h-5 rounded-full border-2 border-v-blue/50 border-t-v-blue animate-spin" />
+                  <span className="text-sm text-zinc-400 font-medium">
+                    {phase === "classifying" && "Understanding your query..."}
+                    {phase === "embedding" && "Encoding query vector..."}
+                    {phase === "retrieving" && "Searching knowledge base..."}
+                    {phase === "reranking" && "Ranking results..."}
+                    {phase === "validating" && "Validating context..."}
+                    {phase === "building_context" && "Assembling context..."}
+                    {phase === "generating" && !streamingText && "Generating response..."}
+                  </span>
+                </div>
                 <div className="h-4 rounded w-3/4 v-shimmer" />
                 <div className="h-4 rounded w-full v-shimmer" style={{ animationDelay: "200ms" }} />
                 <div className="h-4 rounded w-5/6 v-shimmer" style={{ animationDelay: "400ms" }} />

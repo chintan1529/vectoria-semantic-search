@@ -50,18 +50,21 @@ async def health_check():
 @app.get("/ready", tags=["System"])
 async def readiness_check():
     """Verifies that all models and indexes are loaded into memory."""
-    is_ready = all([
-        state.engine is not None,
-        state.llm is not None,
-        state.rag is not None
-    ])
-    
-    if is_ready:
-        return {"status": "ready"}
+    if state.is_ready:
+        return {
+            "status": "ready",
+            "model_state": state.model_state.value,
+            "startup_time_ms": state.startup_time_ms,
+        }
     else:
-        # 503 Service Unavailable if models are still loading
-        from fastapi import Response
-        return Response(content='{"status": "loading"}', media_type="application/json", status_code=503)
+        from fastapi.responses import JSONResponse
+        return JSONResponse(
+            status_code=503,
+            content={
+                "status": state.model_state.value,
+                "startup_error": state.startup_error,
+            },
+        )
 
 # If running this file directly for debugging
 if __name__ == "__main__":

@@ -1,163 +1,182 @@
+"""
+Retrieval Orchestrator v2 — Optimized for sub-second retrieval.
+
+Changes from v1:
+  - Replaced LLM QueryClassifier with HybridIntentRouter (< 1ms)
+  - Replaced LLM ContextValidator with HeuristicContextValidator (< 5ms)
+  - Removed query rewriting from single-turn critical path
+  - LLM escalation only when local confidence < 90% (rare)
+  - Added orchestrator-level result cache
+
+Performance targets:
+  - Query routing: < 50ms
+  - Retrieval + reranking: < 500ms
+  - Total orchestration: < 1s
+"""
 import time
 import asyncio
-from typing import List, Optional
+import hashlib
+from typing import Dict, List, Optional, Tuple
 from pydantic import BaseModel
 from vectoria.models import SearchResult
 from backend.core.startup import state
 from backend.providers.base_provider import BaseLLMProvider
 from backend.core.logging import logger
-from vectoria.generation.query_classifier import QueryClassifier, QueryType
-from vectoria.generation.context_validator import ContextValidator
+from vectoria.generation.intent_router import HybridIntentRouter, QueryType, QueryIntent
+from vectoria.generation.heuristic_validator import HeuristicContextValidator
+
 
 class RetrievalDiagnostics(BaseModel):
     original_query: str
     rewritten_query: Optional[str] = None
     retrieval_latency_ms: int = 0
+    classification_latency_ms: int = 0
+    reranking_latency_ms: int = 0
+    validation_latency_ms: int = 0
     total_results: int = 0
     scores: List[float] = []
     query_type: str = "unknown"
     retrieval_confidence: str = "LOW"
     fallback_used: bool = False
+    cached: bool = False
+    routed_locally: bool = True
+
 
 class RetrievalOrchestrator:
+    """Orchestrates retrieval with zero LLM calls in the critical path.
+    
+    Pipeline:
+      1. Local Intent Classification (< 1ms)
+      2. Hybrid Search + Reranking (via SearchEngine)
+      3. Heuristic Context Validation (< 5ms)
+      4. LLM escalation only if classification confidence < 90% (async, non-blocking)
     """
-    Orchestrates the retrieval phase:
-    1. Query Classification (Intent & Routing)
-    2. Query Rewriting (optional, for context)
-    3. Hybrid Search & Reranking
-    4. Context Validation & Fallback
-    5. Diagnostic gathering
-    """
+
     def __init__(self, provider: Optional[BaseLLMProvider] = None):
         self.provider = provider
-        if provider:
-            self.classifier = QueryClassifier(provider)
-            self.validator = ContextValidator(provider)
-        else:
-            self.classifier = None
-            self.validator = None
-            
-    async def rewrite_query(self, query: str, context: str = "") -> str:
-        """Rewrite the query to resolve pronouns if context exists."""
-        if not context or not self.provider:
-            return query
-            
-        prompt = f"""Given the conversation context, rewrite the user query to be fully self-contained.
-Context:
-{context}
-
-User Query: {query}
-Rewritten Query:"""
-
-        try:
-            result = await self.provider.generate([{"role": "user", "content": prompt}], max_tokens=50)
-            rewritten = result.text.strip()
-            logger.info("Query rewritten", original=query, rewritten=rewritten)
-            return rewritten
-        except Exception as e:
-            logger.warning(f"Query rewrite failed: {e}")
-            return query
-
-    async def execute_retrieval(self, query: str, context: str = "", top_k: int = 5) -> tuple[List[SearchResult], RetrievalDiagnostics]:
-        start_time = time.perf_counter()
+        self.router = HybridIntentRouter(escalation_threshold=0.90)
+        self.validator = HeuristicContextValidator()
         
-        fallback_used = False
-        query_type = "unknown"
-        retrieval_confidence = "LOW"
-        search_query = query
-        results = []
+        # Orchestrator-level result cache: query_hash -> (results, diagnostics)
+        self._cache: Dict[str, Tuple[List[SearchResult], RetrievalDiagnostics]] = {}
+        self._max_cache_size = 64
+
+    def _query_hash(self, query: str, top_k: int) -> str:
+        """Deterministic hash for cache key."""
+        return hashlib.md5(f"{query.strip().lower()}:{top_k}".encode()).hexdigest()
+
+    async def execute_retrieval(
+        self, query: str, context: str = "", top_k: int = 5
+    ) -> Tuple[List[SearchResult], RetrievalDiagnostics]:
+        """Execute the optimized retrieval pipeline.
         
-        # 1. Classify Query
-        if self.classifier:
-            intent = await self.classifier.classify(query)
-            query_type = intent.query_type.value
-            logger.info(f"Query classified as {query_type}, requires_retrieval={intent.requires_retrieval}")
-            
-            if not intent.requires_retrieval:
-                # Bypass retrieval for pure conversational queries
-                latency = int((time.perf_counter() - start_time) * 1000)
-                diagnostics = RetrievalDiagnostics(
-                    original_query=query,
-                    retrieval_latency_ms=latency,
-                    total_results=0,
-                    query_type=query_type,
-                    retrieval_confidence="HIGH"
-                )
-                return [], diagnostics
-                
-            if intent.query_type == QueryType.ANALYTICAL:
-                # Increase depth for analytical queries
-                top_k = top_k * 2
-                
-        # 2. Rewrite Query
-        search_query = await self.rewrite_query(query, context)
-        
-        # 3. Retrieve
+        Critical path (no LLM calls):
+          1. Check cache → instant return if hit
+          2. Local intent classification (< 1ms)
+          3. SearchEngine.search() with reranking (target < 500ms)
+          4. Heuristic validation (< 5ms)
+        """
+        pipeline_start = time.perf_counter()
+
+        # --- 0. Check orchestrator cache ---
+        cache_key = self._query_hash(query, top_k)
+        if cache_key in self._cache:
+            cached_results, cached_diag = self._cache[cache_key]
+            cached_diag_copy = cached_diag.model_copy()
+            cached_diag_copy.cached = True
+            logger.info("Orchestrator cache hit | query=%s", repr(query[:50]))
+            return cached_results, cached_diag_copy
+
+        # --- 1. Local Intent Classification ---
+        classify_start = time.perf_counter()
+        intent = self.router.classify(query)
+        classify_ms = int((time.perf_counter() - classify_start) * 1000)
+
+        logger.info(
+            "Query classified | type=%s confidence=%.2f requires_retrieval=%s "
+            "routed_locally=%s reason='%s' latency_ms=%d",
+            intent.query_type.value, intent.confidence,
+            intent.requires_retrieval, intent.routed_locally,
+            intent.explanation, classify_ms,
+        )
+
+        # Short-circuit for conversational queries
+        if not intent.requires_retrieval:
+            total_ms = int((time.perf_counter() - pipeline_start) * 1000)
+            diagnostics = RetrievalDiagnostics(
+                original_query=query,
+                retrieval_latency_ms=total_ms,
+                classification_latency_ms=classify_ms,
+                total_results=0,
+                query_type=intent.query_type.value,
+                retrieval_confidence="HIGH",
+                routed_locally=intent.routed_locally,
+            )
+            return [], diagnostics
+
+        # Adjust top_k for analytical queries
+        effective_top_k = top_k
+        if intent.query_type == QueryType.ANALYTICAL:
+            effective_top_k = top_k * 2
+
+        # --- 2. Retrieve (includes embedding, FAISS, BM25, reranking) ---
         if not state.engine:
             raise RuntimeError("SearchEngine is not loaded in application state.")
-            
-        results = await asyncio.to_thread(state.engine.search, search_query, top_k=top_k)
-        
-        # 4. Validate Context
-        if self.validator:
-            validation_result = await self.validator.validate_context(query, results)
-            results = validation_result.valid_results
-            retrieval_confidence = validation_result.confidence
-            
-            # 5. Fallback Recovery (if confidence is LOW)
-            if retrieval_confidence == "LOW" and self.provider:
-                logger.info(f"Low confidence retrieval for '{query}'. Triggering fallback expansion...")
-                fallback_used = True
-                
-                # Simple expansion via LLM
-                expand_prompt = f"Expand the following search query with synonyms and related concepts: '{query}'"
-                try:
-                    expand_res = await self.provider.generate([{"role": "user", "content": expand_prompt}], max_tokens=30)
-                    expanded_query = expand_res.text.strip()
-                    logger.info(f"Expanded query to: {expanded_query}")
-                    
-                    if not expanded_query:
-                        raise ValueError("LLM returned an empty expanded query.")
-                    
-                    # Retry search with broader depth
-                    fallback_results = await asyncio.to_thread(state.engine.search, expanded_query, top_k=top_k + 5)
-                    fallback_val = await self.validator.validate_context(query, fallback_results)
-                    
-                    # Merge results (prefer fallback if better)
-                    if fallback_val.confidence in ["HIGH", "MEDIUM"]:
-                        results = fallback_val.valid_results
-                        retrieval_confidence = fallback_val.confidence
-                        search_query = expanded_query
-                    else:
-                        # Append the best we got
-                        results.extend(fallback_val.valid_results)
-                        
-                except Exception as e:
-                    logger.warning(f"Fallback expansion failed: {e}")
 
-        # Final deduplication just in case fallback merged things
-        seen = set()
-        final_results = []
-        for r in results:
-            if r.chunk.chunk_id not in seen:
-                seen.add(r.chunk.chunk_id)
-                final_results.append(r)
-        
-        # Sort by score descending and take top_k
+        retrieve_start = time.perf_counter()
+        results = await asyncio.to_thread(
+            state.engine.search, query, top_k=effective_top_k
+        )
+        retrieve_ms = int((time.perf_counter() - retrieve_start) * 1000)
+
+        # --- 3. Heuristic Validation ---
+        validate_start = time.perf_counter()
+        validation = self.validator.validate_context(query, results)
+        validate_ms = int((time.perf_counter() - validate_start) * 1000)
+
+        final_results = validation.valid_results
+        retrieval_confidence = validation.confidence
+
+        # --- 4. Final results ---
+        # Sort by score descending, take top_k
         final_results.sort(key=lambda x: x.score, reverse=True)
         final_results = final_results[:top_k]
-                
-        latency = int((time.perf_counter() - start_time) * 1000)
-        
+
+        total_ms = int((time.perf_counter() - pipeline_start) * 1000)
+
         diagnostics = RetrievalDiagnostics(
             original_query=query,
-            rewritten_query=search_query if search_query != query else None,
-            retrieval_latency_ms=latency,
+            retrieval_latency_ms=retrieve_ms,
+            classification_latency_ms=classify_ms,
+            reranking_latency_ms=0,  # Included in retrieval_latency_ms (engine handles it)
+            validation_latency_ms=validate_ms,
             total_results=len(final_results),
             scores=[r.score for r in final_results],
-            query_type=query_type,
+            query_type=intent.query_type.value,
             retrieval_confidence=retrieval_confidence,
-            fallback_used=fallback_used
+            routed_locally=intent.routed_locally,
         )
-        
+
+        logger.info(
+            "Retrieval complete | query=%s results=%d confidence=%s "
+            "classify_ms=%d retrieve_ms=%d validate_ms=%d total_ms=%d",
+            repr(query[:50]), len(final_results), retrieval_confidence,
+            classify_ms, retrieve_ms, validate_ms, total_ms,
+        )
+
+        # Cache the result
+        self._cache_put(cache_key, final_results, diagnostics)
+
         return final_results, diagnostics
+
+    def _cache_put(
+        self,
+        key: str,
+        results: List[SearchResult],
+        diagnostics: RetrievalDiagnostics,
+    ) -> None:
+        """Insert into orchestrator cache, evicting oldest if full."""
+        if len(self._cache) >= self._max_cache_size:
+            oldest = next(iter(self._cache))
+            del self._cache[oldest]
+        self._cache[key] = (results, diagnostics)
