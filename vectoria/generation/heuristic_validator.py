@@ -22,11 +22,13 @@ class HeuristicValidationResult:
         rejected_count: int,
         confidence: str,
         rejection_reasons: dict,
+        rejected_results: List[dict] = None,
     ):
         self.valid_results = valid_results
         self.rejected_count = rejected_count
         self.confidence = confidence  # HIGH, MEDIUM, LOW
         self.rejection_reasons = rejection_reasons
+        self.rejected_results = rejected_results or []
 
 
 class HeuristicContextValidator:
@@ -75,11 +77,19 @@ class HeuristicContextValidator:
 
         # --- Step 1: Score threshold filtering ---
         score_filtered = []
+        rejected_items = []
+        
         for r in results:
             if r.score >= self.min_rerank_score:
                 score_filtered.append(r)
             else:
                 rejection_reasons["low_score"] += 1
+                rejected_items.append({
+                    "chunk_id": r.chunk.chunk_id,
+                    "title": r.chunk.metadata.title,
+                    "score": r.score,
+                    "reason": "low_score"
+                })
 
         # --- Step 2: Text deduplication ---
         deduped: List[SearchResult] = []
@@ -92,10 +102,23 @@ class HeuristicContextValidator:
                 deduped.append(r)
             else:
                 rejection_reasons["duplicate"] += 1
+                rejected_items.append({
+                    "chunk_id": r.chunk.chunk_id,
+                    "title": r.chunk.metadata.title,
+                    "score": r.score,
+                    "reason": "duplicate"
+                })
 
         # --- Step 3: Max chunk enforcement ---
         if len(deduped) > self.max_chunks:
             rejection_reasons["capped"] = len(deduped) - self.max_chunks
+            for r in deduped[self.max_chunks:]:
+                rejected_items.append({
+                    "chunk_id": r.chunk.chunk_id,
+                    "title": r.chunk.metadata.title,
+                    "score": r.score,
+                    "reason": "capped"
+                })
             deduped = deduped[:self.max_chunks]
 
         # --- Step 4: Confidence assessment ---
@@ -128,4 +151,5 @@ class HeuristicContextValidator:
             rejected_count=total_rejected,
             confidence=confidence,
             rejection_reasons=rejection_reasons,
+            rejected_results=rejected_items,
         )

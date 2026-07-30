@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 interface QueryInputProps {
   onQuerySubmit: (query: string) => void;
   isProcessing: boolean;
+  isWarming?: boolean;
 }
 
 const EXAMPLE_QUERIES = [
@@ -18,7 +19,7 @@ const EXAMPLE_QUERIES = [
   "How does reinforcement learning work?",
 ];
 
-export function QueryInput({ onQuerySubmit, isProcessing }: QueryInputProps) {
+export function QueryInput({ onQuerySubmit, isProcessing, isWarming = false }: QueryInputProps) {
   const [query, setQuery] = useState("");
   const [isFocused, setIsFocused] = useState(false);
   const [placeholderIdx, setPlaceholderIdx] = useState(0);
@@ -56,7 +57,7 @@ export function QueryInput({ onQuerySubmit, isProcessing }: QueryInputProps) {
       className={cn(
         "relative flex items-center p-2 transition-all duration-300",
         isFocused ? "v-glow-blue scale-[1.003]" : "border-white/10 hover:border-white/15",
-        isProcessing && "opacity-60 pointer-events-none"
+        (isProcessing || isWarming) && "opacity-60 pointer-events-none"
       )}
     >
       <form onSubmit={handleSubmit} className="flex w-full relative items-center">
@@ -79,8 +80,8 @@ export function QueryInput({ onQuerySubmit, isProcessing }: QueryInputProps) {
           onChange={(e) => setQuery(e.target.value)}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          placeholder={EXAMPLE_QUERIES[placeholderIdx]}
-          disabled={isProcessing}
+          placeholder={isWarming ? "System warming up... Loading models & indexes" : EXAMPLE_QUERIES[placeholderIdx]}
+          disabled={isProcessing || isWarming}
           className="flex-1 bg-transparent border-none outline-none text-zinc-100 placeholder:text-zinc-600 text-lg py-3 px-2 focus:ring-0"
           aria-label="Search query"
         />

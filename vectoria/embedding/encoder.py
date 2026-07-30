@@ -410,6 +410,16 @@ class EmbeddingEncoder:
 
         return self._model
 
+    def preload(self) -> None:
+        """Eagerly loads model weights and runs a dummy forward pass to warm PyTorch kernels during startup."""
+        model = self._get_model()
+        try:
+            import torch
+            with torch.no_grad():
+                model.encode(["warmup"], show_progress_bar=False)
+        except Exception as e:
+            logger.warning("Embedding model warmup pass error: %s", str(e))
+
     def _validate_embeddings(
         self, embeddings: np.ndarray, expected_count: int
     ) -> None:

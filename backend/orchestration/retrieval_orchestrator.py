@@ -24,6 +24,9 @@ from backend.providers.base_provider import BaseLLMProvider
 from backend.core.logging import logger
 from vectoria.generation.intent_router import HybridIntentRouter, QueryType, QueryIntent
 from vectoria.generation.heuristic_validator import HeuristicContextValidator
+from vectoria.intelligence.query_understanding import QueryUnderstandingPipeline
+from vectoria.intelligence.query_budget import allocate_query_budget
+from vectoria.intelligence.query_rewriter import QueryRewriter
 
 
 class RetrievalDiagnostics(BaseModel):
@@ -40,6 +43,7 @@ class RetrievalDiagnostics(BaseModel):
     fallback_used: bool = False
     cached: bool = False
     routed_locally: bool = True
+    rejected_candidates: List[dict] = []
 
 
 class RetrievalOrchestrator:
@@ -56,6 +60,8 @@ class RetrievalOrchestrator:
         self.provider = provider
         self.router = HybridIntentRouter(escalation_threshold=0.90)
         self.validator = HeuristicContextValidator()
+        self.understanding = QueryUnderstandingPipeline()
+        self.rewriter = QueryRewriter()
         
         # Orchestrator-level result cache: query_hash -> (results, diagnostics)
         self._cache: Dict[str, Tuple[List[SearchResult], RetrievalDiagnostics]] = {}
@@ -114,10 +120,14 @@ class RetrievalOrchestrator:
             )
             return [], diagnostics
 
-        # Adjust top_k for analytical queries
-        effective_top_k = top_k
-        if intent.query_type == QueryType.ANALYTICAL:
-            effective_top_k = top_k * 2
+        # Analyze query and allocate adaptive budget
+        meta = self.understanding.analyze(query)
+        budget = allocate_query_budget(meta)
+        effective_top_k = budget.top_k
+
+        # Rewrite query if necessary
+        rewritten_queries = self.rewriter.rewrite(meta)
+        search_query = rewritten_queries[0]
 
         # --- 2. Retrieve (includes embedding, FAISS, BM25, reranking) ---
         if not state.engine:
@@ -125,7 +135,7 @@ class RetrievalOrchestrator:
 
         retrieve_start = time.perf_counter()
         results = await asyncio.to_thread(
-            state.engine.search, query, top_k=effective_top_k
+            state.engine.search, search_query, top_k=effective_top_k
         )
         retrieve_ms = int((time.perf_counter() - retrieve_start) * 1000)
 
@@ -155,6 +165,7 @@ class RetrievalOrchestrator:
             query_type=intent.query_type.value,
             retrieval_confidence=retrieval_confidence,
             routed_locally=intent.routed_locally,
+            rejected_candidates=validation.rejected_results,
         )
 
         logger.info(

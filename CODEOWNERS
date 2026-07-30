@@ -1,0 +1,8 @@
+# Global owners for Vectoria codebase
+
+*       @vectoria-core-team
+
+/backend/      @vectoria-backend-team
+/vectoria/     @vectoria-ai-team
+/frontend/     @vectoria-frontend-team
+/.github/      @vectoria-devops-team

@@ -9,6 +9,8 @@ interface MetricsSidebarProps {
   phase: QueryPhase;
   diagnostics: any | null;
   generationMeta: any | null;
+  evaluationMetrics: any | null;
+  trustVerification?: any | null;
   firstTokenTime?: number | null;
   startTime?: number | null;
   tokenCount?: number;
@@ -46,7 +48,7 @@ function SectionDivider() {
   );
 }
 
-export function MetricsSidebar({ phase, diagnostics, generationMeta, firstTokenTime, startTime, tokenCount }: MetricsSidebarProps) {
+export function MetricsSidebar({ phase, diagnostics, generationMeta, evaluationMetrics, firstTokenTime, startTime, tokenCount }: MetricsSidebarProps) {
   const isActive = phase !== "idle" && phase !== "error";
   const ttft = firstTokenTime && startTime ? firstTokenTime - startTime : null;
 
@@ -226,6 +228,37 @@ export function MetricsSidebar({ phase, diagnostics, generationMeta, firstTokenT
           </div>
         </MetricRow>
       </motion.div>
+      
+      {evaluationMetrics && (
+        <>
+          <SectionDivider />
+          <motion.div variants={fadeUp} className="space-y-3">
+            <h3 className="text-[10px] uppercase tracking-wider text-v-emerald font-medium border-b border-v-emerald/20 pb-1 mb-2">Answer Evaluation</h3>
+            <div className="grid grid-cols-2 gap-2">
+              <MetricRow label="Faithfulness">
+                <div className="text-sm font-mono text-zinc-300 tabular-nums">
+                  <AnimatedNumber value={evaluationMetrics.faithfulness} format="integer" /> / 5
+                </div>
+              </MetricRow>
+              <MetricRow label="Relevance">
+                <div className="text-sm font-mono text-zinc-300 tabular-nums">
+                  <AnimatedNumber value={evaluationMetrics.relevance} format="integer" /> / 5
+                </div>
+              </MetricRow>
+            </div>
+            
+            <MetricRow label="Hallucination Risk">
+              <div className={`text-xs font-mono px-2 py-1 rounded inline-block ${
+                evaluationMetrics.hallucination_risk === 'Low' ? 'text-v-emerald bg-v-emerald/10' :
+                evaluationMetrics.hallucination_risk === 'High' ? 'text-red-400 bg-red-400/10' :
+                'text-amber-400 bg-amber-400/10'
+              }`}>
+                {evaluationMetrics.hallucination_risk}
+              </div>
+            </MetricRow>
+          </motion.div>
+        </>
+      )}
     </motion.div>
   );
 }

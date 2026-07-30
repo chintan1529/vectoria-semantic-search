@@ -12,8 +12,7 @@ export function useSystemStatus() {
     // Later in Phase 4 when the API is built, this will poll the backend /health endpoint.
     const checkStatus = async () => {
       try {
-        // Placeholder for future API call
-        // const res = await fetch("/api/health");
+        const res = await fetch("http://localhost:8000/api/health");
         // if (res.ok) setStatus("online");
         // else setStatus("degraded");
         

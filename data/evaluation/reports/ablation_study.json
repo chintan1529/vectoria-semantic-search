@@ -1,0 +1,34 @@
+[
+  {
+    "variant": "FAISS Only",
+    "recall_at_5": 0.075,
+    "mrr": 0.059375,
+    "ndcg_at_5": 0.06327007889556063,
+    "avg_latency_ms": 1456.1484737612773,
+    "samples": 80
+  },
+  {
+    "variant": "BM25 Only",
+    "recall_at_5": 0.025,
+    "mrr": 0.025,
+    "ndcg_at_5": 0.025,
+    "avg_latency_ms": 44.3215412524296,
+    "samples": 80
+  },
+  {
+    "variant": "FAISS+BM25",
+    "recall_at_5": 0.075,
+    "mrr": 0.06875,
+    "ndcg_at_5": 0.07038662191964322,
+    "avg_latency_ms": 1049.9209750152659,
+    "samples": 80
+  },
+  {
+    "variant": "FAISS+BM25+Reranker",
+    "recall_at_5": 0.1375,
+    "mrr": 0.07708333333333332,
+    "ndcg_at_5": 0.09231340163040772,
+    "avg_latency_ms": 12016.67598123895,
+    "samples": 80
+  }
+]

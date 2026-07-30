@@ -132,8 +132,11 @@ class SearchEngine:
         )
         self._mapping = self._index.mapping
 
-        # 3. Encoder (model loads lazily on first query)
+        # 3. Encoder & Reranker Preload
         self._encoder = EmbeddingEncoder()
+        self._encoder.preload()
+        if self._reranker:
+            self._reranker.preload()
 
         # 4. Cross-validate counts
         self._validate_alignment()
@@ -256,9 +259,8 @@ class SearchEngine:
             try:
                 rerank_start = time.perf_counter()
                 
-                # Reranker processes all pairs in a batched forward pass
-                # Cap candidates to 15 to ensure < 2s latency based on benchmarks
-                candidates_to_rerank = candidates[:15]
+                # Reranker processes candidates in a batched forward pass
+                candidates_to_rerank = candidates[:max(top_k, 5)]
                 reranked_candidates = self._reranker.rerank(query, candidates_to_rerank)
                 if len(reranked_candidates) != len(candidates_to_rerank):
                     raise ValueError(

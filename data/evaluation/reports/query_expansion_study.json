@@ -1,0 +1,18 @@
+[
+  {
+    "strategy": "Raw Query",
+    "recall_at_5": 0.12,
+    "mrr": 0.06666666666666667,
+    "ndcg_at_5": 0.08047438028571662,
+    "avg_latency_ms": 16092.091470002197,
+    "samples": 50
+  },
+  {
+    "strategy": "Keyword Expansion",
+    "recall_at_5": 0.1,
+    "mrr": 0.06,
+    "ndcg_at_5": 0.0704743802857166,
+    "avg_latency_ms": 13823.727198005654,
+    "samples": 50
+  }
+]

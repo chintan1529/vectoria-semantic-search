@@ -1,9 +1,9 @@
-from typing import AsyncGenerator, Dict, List, Optional
+from typing import AsyncGenerator, Dict, List, Optional, Any
 import time
 from openai import AsyncOpenAI
 from tenacity import retry, wait_exponential, stop_after_attempt, retry_if_exception_type
 import openai
-from .base_provider import BaseLLMProvider, GenerationResult
+from .base_provider import BaseLLMProvider, GenerationResult, StreamEvent
 from backend.core.logging import logger
 from backend.observability.langfuse_config import safe_langfuse_context, safe_observe
 
@@ -78,23 +78,37 @@ class OpenAIProvider(BaseLLMProvider):
         before_sleep=lambda retry_state: logger.warning(f"Retrying LLM stream due to {retry_state.outcome.exception()}... Attempt {retry_state.attempt_number}")
     )
     @safe_observe(as_type="generation")
-    async def stream(self, messages: List[Dict[str, str]], **kwargs) -> AsyncGenerator[str, None]:
+    async def stream(self, messages: List[Dict[str, str]], **kwargs) -> AsyncGenerator[StreamEvent, None]:
         try:
-            model = kwargs.pop("model", self.model)
-            temperature = kwargs.pop("temperature", 0.0)
-            
-            stream_response = await self.client.chat.completions.create(
-                model=model,
+            stream = await self.client.chat.completions.create(
+                model=self.model,
                 messages=messages,
-                temperature=temperature,
                 stream=True,
                 **kwargs
             )
-            
-            async for chunk in stream_response:
+            async for chunk in stream:
                 if chunk.choices and chunk.choices[0].delta.content:
-                    yield chunk.choices[0].delta.content
+                    yield StreamEvent(type="token", content=chunk.choices[0].delta.content)
                     
         except Exception as e:
             logger.error(f"OpenAI streaming failed: {e}")
             raise
+
+    async def health_check(self) -> bool:
+        try:
+            await self.client.models.list()
+            return True
+        except Exception:
+            return False
+
+    async def research_generate(self, messages: List[Dict[str, str]], **kwargs) -> GenerationResult:
+        # Optimized for longer context or reasoning
+        kwargs["temperature"] = kwargs.get("temperature", 0.3)
+        return await self.generate(messages, **kwargs)
+
+    def model_info(self) -> Dict[str, Any]:
+        return {
+            "provider": "openai",
+            "model": self.model,
+            "status": "active"
+        }

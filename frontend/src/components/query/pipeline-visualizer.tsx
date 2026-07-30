@@ -5,7 +5,7 @@ import { PipelineStage, StageState } from "./pipeline-stage";
 import { cn } from "@/lib/utils";
 
 // Re-export type since we might need it elsewhere
-export type QueryPhase = "idle" | "classifying" | "embedding" | "retrieving" | "validating" | "reranking" | "building_context" | "generating" | "complete" | "error";
+export type QueryPhase = "idle" | "connecting" | "classifying" | "embedding" | "retrieving" | "validating" | "reranking" | "building_context" | "generating" | "evaluating" | "verifying" | "complete" | "error";
 
 interface PipelineVisualizerProps {
   phase: QueryPhase;
@@ -30,7 +30,7 @@ export function PipelineVisualizer({ phase, latencies, className }: PipelineVisu
     if (isActive) return "active";
     
     // If the current phase is "past" this stage's active phase, it's complete
-    const allPhases: QueryPhase[] = ["idle", "classifying", "embedding", "retrieving", "validating", "reranking", "building_context", "generating", "complete"];
+    const allPhases: QueryPhase[] = ["idle", "classifying", "embedding", "retrieving", "validating", "reranking", "building_context", "generating", "evaluating", "verifying", "complete"];
     const currentIdx = allPhases.indexOf(phase);
     const stageMaxIdx = Math.max(...stagePhases.map(p => allPhases.indexOf(p)));
     
@@ -62,6 +62,11 @@ export function PipelineVisualizer({ phase, latencies, className }: PipelineVisu
           loadingLabel="Building response..."
           state={getStageState(["building_context", "generating"], phase === "building_context" || phase === "generating")}
           latencyMs={latencies?.generating}
+        />
+        <PipelineStage
+          label="Trust Audit"
+          loadingLabel="Verifying claims..."
+          state={getStageState(["evaluating", "verifying"], phase === "evaluating" || phase === "verifying")}
           isLast
         />
       </div>

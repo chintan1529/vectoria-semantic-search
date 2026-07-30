@@ -89,7 +89,7 @@ def test_backend_imports():
 
 def test_metrics_endpoint():
     """Verify /metrics endpoint exists and returns 200."""
-    import asyncio
+    import anyio
     from backend.api import app
 
     async def _test():
@@ -98,4 +98,4 @@ def test_metrics_endpoint():
             response = await client.get("/metrics")
             assert response.status_code == 200
 
-    asyncio.run(_test())
+    anyio.run(_test)

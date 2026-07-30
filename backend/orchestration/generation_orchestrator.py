@@ -17,14 +17,16 @@ class GenerationOrchestrator:
         for i, res in enumerate(results, 1):
             title = res.chunk.metadata.title
             text = res.chunk.text
-            context_blocks.append(f"[Source {i}: {title}]\n{text}")
+            chunk_id = res.chunk.chunk_id
+            context_blocks.append(f"[Source {i} | chunk_id: {chunk_id} | Title: {title}]\n{text}")
             
         context_text = "\n\n".join(context_blocks)
         
         system_prompt = (
             "You are an elite, highly intelligent AI assistant. "
             "Use the provided context to answer the user's query comprehensively and accurately. "
-            "Always cite your sources using the [Source X: Title] format inline where appropriate. "
+            "You MUST cite your sources using the exact chunk_id in this format: <cite chunk_id=\"X\"></cite> at the end of the sentence. "
+            "Do NOT use [Source X] format. Use the XML citation tag so the UI can render it. "
             "If the answer is not contained in the context, state that clearly."
         )
         

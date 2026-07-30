@@ -1,35 +1,13 @@
 # Vectoria — Dependencies
-# Minimal footprint for CPU-only, 8GB RAM environments
+# Production-grade RAG platform for CPU-only environments
 
-# Core: Embedding model
+# ── Core: Retrieval ──────────────────────────
 sentence-transformers>=2.2.0
-
-# Core: Vector similarity search (CPU build)
 faiss-cpu>=1.7.0
-
-# Core: Array operations
 numpy>=1.24.0
+rank_bm25>=0.2.2
 
-# Dataset: Wikipedia article fetching
-wikipedia>=1.4.0
-
-# Vectoria — Dependencies
-# Vectoria — Dependencies
-# Minimal footprint for CPU-only, 8GB RAM environments
-
-# Core: Embedding model
-sentence-transformers>=2.2.0
-
-# Core: Vector similarity search (CPU build)
-faiss-cpu>=1.7.0
-
-# Core: Array operations
-numpy>=1.24.0
-
-# Dataset: Wikipedia article fetching
-wikipedia>=1.4.0
-
-# API Backend
+# ── Core: API Backend ────────────────────────
 fastapi>=0.111.0
 uvicorn[standard]>=0.30.1
 pydantic-settings>=2.3.4
@@ -38,12 +16,20 @@ sse-starlette>=2.1.2
 structlog>=24.1.0
 aiolimiter>=1.1.0
 cachetools>=5.3.3
-rank_bm25>=0.2.2
 
-# Observability (Phase 1)
+# ── Data Sources ─────────────────────────────
+wikipedia>=1.4.0
+
+# ── LLM Providers ───────────────────────────
+google-generativeai>=0.5.0
+aiohttp>=3.9.0
+huggingface-hub>=0.20.0
+
+# ── Evaluation & Benchmarking ────────────────
+colorama>=0.4.6
+
+# ── Observability ────────────────────────────
 opentelemetry-api>=1.24.0
 opentelemetry-sdk>=1.24.0
 opentelemetry-instrumentation-fastapi>=0.45b0
-langfuse>=2.31.0
 prometheus-client>=0.20.0
-

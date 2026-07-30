@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { KnowledgeGraph } from "@/components/query/knowledge-graph";
 
 interface RetrievalIntelligenceViewProps {
   context: any;
@@ -9,7 +10,9 @@ interface RetrievalIntelligenceViewProps {
 }
 
 export function RetrievalIntelligenceView({ context, diagnostics }: RetrievalIntelligenceViewProps) {
-  if (!diagnostics && !context) {
+  const chunks = Array.isArray(context) ? context : (Array.isArray((context as any)?.chunks) ? (context as any).chunks : []);
+
+  if (!diagnostics && chunks.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center h-64 text-center p-6">
         <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/8 flex items-center justify-center mb-4">
@@ -23,7 +26,7 @@ export function RetrievalIntelligenceView({ context, diagnostics }: RetrievalInt
     );
   }
 
-  const maxScore = context ? Math.max(...context.map((c: any) => Math.abs(c.score)), 0.001) : 1;
+  const maxScore = chunks.length > 0 ? Math.max(...chunks.map((c: any) => Math.abs(c.score)), 0.001) : 1;
 
   return (
     <div className="p-4 space-y-6 text-sm text-zinc-300 h-full overflow-y-auto">
@@ -55,17 +58,28 @@ export function RetrievalIntelligenceView({ context, diagnostics }: RetrievalInt
         </motion.div>
       )}
       
+      {/* Knowledge Graph */}
+      {chunks.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.1 }}
+        >
+          <KnowledgeGraph context={chunks} />
+        </motion.div>
+      )}
+      
       {/* Top Sources */}
-      {context && context.length > 0 && (
+      {chunks.length > 0 && (
         <div>
           <h4 className="font-semibold text-white mb-3 flex items-center gap-2 text-xs uppercase tracking-wider">
             <svg className="w-4 h-4 text-v-emerald" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
             </svg>
-            Top Sources ({context.length})
+            Top Sources ({chunks.length})
           </h4>
           <div className="space-y-2.5">
-            {context.map((c: any, i: number) => {
+            {chunks.map((c: any, i: number) => {
               const normalizedScore = Math.abs(c.score) / maxScore;
               const scoreColor =
                 normalizedScore >= 0.8 ? "text-v-emerald bg-v-emerald/10" :

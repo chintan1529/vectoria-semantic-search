@@ -1,0 +1,83 @@
+{
+  "prompt_analysis": [
+    {
+      "prompt_name": "current",
+      "word_count": 69,
+      "char_count": 404,
+      "estimated_tokens": 101,
+      "has_citation_format": true,
+      "has_structured_output": false,
+      "has_trust_guards": false
+    },
+    {
+      "prompt_name": "compact",
+      "word_count": 19,
+      "char_count": 129,
+      "estimated_tokens": 32,
+      "has_citation_format": true,
+      "has_structured_output": false,
+      "has_trust_guards": true
+    },
+    {
+      "prompt_name": "structured",
+      "word_count": 57,
+      "char_count": 385,
+      "estimated_tokens": 96,
+      "has_citation_format": true,
+      "has_structured_output": true,
+      "has_trust_guards": true
+    },
+    {
+      "prompt_name": "research",
+      "word_count": 47,
+      "char_count": 320,
+      "estimated_tokens": 80,
+      "has_citation_format": true,
+      "has_structured_output": false,
+      "has_trust_guards": false
+    },
+    {
+      "prompt_name": "trust",
+      "word_count": 54,
+      "char_count": 358,
+      "estimated_tokens": 89,
+      "has_citation_format": true,
+      "has_structured_output": false,
+      "has_trust_guards": true
+    }
+  ],
+  "context_size_analysis": [
+    {
+      "top_k": 3,
+      "avg_latency_ms": 14143.02114500897,
+      "avg_context_chars": 6891.0,
+      "avg_context_tokens_est": 1722.75,
+      "avg_results": 3.0,
+      "samples": 20
+    },
+    {
+      "top_k": 5,
+      "avg_latency_ms": 12473.117704945616,
+      "avg_context_chars": 11257.4,
+      "avg_context_tokens_est": 2814.35,
+      "avg_results": 5.0,
+      "samples": 20
+    },
+    {
+      "top_k": 7,
+      "avg_latency_ms": 11906.457835016772,
+      "avg_context_chars": 15736.2,
+      "avg_context_tokens_est": 3934.05,
+      "avg_results": 7.0,
+      "samples": 20
+    },
+    {
+      "top_k": 10,
+      "avg_latency_ms": 13032.100060023367,
+      "avg_context_chars": 22183.75,
+      "avg_context_tokens_est": 5545.9375,
+      "avg_results": 10.0,
+      "samples": 20
+    }
+  ]
+}

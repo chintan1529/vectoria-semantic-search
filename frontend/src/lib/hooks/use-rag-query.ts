@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useRef } from "react";
 import { QueryPhase } from "@/components/query/pipeline-visualizer";
+import { validateSSEPayload } from "@/lib/api/sse-contract";
 
 export interface RAGQueryState {
   phase: QueryPhase;
@@ -10,6 +11,8 @@ export interface RAGQueryState {
   diagnostics: any | null;
   context: any | null;
   generationMeta: any | null;
+  evaluationMetrics: any | null;
+  trustVerification: any | null;
   error: string | null;
   startTime: number | null;
   firstTokenTime: number | null;
@@ -28,7 +31,7 @@ const FLUSH_TOKEN_THRESHOLD = 4;
 const QUERY_TIMEOUT_MS = 90_000;
 
 /** Backend readiness check URL */
-const BACKEND_URL = "http://localhost:8000";
+const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 export function useRAGQuery() {
   const [state, setState] = useState<RAGQueryState>({
@@ -38,6 +41,8 @@ export function useRAGQuery() {
     diagnostics: null,
     context: null,
     generationMeta: null,
+    evaluationMetrics: null,
+    trustVerification: null,
     error: null,
     startTime: null,
     firstTokenTime: null,
@@ -91,6 +96,10 @@ export function useRAGQuery() {
     }
   }, [flushTokenBuffer]);
 
+  // Telemetry integrity refs
+  const currentRequestId = useRef<string | null>(null);
+  const expectedEventSeq = useRef<number>(0);
+
   const submitQuery = useCallback(async (text: string) => {
     // --- Abort any in-flight request ---
     if (abortControllerRef.current) {
@@ -107,14 +116,18 @@ export function useRAGQuery() {
     tokenBuffer.current = "";
     tokenCountRef.current = 0;
     firstTokenRecorded.current = false;
+    currentRequestId.current = null;
+    expectedEventSeq.current = 0;
 
     setState({
-      phase: "classifying",
+      phase: "classifying", // Strict starting state
       query: text,
       streamingText: "",
       diagnostics: null,
       context: null,
       generationMeta: null,
+      evaluationMetrics: null,
+      trustVerification: null,
       error: null,
       startTime,
       firstTokenTime: null,
@@ -122,16 +135,17 @@ export function useRAGQuery() {
     });
 
     try {
-      // --- Pre-flight readiness check ---
+      // --- Pre-flight readiness gate ---
       try {
-        const healthRes = await fetch(`${BACKEND_URL}/ready`, {
+        const healthRes = await fetch(`${BACKEND_URL}/api/ready`, {
           signal: controller.signal,
         });
         if (!healthRes.ok) {
+          const errData = await healthRes.json().catch(() => ({}));
           setState(s => ({
             ...s,
             phase: "error",
-            error: "System is still warming up. Models are loading. Please wait a moment and try again.",
+            error: errData.message || "System is still warming up. Models are loading. Please wait a moment and try again.",
           }));
           clearTimeout(timeoutId);
           return;
@@ -147,7 +161,7 @@ export function useRAGQuery() {
         return;
       }
 
-      setState(s => ({ ...s, phase: "retrieving" }));
+      setState(s => ({ ...s, phase: "connecting" }));
 
       const res = await fetch(`${BACKEND_URL}/api/query/stream`, {
         method: "POST",
@@ -161,11 +175,36 @@ export function useRAGQuery() {
         throw new Error(errText || `Server error: ${res.status}`);
       }
 
+      // Capture request ID from headers
+      const requestIdHeader = res.headers.get("X-Request-ID");
+      if (requestIdHeader) {
+        currentRequestId.current = requestIdHeader;
+      }
+
       const reader = res.body?.getReader();
       if (!reader) throw new Error("No reader available");
       const decoder = new TextDecoder();
 
       let buffer = "";
+
+      // Resilient state machine transition map
+      const validTransitions: Record<string, QueryPhase[]> = {
+        idle: ["connecting", "classifying", "error"],
+        connecting: ["classifying", "retrieving", "error"],
+        classifying: ["retrieving", "validating", "reranking", "generating", "error"],
+        embedding: ["retrieving", "validating", "reranking", "generating", "error"],
+        retrieving: ["validating", "reranking", "building_context", "generating", "verifying", "error"],
+        validating: ["reranking", "building_context", "generating", "verifying", "error"],
+        reranking: ["building_context", "generating", "verifying", "error"],
+        building_context: ["generating", "verifying", "error"],
+        generating: ["verifying", "evaluating", "complete", "error"],
+        verifying: ["evaluating", "complete", "error"],
+        evaluating: ["complete", "error"],
+        complete: ["connecting", "classifying", "idle"],
+        error: ["connecting", "classifying", "idle"],
+      };
+
+      const isDebug = process.env.NEXT_PUBLIC_DEBUG_STREAMING === "true" || (typeof window !== "undefined" && (window as any).__VECTORIA_DEBUG_STREAMING);
 
       while (true) {
         const { value, done } = await reader.read();
@@ -173,53 +212,123 @@ export function useRAGQuery() {
 
         buffer += decoder.decode(value, { stream: true });
 
+        // Normalize \r\n to \n — sse-starlette uses \r\n line endings,
+        // but the original parser split on \n\n which never matches \r\n\r\n.
+        // This was the root cause of the permanent "CONNECTING" freeze.
+        buffer = buffer.replace(/\r\n/g, "\n");
+
         const events = buffer.split("\n\n");
         buffer = events.pop() || "";
 
         for (const eventStr of events) {
           const lines = eventStr.split("\n");
           let eventType = "message";
-          let data = "";
+          let dataStr = "";
 
           for (const line of lines) {
             if (line.startsWith("event: ")) {
               eventType = line.slice(7).trim();
             } else if (line.startsWith("data: ")) {
-              data = line.slice(6);
+              dataStr = line.slice(6);
+            } else if (line.startsWith("data:")) {
+              dataStr = line.slice(5);
             }
           }
 
+          if (!dataStr) continue;
+
+          // Contract Validation
+          const validation = validateSSEPayload(eventType, dataStr);
+          if (!validation.valid && isDebug) {
+            console.warn(`[CONTRACT_VALIDATION_WARNING] Event ${eventType}:`, validation.errors);
+          }
+
+          const parsedData = validation.data;
+
+          if (isDebug) {
+            console.log(`[SSE_RECEIVED] Event=${eventType}`, parsedData);
+          }
+
+          // Telemetry Integrity: Verify Request ID
+          if (parsedData?.request_id && currentRequestId.current && parsedData.request_id !== currentRequestId.current) {
+            console.warn(`[TELEMETRY_MISMATCH] Ignored event for request_id ${parsedData.request_id}, expected ${currentRequestId.current}`);
+            continue;
+          }
+
+          // SSE Reliability: Verify Event Sequence (normalize seq vs event_sequence)
+          const seqNum = parsedData?.seq ?? parsedData?.event_sequence;
+          if (seqNum !== undefined) {
+             if (seqNum < expectedEventSeq.current) {
+                console.warn(`[EVENT_OUT_OF_ORDER] Received sequence ${seqNum}, expected >= ${expectedEventSeq.current}`);
+             } else {
+                expectedEventSeq.current = seqNum + 1;
+             }
+          }
+
+          // Event routing
           if (eventType === "phase") {
-            const phaseData = JSON.parse(data);
             const phaseMap: Record<string, QueryPhase> = {
               classifying: "classifying",
+              embedding: "embedding",
               retrieving: "retrieving",
               validating: "validating",
               reranking: "reranking",
+              building_context: "building_context",
               generating: "generating",
+              evaluating: "evaluating",
+              verifying: "verifying",
             };
-            const mappedPhase = phaseMap[phaseData.phase];
+            const mappedPhase = phaseMap[parsedData.phase];
             if (mappedPhase) {
-              setState(s => ({ ...s, phase: mappedPhase }));
+              setState(s => {
+                const allowedNext = validTransitions[s.phase] || [];
+                if (allowedNext.includes(mappedPhase) || s.phase === mappedPhase || s.phase === "connecting") {
+                   if (isDebug) console.log(`[STATE_TRANSITION] ${s.phase} -> ${mappedPhase}`);
+                   return { ...s, phase: mappedPhase };
+                } else {
+                   if (isDebug) console.warn(`[STATE_MACHINE_LOCKOUT_PREVENTED] Handled transition from ${s.phase} to ${mappedPhase}`);
+                   return { ...s, phase: mappedPhase };
+                }
+              });
             }
           } else if (eventType === "context") {
-            const contextData = JSON.parse(data);
-            setState(s => ({ ...s, context: contextData }));
+            const extractedChunks = Array.isArray(parsedData) 
+              ? parsedData 
+              : (Array.isArray(parsedData?.chunks) ? parsedData.chunks : []);
+            setState(s => ({ ...s, context: extractedChunks }));
           } else if (eventType === "diagnostics") {
-            const diagData = JSON.parse(data);
-            setState(s => ({ ...s, diagnostics: diagData }));
+            setState(s => ({ ...s, diagnostics: parsedData }));
+          } else if (eventType === "reasoning_trace") {
+            if (isDebug) console.log(`[REASONING_TRACE]`, parsedData);
           } else if (eventType === "token") {
-            // Transition to generating on first token if not already
-            const token = JSON.parse(data);
-            appendToken(token);
+            appendToken(typeof parsedData === "string" ? parsedData : (parsedData.text || ""));
+            setState(s => {
+              if (s.phase !== "generating" && s.phase !== "complete" && s.phase !== "verifying") {
+                return { ...s, phase: "generating" };
+              }
+              return s;
+            });
+          } else if (eventType === "trust_verification") {
+            setState(s => ({ ...s, trustVerification: parsedData }));
+          } else if (eventType === "heartbeat") {
+            if (isDebug) console.debug(`[HEARTBEAT] Received for request ${currentRequestId.current}`);
+          } else if (eventType === "generation_failed") {
+            throw new Error(parsedData?.reason || "The AI could not generate a meaningful answer. Try asking a more specific question.");
           } else if (eventType === "error") {
-            const errorData = JSON.parse(data);
-            const errorMessage = typeof errorData === "string" ? errorData : errorData.message || "Generation failed";
-            throw new Error(errorMessage);
+            const errorMsg = typeof parsedData === "string" ? parsedData : (parsedData.message || parsedData.error || "");
+            if (errorMsg.includes("timeout") || errorMsg.includes("Timeout")) {
+              throw new Error("The AI provider timed out. The system will failover on your next query.");
+            } else if (errorMsg.includes("rate limit") || errorMsg.includes("429")) {
+              throw new Error("We are hitting rate limits with the AI provider. Please wait a moment and try again.");
+            } else {
+              throw new Error(errorMsg || "An unexpected error occurred during generation.");
+            }
           } else if (eventType === "done") {
-            const doneData = JSON.parse(data);
             flushTokenBuffer();
-            setState(s => ({ ...s, phase: "complete", generationMeta: doneData }));
+            setState(s => ({ ...s, phase: "complete", generationMeta: parsedData }));
+          } else {
+            // Unknown event detector (Phase 7)
+            console.warn(`[UNKNOWN_SSE_EVENT] Emitted by backend: event='${eventType}'`, parsedData);
           }
         }
       }
@@ -227,7 +336,7 @@ export function useRAGQuery() {
       // Final flush in case stream ended without "done" event
       flushTokenBuffer();
       setState(s => {
-        if (s.phase === "generating" || s.phase === "retrieving") {
+        if (s.phase === "generating" || s.phase === "verifying") {
           return { ...s, phase: "complete" };
         }
         return s;
@@ -274,6 +383,8 @@ export function useRAGQuery() {
       diagnostics: null,
       context: null,
       generationMeta: null,
+      evaluationMetrics: null,
+      trustVerification: null,
       error: null,
       startTime: null,
       firstTokenTime: null,

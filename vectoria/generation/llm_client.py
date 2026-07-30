@@ -168,10 +168,11 @@ class LLMClient:
         timeout_seconds: int = 30,
         max_retries: int = 1,
     ) -> None:
-        self.api_key = api_key or os.environ.get("VECTORIA_LLM_API_KEY")
+        from backend.core.config import settings
+        self.api_key = api_key or settings.vectoria_gemini_api_key
         if not self.api_key:
             raise LLMAuthError(
-                "No API key provided. Set the VECTORIA_LLM_API_KEY environment "
+                "No Gemini API key provided. Set the VECTORIA_GEMINI_API_KEY environment "
                 "variable or pass api_key directly."
             )
 

@@ -206,6 +206,7 @@ class RetrievalEvaluator:
             "precision": {},
             "mrr": {},
             "hit": {},
+            "ndcg": {},
         }
 
         # Count total relevant in full result set
@@ -234,6 +235,30 @@ class RetrievalEvaluator:
                     mrr = 1.0 / (j + 1)
                     break
             metrics["mrr"][k] = mrr
+            
+            # nDCG
+            def rel_score(l):
+                if l == "highly_relevant": return 3.0
+                if l == "relevant": return 2.0
+                if l == "weak": return 1.0
+                return 0.0
+                
+            dcg = 0.0
+            for j, l in enumerate(top_k_labels):
+                dcg += rel_score(l) / np.log2(j + 2)
+                
+            # Ideal DCG: assuming all relevant docs are at the top sorted by relevance
+            # In a real evaluation, we need the total counts of each relevance level
+            # For simplicity, we just sort the top_k labels to approximate IDCG or use a fixed upper bound
+            # Better: count highly_relevant, relevant, weak in the dataset, but we only have total_relevant as binary.
+            # We'll approximate IDCG by sorting the found labels, assuming the model found the best ones. 
+            # Or better, sort the full result labels
+            ideal_labels = sorted(labels, key=rel_score, reverse=True)[:k]
+            idcg = 0.0
+            for j, l in enumerate(ideal_labels):
+                idcg += rel_score(l) / np.log2(j + 2)
+                
+            metrics["ndcg"][k] = dcg / idcg if idcg > 0 else 0.0
 
         return QueryResult(
             query=eq.query,
@@ -256,7 +281,7 @@ class RetrievalEvaluator:
         """Compute mean metrics across all queries."""
         aggregate: Dict[str, Dict[int, float]] = {}
 
-        for metric_name in ("recall", "precision", "mrr", "hit"):
+        for metric_name in ("recall", "precision", "mrr", "hit", "ndcg"):
             aggregate[metric_name] = {}
             for k in self.k_values:
                 values = [qr.metrics[metric_name][k] for qr in results]
@@ -324,7 +349,7 @@ def format_report(report: EvalReport) -> str:
     lines.append(header)
     lines.append("  " + "-" * (15 + 8 * len(report.k_values)))
 
-    for metric_name in ("precision", "recall", "mrr", "hit"):
+    for metric_name in ("precision", "recall", "mrr", "hit", "ndcg"):
         row = f"  {metric_name.upper():<15s}"
         for k in report.k_values:
             val = report.aggregate[metric_name][k]
@@ -338,7 +363,7 @@ def format_report(report: EvalReport) -> str:
     lines.append("-" * 60)
     for domain, metrics in sorted(report.domain_metrics.items()):
         lines.append(f"\n  [{domain.upper()}]")
-        for metric_name in ("precision", "recall", "mrr", "hit"):
+        for metric_name in ("precision", "recall", "mrr", "hit", "ndcg"):
             row = f"    {metric_name.upper():<13s}"
             for k in report.k_values:
                 val = metrics[metric_name][k]
@@ -354,11 +379,12 @@ def format_report(report: EvalReport) -> str:
         k5_prec = qr.metrics["precision"].get(5, 0.0)
         k5_rec = qr.metrics["recall"].get(5, 0.0)
         k5_mrr = qr.metrics["mrr"].get(5, 0.0)
+        k5_ndcg = qr.metrics["ndcg"].get(5, 0.0)
         status = "OK" if qr.first_relevant_rank > 0 and qr.first_relevant_rank <= 3 else (
             "LATE" if qr.first_relevant_rank > 3 else "MISS"
         )
         lines.append(
-            f"  [{status:4s}] P={k5_prec:.2f} R={k5_rec:.2f} MRR={k5_mrr:.2f} "
+            f"  [{status:4s}] P={k5_prec:.2f} R={k5_rec:.2f} MRR={k5_mrr:.2f} nDCG={k5_ndcg:.2f} "
             f"1st@{qr.first_relevant_rank} | {qr.query[:50]}"
         )
     lines.append("")
@@ -541,7 +567,9 @@ class BM25Baseline:
 
         # Aggregate
         aggregate = {}
-        for metric_name in ("precision", "recall", "mrr", "hit"):
+        for metric_name in ("precision", "recall", "mrr", "hit", "ndcg"):
+            if metric_name not in metrics:
+                continue
             aggregate[metric_name] = {}
             for k in k_values:
                 vals = [qm[k] for qm in metrics[metric_name]]

@@ -11,10 +11,12 @@ import { GlassCard } from "@/components/ui/glass-card";
 interface ChatInterfaceProps {
   phase: string;
   streamingText: string;
+  context?: any[] | null;
+  trustVerification?: any | null;
   error?: string | null;
 }
 
-export function ChatInterface({ phase, streamingText, error }: ChatInterfaceProps) {
+export function ChatInterface({ phase, streamingText, context, trustVerification, error }: ChatInterfaceProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [userScrolled, setUserScrolled] = useState(false);
   const lastScrollTop = useRef(0);
@@ -71,7 +73,7 @@ export function ChatInterface({ phase, streamingText, error }: ChatInterfaceProp
     );
   }
 
-  const isWaitingForTokens = (phase === "embedding" || phase === "retrieving" || phase === "reranking" || phase === "building_context" || (phase === "generating" && !streamingText));
+  const isWaitingForTokens = (phase === "connecting" || phase === "classifying" || phase === "embedding" || phase === "retrieving" || phase === "reranking" || phase === "validating" || phase === "building_context" || (phase === "generating" && !streamingText));
   const isStreaming = phase === "generating" && !!streamingText;
   const isComplete = phase === "complete";
 
@@ -130,6 +132,49 @@ export function ChatInterface({ phase, streamingText, error }: ChatInterfaceProp
                 remarkPlugins={[remarkGfm]}
                 rehypePlugins={[rehypeHighlight]}
                 components={{
+                  // Parse citations
+                  a: ({ href, children, ...props }) => {
+                    if (href?.startsWith("cite:")) {
+                      const chunkId = href.slice(5);
+                      // Find rank in context
+                      const contextList = Array.isArray(context) ? context : (Array.isArray((context as any)?.chunks) ? (context as any).chunks : []);
+                      const rank = contextList.length > 0 ? contextList.findIndex((c: any) => c.id === chunkId) + 1 : 0;
+                      const displayNum = rank > 0 ? rank : "?";
+                      
+                      // Check verification status
+                      let statusColor = "bg-zinc-500/20 text-zinc-400 border-zinc-500/30"; // unverified/loading
+                      let statusTitle = `Source Chunk: ${chunkId} (Verifying...)`;
+                      
+                      if (trustVerification?.citations && Array.isArray(trustVerification.citations)) {
+                        const citation = trustVerification.citations.find((c: any) => c.chunk_id === chunkId);
+                        if (citation) {
+                          if (citation.status === "Verified") {
+                            statusColor = "bg-v-emerald/20 text-v-emerald border-v-emerald/30 hover:bg-v-emerald hover:text-black";
+                            statusTitle = `Verified Source: ${chunkId}\nReason: ${citation.reason}`;
+                          } else if (citation.status === "Weakly Supported") {
+                            statusColor = "bg-v-amber/20 text-v-amber border-v-amber/30 hover:bg-v-amber hover:text-black";
+                            statusTitle = `Weakly Supported: ${chunkId}\nReason: ${citation.reason}`;
+                          } else if (citation.status === "Unsupported") {
+                            statusColor = "bg-v-rose/20 text-v-rose border-v-rose/30 hover:bg-v-rose hover:text-white";
+                            statusTitle = `Unsupported: ${chunkId}\nReason: ${citation.reason}`;
+                          }
+                        }
+                      } else if (phase === "complete" && !trustVerification) {
+                        statusColor = "bg-v-blue/20 text-v-blue border-v-blue/30 hover:bg-v-blue hover:text-black";
+                        statusTitle = `Source Chunk: ${chunkId}`;
+                      }
+
+                      return (
+                        <sup 
+                          className={`ml-0.5 inline-flex items-center justify-center w-4 h-4 rounded-full text-[9px] font-bold cursor-help border transition-colors ${statusColor}`} 
+                          title={statusTitle}
+                        >
+                          {displayNum}
+                        </sup>
+                      );
+                    }
+                    return <a href={href} className="text-v-blue hover:underline" {...props}>{children}</a>;
+                  },
                   // Stable pre/code rendering to prevent layout shift
                   pre: ({ children, ...props }) => (
                     <pre className="not-prose bg-black/50 border border-white/8 rounded-lg p-4 my-4 overflow-x-auto text-[13px] leading-relaxed" {...props}>
@@ -190,7 +235,7 @@ export function ChatInterface({ phase, streamingText, error }: ChatInterfaceProp
                   ),
                 }}
               >
-                {streamingText}
+                {streamingText.replace(/<cite chunk_id="([^"]+)"><\/cite>/g, '[cite](cite:$1)').replace(/<cite chunk_id="([^"]+)"\/>/g, '[cite](cite:$1)')}
               </ReactMarkdown>
             </div>
           )}

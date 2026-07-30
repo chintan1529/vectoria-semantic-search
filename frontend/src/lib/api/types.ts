@@ -66,3 +66,32 @@ export type ErrorReason =
   | "provider_error"
   | "network_error"
   | "api_unavailable";
+
+// Analytics Types
+export interface PlatformStatus {
+  status: string;
+  platform_version: string;
+  git_commit: string;
+  uptime_seconds: number;
+  system: {
+    memory_usage_pct: number;
+    cpu_usage_pct: number;
+  };
+  cache: any;
+  models: {
+    embedding: string;
+    reranker: string;
+  };
+}
+
+export interface EvalDashboardData {
+  latest_run: any;
+  history_count: number;
+  baselines: {
+    best: any;
+    rolling_avg: any;
+    previous: any;
+  };
+  latency_profile: any;
+  history: any[];
+}

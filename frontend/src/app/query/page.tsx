@@ -12,6 +12,7 @@ import { DeveloperPanel } from "@/components/query/developer-panel";
 import { useRAGQuery } from "@/lib/hooks/use-rag-query";
 import { useKeyboard } from "@/lib/hooks/use-keyboard";
 import { AnimatedBackground } from "@/components/landing/animated-background";
+import { StreamingErrorBoundary } from "@/components/query/streaming-error-boundary";
 
 export default function QueryWorkspace() {
   const { state, submitQuery, reset } = useRAGQuery();
@@ -65,11 +66,15 @@ export default function QueryWorkspace() {
         />
       )}
       
-      <ChatInterface 
-        phase={state.phase} 
-        streamingText={state.streamingText} 
-        error={state.error} 
-      />
+      <StreamingErrorBoundary onReset={reset}>
+        <ChatInterface 
+          phase={state.phase} 
+          streamingText={state.streamingText}
+          context={state.context}
+          trustVerification={state.trustVerification}
+          error={state.error} 
+        />
+      </StreamingErrorBoundary>
     </>
   );
 
@@ -93,11 +98,13 @@ export default function QueryWorkspace() {
         </button>
       </div>
       
-      {state.diagnostics || state.context ? (
-        <RetrievalIntelligenceView context={state.context} diagnostics={state.diagnostics} />
-      ) : (
-        <RetrievalIntelligenceView context={null} diagnostics={null} />
-      )}
+      <StreamingErrorBoundary onReset={reset}>
+        {state.diagnostics || state.context ? (
+          <RetrievalIntelligenceView context={state.context} diagnostics={state.diagnostics} />
+        ) : (
+          <RetrievalIntelligenceView context={null} diagnostics={null} />
+        )}
+      </StreamingErrorBoundary>
     </div>
   );
 
@@ -114,6 +121,8 @@ export default function QueryWorkspace() {
               phase={state.phase}
               diagnostics={state.diagnostics}
               generationMeta={state.generationMeta}
+              evaluationMetrics={state.evaluationMetrics}
+              trustVerification={state.trustVerification}
               firstTokenTime={state.firstTokenTime}
               startTime={state.startTime}
               tokenCount={state.tokenCount}

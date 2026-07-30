@@ -1,0 +1,27 @@
+# Docker
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.git/
+.gitignore
+.vscode/
+.idea/
+.env
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+node_modules/
+frontend/node_modules/
+frontend/.next/
+logs/
+Thumbs.db
+.DS_Store
+*.swp
+*.swo
+*.md
+!README.md
+!docs/*.md

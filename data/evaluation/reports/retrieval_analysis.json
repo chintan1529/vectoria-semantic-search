@@ -1,0 +1,3736 @@
+{
+  "summary": {
+    "total_queries": 80,
+    "avg_recall_at_5": 0.1375,
+    "total_failures": 69,
+    "total_ambiguous": 0,
+    "total_hallucination_risk": 80
+  },
+  "top_50_failures": [
+    {
+      "query": "What is the definition or role of Universal?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -4.9358443975448605,
+      "top_score": 0.7985101938247681,
+      "latency_ms": 77257.14090000838,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "8d4f034f71e648c9_chunk_11",
+        "8d4f034f71e648c9_chunk_10",
+        "8d4f034f71e648c9_chunk_8",
+        "a23341b93663c01a_chunk_11",
+        "6bb4dc360b8a90ee_chunk_0"
+      ],
+      "expected_ids": [
+        "4ff24688f2a0984b_chunk_0"
+      ],
+      "scores": [
+        0.7985101938247681,
+        -3.5695104598999023,
+        -6.750917434692383,
+        -7.5715413093566895,
+        -7.585762977600098
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Heaviside?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -9.08398151397705,
+      "top_score": -8.415212631225586,
+      "latency_ms": 52180.25659979321,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "0e328bb6998278c3_chunk_1",
+        "3075ae1bba66029a_chunk_1",
+        "6bb4dc360b8a90ee_chunk_0",
+        "a23341b93663c01a_chunk_11",
+        "56f8e1957ffabdf4_chunk_19"
+      ],
+      "expected_ids": [
+        "4ff24688f2a0984b_chunk_1"
+      ],
+      "scores": [
+        -8.415212631225586,
+        -8.594590187072754,
+        -9.322021484375,
+        -9.329634666442871,
+        -9.758448600769043
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Neurons?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -1.267557281255722,
+      "top_score": -0.4693276584148407,
+      "latency_ms": 39189.23299992457,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "4d260da8756c022e_chunk_0",
+        "b18168573356ff49_chunk_0",
+        "2a88218944672c3f_chunk_15",
+        "4d260da8756c022e_chunk_10",
+        "05e76776936a82fe_chunk_13"
+      ],
+      "expected_ids": [
+        "4ff24688f2a0984b_chunk_2"
+      ],
+      "scores": [
+        -0.4693276584148407,
+        -0.6259461641311646,
+        -1.290656566619873,
+        -1.5249487161636353,
+        -2.4269073009490967
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Fourier?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -6.776591777801514,
+      "top_score": -6.062629222869873,
+      "latency_ms": 16913.41169993393,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "d4196ff36e8789b5_chunk_1",
+        "66147720c7e1110d_chunk_18",
+        "33903fcb6cac443f_chunk_32",
+        "8d4f034f71e648c9_chunk_8",
+        "a23341b93663c01a_chunk_11"
+      ],
+      "expected_ids": [
+        "4ff24688f2a0984b_chunk_3"
+      ],
+      "scores": [
+        -6.062629222869873,
+        -6.499534606933594,
+        -6.759957313537598,
+        -6.898178577423096,
+        -7.662659168243408
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Survey.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -6.528652095794678,
+      "top_score": -5.276821136474609,
+      "latency_ms": 12040.062900166959,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "7195214466c1a513_chunk_9",
+        "2d873e1ee826f26e_chunk_18",
+        "42e07fbf85a1b96d_chunk_27",
+        "42e07fbf85a1b96d_chunk_11",
+        "935a19548c91b3e1_chunk_26"
+      ],
+      "expected_ids": [
+        "4ff24688f2a0984b_chunk_4"
+      ],
+      "scores": [
+        -5.276821136474609,
+        -6.464301109313965,
+        -6.7012128829956055,
+        -7.075944900512695,
+        -7.124980449676514
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding There.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -6.3011383533477785,
+      "top_score": -3.336195230484009,
+      "latency_ms": 11809.462199918926,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "7195214466c1a513_chunk_9",
+        "09a7951922de237f_chunk_23",
+        "7195214466c1a513_chunk_0",
+        "7195214466c1a513_chunk_8",
+        "be8762f11fe17527_chunk_6"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_0"
+      ],
+      "scores": [
+        -3.336195230484009,
+        -6.430306434631348,
+        -6.641266345977783,
+        -7.507443428039551,
+        -7.590480327606201
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of This?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -4.158917665481567,
+      "top_score": -2.54323410987854,
+      "latency_ms": 9800.809500040486,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "8d4f034f71e648c9_chunk_8",
+        "a23341b93663c01a_chunk_11",
+        "0e328bb6998278c3_chunk_1",
+        "6bb4dc360b8a90ee_chunk_0",
+        "1311e496d7659a33_chunk_17"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_1"
+      ],
+      "scores": [
+        -2.54323410987854,
+        -3.609313488006592,
+        -4.220895767211914,
+        -5.1013264656066895,
+        -5.319818496704102
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Robbins\u2013Siegmund?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -9.423171710968017,
+      "top_score": -7.250046253204346,
+      "latency_ms": 10383.121299790218,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "0477ff2aab3ec20d_chunk_21",
+        "0e328bb6998278c3_chunk_1",
+        "8d4f034f71e648c9_chunk_8",
+        "a23341b93663c01a_chunk_11",
+        "6bb4dc360b8a90ee_chunk_0"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_2"
+      ],
+      "scores": [
+        -7.250046253204346,
+        -9.629598617553711,
+        -9.770400047302246,
+        -10.0767822265625,
+        -10.389031410217285
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding This.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -5.451354885101319,
+      "top_score": -3.862499713897705,
+      "latency_ms": 10755.810600006953,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "7195214466c1a513_chunk_9",
+        "998ac151e85e02c0_chunk_4",
+        "e3fe3649342e859b_chunk_5",
+        "7195214466c1a513_chunk_0",
+        "25371e233a5cfc20_chunk_21"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_3"
+      ],
+      "scores": [
+        -3.862499713897705,
+        -5.246946334838867,
+        -5.424620628356934,
+        -6.243809700012207,
+        -6.478898048400879
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Sutton?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -8.28322458267212,
+      "top_score": -7.696409702301025,
+      "latency_ms": 12065.175999887288,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "8d4f034f71e648c9_chunk_8",
+        "0e328bb6998278c3_chunk_1",
+        "a23341b93663c01a_chunk_11",
+        "6bb4dc360b8a90ee_chunk_0",
+        "56f8e1957ffabdf4_chunk_19"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_4"
+      ],
+      "scores": [
+        -7.696409702301025,
+        -8.022192001342773,
+        -8.280254364013672,
+        -8.538652420043945,
+        -8.87861442565918
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding However.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -5.460917568206787,
+      "top_score": -4.786769866943359,
+      "latency_ms": 9876.942500006407,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "614f1661afb67e64_chunk_30",
+        "7195214466c1a513_chunk_9",
+        "2a88218944672c3f_chunk_11",
+        "a31870e7f64208f6_chunk_2",
+        "e3fe3649342e859b_chunk_5"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_5"
+      ],
+      "scores": [
+        -4.786769866943359,
+        -4.941496849060059,
+        -5.418700218200684,
+        -5.973423004150391,
+        -6.184197902679443
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Setting.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -7.405240249633789,
+      "top_score": -5.546213150024414,
+      "latency_ms": 10772.134900093079,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "7195214466c1a513_chunk_9",
+        "614f1661afb67e64_chunk_30",
+        "c361742f40c85396_chunk_18",
+        "41f97a05d6120686_chunk_2",
+        "2a88218944672c3f_chunk_14"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_6"
+      ],
+      "scores": [
+        -5.546213150024414,
+        -6.847020626068115,
+        -7.9678730964660645,
+        -8.116434097290039,
+        -8.548660278320312
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Note?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -6.976665306091308,
+      "top_score": -6.11564826965332,
+      "latency_ms": 9449.259500019252,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "8d4f034f71e648c9_chunk_8",
+        "f9af44654a1c5251_chunk_0",
+        "a23341b93663c01a_chunk_11",
+        "bb181f945c7c22e5_chunk_2",
+        "0e328bb6998278c3_chunk_1"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_7"
+      ],
+      "scores": [
+        -6.11564826965332,
+        -6.60286283493042,
+        -7.307631492614746,
+        -7.411073684692383,
+        -7.446110248565674
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Specifically?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -5.85732479095459,
+      "top_score": -4.7019124031066895,
+      "latency_ms": 9088.11270003207,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "8d4f034f71e648c9_chunk_8",
+        "a23341b93663c01a_chunk_11",
+        "0e328bb6998278c3_chunk_1",
+        "6bb4dc360b8a90ee_chunk_0",
+        "1311e496d7659a33_chunk_17"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_8"
+      ],
+      "scores": [
+        -4.7019124031066895,
+        -5.3963775634765625,
+        -6.042343616485596,
+        -6.5043206214904785,
+        -6.641669750213623
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Stochastic.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -3.9362980365753173,
+      "top_score": -2.4524149894714355,
+      "latency_ms": 10456.110900035128,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "1e4be394e91166de_chunk_0",
+        "67c1b09b5ed30a18_chunk_16",
+        "1e4be394e91166de_chunk_6",
+        "1e4be394e91166de_chunk_4",
+        "1e4be394e91166de_chunk_10"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_9"
+      ],
+      "scores": [
+        -2.4524149894714355,
+        -2.4948890209198,
+        -4.313230037689209,
+        -4.956035614013672,
+        -5.464920520782471
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Examples?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -3.3967352390289305,
+      "top_score": -2.0611400604248047,
+      "latency_ms": 21919.986699940637,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "8d4f034f71e648c9_chunk_10",
+        "557c96a13c42ed29_chunk_16",
+        "8d4f034f71e648c9_chunk_8",
+        "557c96a13c42ed29_chunk_11",
+        "56f8e1957ffabdf4_chunk_19"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_11"
+      ],
+      "scores": [
+        -2.0611400604248047,
+        -2.5801889896392822,
+        -3.9273879528045654,
+        -3.974311113357544,
+        -4.440648078918457
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Estimation.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -3.9968276500701903,
+      "top_score": -2.6239049434661865,
+      "latency_ms": 17406.150799943134,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "0e5386eaa0d5998e_chunk_25",
+        "4e5eac8a96ea2f3f_chunk_12",
+        "0e5386eaa0d5998e_chunk_24",
+        "7195214466c1a513_chunk_9",
+        "eecf7ac13acf3007_chunk_0"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_13"
+      ],
+      "scores": [
+        -2.6239049434661865,
+        -2.8386898040771484,
+        -4.421984672546387,
+        -4.976185321807861,
+        -5.123373508453369
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Squaring?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -8.054091262817384,
+      "top_score": -7.346861839294434,
+      "latency_ms": 10914.592100074515,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "0e328bb6998278c3_chunk_1",
+        "6bb4dc360b8a90ee_chunk_0",
+        "8d4f034f71e648c9_chunk_8",
+        "a23341b93663c01a_chunk_11",
+        "56f8e1957ffabdf4_chunk_19"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_14"
+      ],
+      "scores": [
+        -7.346861839294434,
+        -7.694212436676025,
+        -7.757308483123779,
+        -8.444534301757812,
+        -9.027539253234863
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Then?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -6.304826164245606,
+      "top_score": -4.830154895782471,
+      "latency_ms": 10404.197399970144,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "8d4f034f71e648c9_chunk_8",
+        "a23341b93663c01a_chunk_11",
+        "0e328bb6998278c3_chunk_1",
+        "8d4f034f71e648c9_chunk_7",
+        "6bb4dc360b8a90ee_chunk_0"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_17"
+      ],
+      "scores": [
+        -4.830154895782471,
+        -6.171834945678711,
+        -6.4167962074279785,
+        -6.958157539367676,
+        -7.147187232971191
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Archived.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -6.46419734954834,
+      "top_score": -5.131865501403809,
+      "latency_ms": 10398.320300038904,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "67c1b09b5ed30a18_chunk_16",
+        "7195214466c1a513_chunk_9",
+        "0477ff2aab3ec20d_chunk_23",
+        "838555607d28672e_chunk_0",
+        "261ab68962cd5100_chunk_38"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_18"
+      ],
+      "scores": [
+        -5.131865501403809,
+        -5.504729747772217,
+        -6.584379196166992,
+        -7.475254535675049,
+        -7.624757766723633
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Some.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -5.722261381149292,
+      "top_score": -3.5212323665618896,
+      "latency_ms": 10356.457199901342,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "7195214466c1a513_chunk_9",
+        "557c96a13c42ed29_chunk_11",
+        "09a7951922de237f_chunk_23",
+        "3d611f7bb6c08042_chunk_5",
+        "1311e496d7659a33_chunk_8"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_0"
+      ],
+      "scores": [
+        -3.5212323665618896,
+        -4.595324993133545,
+        -6.167288303375244,
+        -7.129311561584473,
+        -7.198149681091309
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Theory?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -5.170807552337647,
+      "top_score": -3.002298355102539,
+      "latency_ms": 8739.862499991432,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "8d4f034f71e648c9_chunk_8",
+        "2a88218944672c3f_chunk_19",
+        "a23341b93663c01a_chunk_11",
+        "1311e496d7659a33_chunk_17",
+        "7195214466c1a513_chunk_14"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_1"
+      ],
+      "scores": [
+        -3.002298355102539,
+        -5.140860557556152,
+        -5.530978202819824,
+        -5.668702125549316,
+        -6.5111985206604
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of California?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -8.153563117980957,
+      "top_score": -7.675466537475586,
+      "latency_ms": 10720.769600011408,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "0e328bb6998278c3_chunk_1",
+        "c361742f40c85396_chunk_14",
+        "6bb4dc360b8a90ee_chunk_0",
+        "41f97a05d6120686_chunk_33",
+        "46b65400762fdd0a_chunk_22"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_2"
+      ],
+      "scores": [
+        -7.675466537475586,
+        -8.058427810668945,
+        -8.131950378417969,
+        -8.321426391601562,
+        -8.580544471740723
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Yoshua.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -9.376738929748536,
+      "top_score": -7.793087005615234,
+      "latency_ms": 9669.770000036806,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "ec46a5aaf2b07e78_chunk_3",
+        "7195214466c1a513_chunk_9",
+        "41f97a05d6120686_chunk_22",
+        "a1142babf2c56578_chunk_34",
+        "25371e233a5cfc20_chunk_19"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_3"
+      ],
+      "scores": [
+        -7.793087005615234,
+        -8.926265716552734,
+        -9.61972713470459,
+        -10.232009887695312,
+        -10.312604904174805
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Network.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -3.88242712020874,
+      "top_score": -1.495814323425293,
+      "latency_ms": 17916.88279993832,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "7195214466c1a513_chunk_9",
+        "f2099d1b04e6320e_chunk_7",
+        "b6549f4832c81329_chunk_11",
+        "4d260da8756c022e_chunk_0",
+        "4d260da8756c022e_chunk_10"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_4"
+      ],
+      "scores": [
+        -1.495814323425293,
+        -1.8839054107666016,
+        -5.192446708679199,
+        -5.292407989501953,
+        -5.547561168670654
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Neural.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -3.407289719581604,
+      "top_score": -0.594302773475647,
+      "latency_ms": 19198.64169997163,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "7195214466c1a513_chunk_9",
+        "4d260da8756c022e_chunk_0",
+        "b18168573356ff49_chunk_0",
+        "4d260da8756c022e_chunk_10",
+        "7195214466c1a513_chunk_8"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_5"
+      ],
+      "scores": [
+        -0.594302773475647,
+        -3.3813705444335938,
+        -4.040785789489746,
+        -4.431429386138916,
+        -4.588560104370117
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Rome.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -8.288902950286865,
+      "top_score": -7.226491451263428,
+      "latency_ms": 13329.56640003249,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "dcd7ecb736a95737_chunk_2",
+        "1000b34f98fdfd2f_chunk_15",
+        "0229b86e205282b0_chunk_24",
+        "1000b34f98fdfd2f_chunk_17",
+        "1000b34f98fdfd2f_chunk_16"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_6"
+      ],
+      "scores": [
+        -7.226491451263428,
+        -8.38129997253418,
+        -8.44317626953125,
+        -8.563777923583984,
+        -8.829769134521484
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding This.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -5.451354885101319,
+      "top_score": -3.862499713897705,
+      "latency_ms": 10232.931400183588,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "7195214466c1a513_chunk_9",
+        "998ac151e85e02c0_chunk_4",
+        "e3fe3649342e859b_chunk_5",
+        "7195214466c1a513_chunk_0",
+        "25371e233a5cfc20_chunk_21"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_7"
+      ],
+      "scores": [
+        -3.862499713897705,
+        -5.246946334838867,
+        -5.424620628356934,
+        -6.243809700012207,
+        -6.478898048400879
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Standard?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -6.844376182556152,
+      "top_score": -6.3989176750183105,
+      "latency_ms": 12244.278399972245,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "8d4f034f71e648c9_chunk_11",
+        "1311e496d7659a33_chunk_7",
+        "6bb4dc360b8a90ee_chunk_0",
+        "a1142babf2c56578_chunk_28",
+        "a23341b93663c01a_chunk_11"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_8"
+      ],
+      "scores": [
+        -6.3989176750183105,
+        -6.752074241638184,
+        -6.9409708976745605,
+        -6.989134788513184,
+        -7.140783309936523
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Such?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -4.446170520782471,
+      "top_score": -3.0980935096740723,
+      "latency_ms": 11615.704500116408,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "8d4f034f71e648c9_chunk_8",
+        "a23341b93663c01a_chunk_11",
+        "0e328bb6998278c3_chunk_1",
+        "1311e496d7659a33_chunk_17",
+        "1311e496d7659a33_chunk_16"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_9"
+      ],
+      "scores": [
+        -3.0980935096740723,
+        -3.8838863372802734,
+        -4.622628211975098,
+        -5.264272689819336,
+        -5.361971855163574
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Dafoe?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -4.985675692558289,
+      "top_score": -1.4231756925582886,
+      "latency_ms": 13084.870300022885,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "052f93d32723634d_chunk_11",
+        "c90d7d6e1350a3cc_chunk_40",
+        "7b7c1a6d0788c672_chunk_9",
+        "179030c73440d373_chunk_13",
+        "c51e540d8ea90e7a_chunk_0"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_10"
+      ],
+      "scores": [
+        -1.4231756925582886,
+        -3.9901795387268066,
+        -5.74012565612793,
+        -6.765707015991211,
+        -7.009190559387207
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding China.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -5.353164100646973,
+      "top_score": -4.645054817199707,
+      "latency_ms": 12623.583799926564,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "07a052cabbbe73a6_chunk_26",
+        "1311e496d7659a33_chunk_35",
+        "41f97a05d6120686_chunk_25",
+        "0229b86e205282b0_chunk_30",
+        "d4efa815ac65b857_chunk_9"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_12"
+      ],
+      "scores": [
+        -4.645054817199707,
+        -5.191213130950928,
+        -5.403995513916016,
+        -5.40920352935791,
+        -6.116353511810303
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of President?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -8.018619632720947,
+      "top_score": -5.75304651260376,
+      "latency_ms": 15273.63199996762,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "3d611f7bb6c08042_chunk_7",
+        "1311e496d7659a33_chunk_33",
+        "1311e496d7659a33_chunk_3",
+        "6bb4dc360b8a90ee_chunk_0",
+        "0e328bb6998278c3_chunk_1"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_14"
+      ],
+      "scores": [
+        -5.75304651260376,
+        -8.406599044799805,
+        -8.461441993713379,
+        -8.617903709411621,
+        -8.854106903076172
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Experts?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -3.023984456062317,
+      "top_score": -0.5045167207717896,
+      "latency_ms": 21382.856599986553,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "d15805aa4a295a21_chunk_0",
+        "d15805aa4a295a21_chunk_10",
+        "d15805aa4a295a21_chunk_9",
+        "d15805aa4a295a21_chunk_5",
+        "8d4f034f71e648c9_chunk_8"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_15"
+      ],
+      "scores": [
+        -0.5045167207717896,
+        -1.6056971549987793,
+        -2.945836067199707,
+        -4.905324935913086,
+        -5.158547401428223
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding March.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -7.6001842498779295,
+      "top_score": -4.990190029144287,
+      "latency_ms": 15975.401400122792,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "f52cc45ebc94dc1e_chunk_5",
+        "f52cc45ebc94dc1e_chunk_0",
+        "cc5792c6c25291aa_chunk_3",
+        "7195214466c1a513_chunk_9",
+        "d4efa815ac65b857_chunk_9"
+      ],
+      "expected_ids": [
+        "e35c84c3832e7d7e_chunk_0"
+      ],
+      "scores": [
+        -4.990190029144287,
+        -7.167245864868164,
+        -7.578711032867432,
+        -8.693000793457031,
+        -9.571773529052734
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Zen?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -8.583109283447266,
+      "top_score": -7.740811347961426,
+      "latency_ms": 16806.58799991943,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "8d4f034f71e648c9_chunk_8",
+        "a23341b93663c01a_chunk_11",
+        "0e328bb6998278c3_chunk_1",
+        "5fc50ad2e22c29a2_chunk_9",
+        "1311e496d7659a33_chunk_17"
+      ],
+      "expected_ids": [
+        "e35c84c3832e7d7e_chunk_1"
+      ],
+      "scores": [
+        -7.740811347961426,
+        -8.429670333862305,
+        -8.662067413330078,
+        -8.825874328613281,
+        -9.257122993469238
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Nature.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -6.145687770843506,
+      "top_score": -5.0582685470581055,
+      "latency_ms": 13564.652600092813,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "614f1661afb67e64_chunk_30",
+        "7195214466c1a513_chunk_9",
+        "6bb4dc360b8a90ee_chunk_0",
+        "e3fe3649342e859b_chunk_5",
+        "ca62a51652fcf787_chunk_0"
+      ],
+      "expected_ids": [
+        "e35c84c3832e7d7e_chunk_2"
+      ],
+      "scores": [
+        -5.0582685470581055,
+        -5.9982218742370605,
+        -6.194276809692383,
+        -6.6743268966674805,
+        -6.8033447265625
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Economist.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -6.46400785446167,
+      "top_score": -5.743771553039551,
+      "latency_ms": 11150.53560002707,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "af8dfd432be21f30_chunk_49",
+        "af8dfd432be21f30_chunk_4",
+        "1311e496d7659a33_chunk_8",
+        "7195214466c1a513_chunk_9",
+        "668f48af85a64545_chunk_8"
+      ],
+      "expected_ids": [
+        "e35c84c3832e7d7e_chunk_3"
+      ],
+      "scores": [
+        -5.743771553039551,
+        -6.026354789733887,
+        -6.676745414733887,
+        -6.8351240158081055,
+        -7.03804349899292
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Master?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -7.339082813262939,
+      "top_score": -5.273380756378174,
+      "latency_ms": 12642.671100096777,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "e35c84c3832e7d7e_chunk_5",
+        "8d4f034f71e648c9_chunk_8",
+        "a23341b93663c01a_chunk_11",
+        "dcfbde5ac736e079_chunk_8",
+        "0e328bb6998278c3_chunk_1"
+      ],
+      "expected_ids": [
+        "e35c84c3832e7d7e_chunk_4"
+      ],
+      "scores": [
+        -5.273380756378174,
+        -6.913722991943359,
+        -8.01019287109375,
+        -8.125490188598633,
+        -8.372627258300781
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of United?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -6.310775661468506,
+      "top_score": -4.984082221984863,
+      "latency_ms": 11689.497799845412,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "f89617ff398b825b_chunk_0",
+        "6bb4dc360b8a90ee_chunk_0",
+        "0e328bb6998278c3_chunk_1",
+        "1311e496d7659a33_chunk_16",
+        "7ea89078f2e913a9_chunk_9"
+      ],
+      "expected_ids": [
+        "e35c84c3832e7d7e_chunk_5"
+      ],
+      "scores": [
+        -4.984082221984863,
+        -6.216292858123779,
+        -6.716094017028809,
+        -6.777602195739746,
+        -6.859807014465332
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of December?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -8.905278778076172,
+      "top_score": -8.084877014160156,
+      "latency_ms": 14904.921000124887,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "0e328bb6998278c3_chunk_1",
+        "a23341b93663c01a_chunk_11",
+        "6bb4dc360b8a90ee_chunk_0",
+        "56f8e1957ffabdf4_chunk_19",
+        "1311e496d7659a33_chunk_17"
+      ],
+      "expected_ids": [
+        "e35c84c3832e7d7e_chunk_6"
+      ],
+      "scores": [
+        -8.084877014160156,
+        -8.87120246887207,
+        -8.928638458251953,
+        -9.088058471679688,
+        -9.553617477416992
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of December?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -8.905278778076172,
+      "top_score": -8.084877014160156,
+      "latency_ms": 12074.678899953142,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "0e328bb6998278c3_chunk_1",
+        "a23341b93663c01a_chunk_11",
+        "6bb4dc360b8a90ee_chunk_0",
+        "56f8e1957ffabdf4_chunk_19",
+        "1311e496d7659a33_chunk_17"
+      ],
+      "expected_ids": [
+        "e35c84c3832e7d7e_chunk_7"
+      ],
+      "scores": [
+        -8.084877014160156,
+        -8.87120246887207,
+        -8.928638458251953,
+        -9.088058471679688,
+        -9.553617477416992
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Once?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -6.313132095336914,
+      "top_score": -5.843613147735596,
+      "latency_ms": 11227.83390013501,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "ca62a51652fcf787_chunk_8",
+        "ca62a51652fcf787_chunk_1",
+        "8d4f034f71e648c9_chunk_8",
+        "a23341b93663c01a_chunk_11",
+        "ca62a51652fcf787_chunk_0"
+      ],
+      "expected_ids": [
+        "e35c84c3832e7d7e_chunk_8"
+      ],
+      "scores": [
+        -5.843613147735596,
+        -6.117441177368164,
+        -6.253973960876465,
+        -6.395031929016113,
+        -6.955600261688232
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Richard.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -9.07328987121582,
+      "top_score": -8.13168716430664,
+      "latency_ms": 13565.291200065985,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "7195214466c1a513_chunk_9",
+        "c361742f40c85396_chunk_16",
+        "42e07fbf85a1b96d_chunk_27",
+        "614f1661afb67e64_chunk_3",
+        "7195214466c1a513_chunk_8"
+      ],
+      "expected_ids": [
+        "e35c84c3832e7d7e_chunk_9"
+      ],
+      "scores": [
+        -8.13168716430664,
+        -8.496916770935059,
+        -9.260099411010742,
+        -9.70010757446289,
+        -9.77763843536377
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Wooldridge.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -10.258609008789062,
+      "top_score": -9.544607162475586,
+      "latency_ms": 12216.911100083962,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "7195214466c1a513_chunk_9",
+        "c51e540d8ea90e7a_chunk_3",
+        "42e07fbf85a1b96d_chunk_27",
+        "41f97a05d6120686_chunk_13",
+        "2a88218944672c3f_chunk_11"
+      ],
+      "expected_ids": [
+        "e35c84c3832e7d7e_chunk_10"
+      ],
+      "scores": [
+        -9.544607162475586,
+        -10.331818580627441,
+        -10.383537292480469,
+        -10.497648239135742,
+        -10.535433769226074
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Hollywood?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -8.413167953491211,
+      "top_score": -8.191478729248047,
+      "latency_ms": 12242.475500097498,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "07a052cabbbe73a6_chunk_0",
+        "a23341b93663c01a_chunk_11",
+        "8d4f034f71e648c9_chunk_8",
+        "dcd7ecb736a95737_chunk_7",
+        "0e328bb6998278c3_chunk_1"
+      ],
+      "expected_ids": [
+        "e35c84c3832e7d7e_chunk_12"
+      ],
+      "scores": [
+        -8.191478729248047,
+        -8.41923713684082,
+        -8.451395034790039,
+        -8.491803169250488,
+        -8.51192569732666
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Also?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -5.348185348510742,
+      "top_score": -4.542293071746826,
+      "latency_ms": 12546.995399985462,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "8d4f034f71e648c9_chunk_8",
+        "a23341b93663c01a_chunk_11",
+        "0e328bb6998278c3_chunk_1",
+        "1311e496d7659a33_chunk_16",
+        "6bb4dc360b8a90ee_chunk_0"
+      ],
+      "expected_ids": [
+        "e35c84c3832e7d7e_chunk_14"
+      ],
+      "scores": [
+        -4.542293071746826,
+        -4.826470375061035,
+        -5.355042934417725,
+        -5.792058944702148,
+        -6.225061416625977
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Chikun?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -8.229859352111816,
+      "top_score": -7.941222190856934,
+      "latency_ms": 21775.12549981475,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "8d4f034f71e648c9_chunk_8",
+        "c90d7d6e1350a3cc_chunk_35",
+        "ec46a5aaf2b07e78_chunk_3",
+        "dcfbde5ac736e079_chunk_0",
+        "0e328bb6998278c3_chunk_1"
+      ],
+      "expected_ids": [
+        "e35c84c3832e7d7e_chunk_15"
+      ],
+      "scores": [
+        -7.941222190856934,
+        -8.132096290588379,
+        -8.28730297088623,
+        -8.325920104980469,
+        -8.46275520324707
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Unlike.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -7.2113292694091795,
+      "top_score": -5.299532413482666,
+      "latency_ms": 34250.77689997852,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "7195214466c1a513_chunk_9",
+        "f2099d1b04e6320e_chunk_0",
+        "f52cc45ebc94dc1e_chunk_2",
+        "2a88218944672c3f_chunk_23",
+        "7195214466c1a513_chunk_8"
+      ],
+      "expected_ids": [
+        "25371e233a5cfc20_chunk_0"
+      ],
+      "scores": [
+        -5.299532413482666,
+        -6.281981468200684,
+        -7.749308109283447,
+        -8.121074676513672,
+        -8.60474967956543
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of They?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -4.920140743255615,
+      "top_score": -3.768209457397461,
+      "latency_ms": 16003.775000106543,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "8d4f034f71e648c9_chunk_8",
+        "a23341b93663c01a_chunk_11",
+        "dcfbde5ac736e079_chunk_1",
+        "0e328bb6998278c3_chunk_1",
+        "1311e496d7659a33_chunk_17"
+      ],
+      "expected_ids": [
+        "25371e233a5cfc20_chunk_1"
+      ],
+      "scores": [
+        -3.768209457397461,
+        -4.804287433624268,
+        -4.942806243896484,
+        -5.266547203063965,
+        -5.818853378295898
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    }
+  ],
+  "top_50_successes": [
+    {
+      "query": "What is the definition or role of Momentum?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 1.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -7.312471675872803,
+      "top_score": -5.436733245849609,
+      "latency_ms": 13538.192299893126,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "4d260da8756c022e_chunk_13",
+        "1e4be394e91166de_chunk_10",
+        "8d4f034f71e648c9_chunk_8",
+        "a23341b93663c01a_chunk_11",
+        "0e328bb6998278c3_chunk_1"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_10"
+      ],
+      "scores": [
+        -5.436733245849609,
+        -6.717652320861816,
+        -7.817386150360107,
+        -8.20046329498291,
+        -8.39012336730957
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Adagrad.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 1.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -6.417290496826172,
+      "top_score": -3.88336181640625,
+      "latency_ms": 29602.080800104886,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "1e4be394e91166de_chunk_5",
+        "1e4be394e91166de_chunk_12",
+        "1e4be394e91166de_chunk_11",
+        "7195214466c1a513_chunk_9",
+        "42e07fbf85a1b96d_chunk_27"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_12"
+      ],
+      "scores": [
+        -3.88336181640625,
+        -5.450840473175049,
+        -5.854419708251953,
+        -7.645017147064209,
+        -9.252813339233398
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Adam?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 1.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -7.551694107055664,
+      "top_score": -5.77920389175415,
+      "latency_ms": 11902.243500109762,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "1e4be394e91166de_chunk_15",
+        "a23341b93663c01a_chunk_11",
+        "0e328bb6998278c3_chunk_1",
+        "4d260da8756c022e_chunk_0",
+        "25371e233a5cfc20_chunk_1"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_15"
+      ],
+      "scores": [
+        -5.77920389175415,
+        -7.668399333953857,
+        -7.811357498168945,
+        -8.090513229370117,
+        -8.40899658203125
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Hessian?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 1.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -6.54191255569458,
+      "top_score": -2.9264979362487793,
+      "latency_ms": 11325.923100113869,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "33981211ab20e81b_chunk_9",
+        "1e4be394e91166de_chunk_16",
+        "67c1b09b5ed30a18_chunk_13",
+        "0e328bb6998278c3_chunk_1",
+        "0477ff2aab3ec20d_chunk_17"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_16"
+      ],
+      "scores": [
+        -2.9264979362487793,
+        -5.169095039367676,
+        -7.227617263793945,
+        -8.60334300994873,
+        -8.78300952911377
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Guard.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 1.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -9.100619697570801,
+      "top_score": -7.952524185180664,
+      "latency_ms": 12652.453399961814,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "7195214466c1a513_chunk_9",
+        "052f93d32723634d_chunk_11",
+        "42e07fbf85a1b96d_chunk_27",
+        "2a88218944672c3f_chunk_11",
+        "7195214466c1a513_chunk_8"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_11"
+      ],
+      "scores": [
+        -7.952524185180664,
+        -8.261987686157227,
+        -9.683847427368164,
+        -9.736589431762695,
+        -9.868149757385254
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Trojan.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 1.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -6.769175004959107,
+      "top_score": -1.3802282810211182,
+      "latency_ms": 32398.08259997517,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "052f93d32723634d_chunk_7",
+        "7195214466c1a513_chunk_9",
+        "052f93d32723634d_chunk_13",
+        "42e07fbf85a1b96d_chunk_27",
+        "052f93d32723634d_chunk_8"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_13"
+      ],
+      "scores": [
+        -1.3802282810211182,
+        -6.981071472167969,
+        -7.3760271072387695,
+        -8.795592308044434,
+        -9.312955856323242
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Hui?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 1.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -7.055632305145264,
+      "top_score": -5.214286804199219,
+      "latency_ms": 10168.28399989754,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "e35c84c3832e7d7e_chunk_14",
+        "8d4f034f71e648c9_chunk_8",
+        "0e328bb6998278c3_chunk_1",
+        "e35c84c3832e7d7e_chunk_11",
+        "a23341b93663c01a_chunk_11"
+      ],
+      "expected_ids": [
+        "e35c84c3832e7d7e_chunk_11"
+      ],
+      "scores": [
+        -5.214286804199219,
+        -7.190104007720947,
+        -7.471930503845215,
+        -7.531767845153809,
+        -7.870072364807129
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Korean?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 1.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -8.100676727294921,
+      "top_score": -7.151096343994141,
+      "latency_ms": 11774.15330009535,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "e35c84c3832e7d7e_chunk_13",
+        "8d4f034f71e648c9_chunk_8",
+        "1000b34f98fdfd2f_chunk_26",
+        "0e328bb6998278c3_chunk_1",
+        "6bb4dc360b8a90ee_chunk_0"
+      ],
+      "expected_ids": [
+        "e35c84c3832e7d7e_chunk_13"
+      ],
+      "scores": [
+        -7.151096343994141,
+        -7.619362831115723,
+        -8.128607749938965,
+        -8.637778282165527,
+        -8.966538429260254
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of \"Computing?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 1.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -3.603692722320557,
+      "top_score": -2.4659180641174316,
+      "latency_ms": 11478.664899943396,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "5de03854201ec322_chunk_0",
+        "a9953af5a8f846f5_chunk_0",
+        "a23341b93663c01a_chunk_11",
+        "25371e233a5cfc20_chunk_2",
+        "2a88218944672c3f_chunk_28"
+      ],
+      "expected_ids": [
+        "25371e233a5cfc20_chunk_2"
+      ],
+      "scores": [
+        -2.4659180641174316,
+        -2.8116049766540527,
+        -2.844376564025879,
+        -4.773688316345215,
+        -5.122875690460205
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Rohrer.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 1.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -8.87274169921875,
+      "top_score": -5.603808403015137,
+      "latency_ms": 9467.439000029117,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "25371e233a5cfc20_chunk_10",
+        "7195214466c1a513_chunk_9",
+        "42e07fbf85a1b96d_chunk_27",
+        "935a19548c91b3e1_chunk_25",
+        "7195214466c1a513_chunk_8"
+      ],
+      "expected_ids": [
+        "25371e233a5cfc20_chunk_10"
+      ],
+      "scores": [
+        -5.603808403015137,
+        -8.74634075164795,
+        -9.798678398132324,
+        -9.984845161437988,
+        -10.230035781860352
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Weak.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 1.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -6.385677433013916,
+      "top_score": -4.965531349182129,
+      "latency_ms": 11003.93919995986,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "1311e496d7659a33_chunk_16",
+        "f55cd97e3a2779c4_chunk_0",
+        "25371e233a5cfc20_chunk_13",
+        "7195214466c1a513_chunk_9",
+        "f55cd97e3a2779c4_chunk_2"
+      ],
+      "expected_ids": [
+        "25371e233a5cfc20_chunk_13"
+      ],
+      "scores": [
+        -4.965531349182129,
+        -6.094948768615723,
+        -6.341350078582764,
+        -6.810626029968262,
+        -7.715930938720703
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Universal?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -4.9358443975448605,
+      "top_score": 0.7985101938247681,
+      "latency_ms": 77257.14090000838,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "8d4f034f71e648c9_chunk_11",
+        "8d4f034f71e648c9_chunk_10",
+        "8d4f034f71e648c9_chunk_8",
+        "a23341b93663c01a_chunk_11",
+        "6bb4dc360b8a90ee_chunk_0"
+      ],
+      "expected_ids": [
+        "4ff24688f2a0984b_chunk_0"
+      ],
+      "scores": [
+        0.7985101938247681,
+        -3.5695104598999023,
+        -6.750917434692383,
+        -7.5715413093566895,
+        -7.585762977600098
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Heaviside?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -9.08398151397705,
+      "top_score": -8.415212631225586,
+      "latency_ms": 52180.25659979321,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "0e328bb6998278c3_chunk_1",
+        "3075ae1bba66029a_chunk_1",
+        "6bb4dc360b8a90ee_chunk_0",
+        "a23341b93663c01a_chunk_11",
+        "56f8e1957ffabdf4_chunk_19"
+      ],
+      "expected_ids": [
+        "4ff24688f2a0984b_chunk_1"
+      ],
+      "scores": [
+        -8.415212631225586,
+        -8.594590187072754,
+        -9.322021484375,
+        -9.329634666442871,
+        -9.758448600769043
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Neurons?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -1.267557281255722,
+      "top_score": -0.4693276584148407,
+      "latency_ms": 39189.23299992457,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "4d260da8756c022e_chunk_0",
+        "b18168573356ff49_chunk_0",
+        "2a88218944672c3f_chunk_15",
+        "4d260da8756c022e_chunk_10",
+        "05e76776936a82fe_chunk_13"
+      ],
+      "expected_ids": [
+        "4ff24688f2a0984b_chunk_2"
+      ],
+      "scores": [
+        -0.4693276584148407,
+        -0.6259461641311646,
+        -1.290656566619873,
+        -1.5249487161636353,
+        -2.4269073009490967
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Fourier?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -6.776591777801514,
+      "top_score": -6.062629222869873,
+      "latency_ms": 16913.41169993393,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "d4196ff36e8789b5_chunk_1",
+        "66147720c7e1110d_chunk_18",
+        "33903fcb6cac443f_chunk_32",
+        "8d4f034f71e648c9_chunk_8",
+        "a23341b93663c01a_chunk_11"
+      ],
+      "expected_ids": [
+        "4ff24688f2a0984b_chunk_3"
+      ],
+      "scores": [
+        -6.062629222869873,
+        -6.499534606933594,
+        -6.759957313537598,
+        -6.898178577423096,
+        -7.662659168243408
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Survey.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -6.528652095794678,
+      "top_score": -5.276821136474609,
+      "latency_ms": 12040.062900166959,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "7195214466c1a513_chunk_9",
+        "2d873e1ee826f26e_chunk_18",
+        "42e07fbf85a1b96d_chunk_27",
+        "42e07fbf85a1b96d_chunk_11",
+        "935a19548c91b3e1_chunk_26"
+      ],
+      "expected_ids": [
+        "4ff24688f2a0984b_chunk_4"
+      ],
+      "scores": [
+        -5.276821136474609,
+        -6.464301109313965,
+        -6.7012128829956055,
+        -7.075944900512695,
+        -7.124980449676514
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding There.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -6.3011383533477785,
+      "top_score": -3.336195230484009,
+      "latency_ms": 11809.462199918926,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "7195214466c1a513_chunk_9",
+        "09a7951922de237f_chunk_23",
+        "7195214466c1a513_chunk_0",
+        "7195214466c1a513_chunk_8",
+        "be8762f11fe17527_chunk_6"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_0"
+      ],
+      "scores": [
+        -3.336195230484009,
+        -6.430306434631348,
+        -6.641266345977783,
+        -7.507443428039551,
+        -7.590480327606201
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of This?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -4.158917665481567,
+      "top_score": -2.54323410987854,
+      "latency_ms": 9800.809500040486,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "8d4f034f71e648c9_chunk_8",
+        "a23341b93663c01a_chunk_11",
+        "0e328bb6998278c3_chunk_1",
+        "6bb4dc360b8a90ee_chunk_0",
+        "1311e496d7659a33_chunk_17"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_1"
+      ],
+      "scores": [
+        -2.54323410987854,
+        -3.609313488006592,
+        -4.220895767211914,
+        -5.1013264656066895,
+        -5.319818496704102
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Robbins\u2013Siegmund?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -9.423171710968017,
+      "top_score": -7.250046253204346,
+      "latency_ms": 10383.121299790218,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "0477ff2aab3ec20d_chunk_21",
+        "0e328bb6998278c3_chunk_1",
+        "8d4f034f71e648c9_chunk_8",
+        "a23341b93663c01a_chunk_11",
+        "6bb4dc360b8a90ee_chunk_0"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_2"
+      ],
+      "scores": [
+        -7.250046253204346,
+        -9.629598617553711,
+        -9.770400047302246,
+        -10.0767822265625,
+        -10.389031410217285
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding This.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -5.451354885101319,
+      "top_score": -3.862499713897705,
+      "latency_ms": 10755.810600006953,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "7195214466c1a513_chunk_9",
+        "998ac151e85e02c0_chunk_4",
+        "e3fe3649342e859b_chunk_5",
+        "7195214466c1a513_chunk_0",
+        "25371e233a5cfc20_chunk_21"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_3"
+      ],
+      "scores": [
+        -3.862499713897705,
+        -5.246946334838867,
+        -5.424620628356934,
+        -6.243809700012207,
+        -6.478898048400879
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Sutton?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -8.28322458267212,
+      "top_score": -7.696409702301025,
+      "latency_ms": 12065.175999887288,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "8d4f034f71e648c9_chunk_8",
+        "0e328bb6998278c3_chunk_1",
+        "a23341b93663c01a_chunk_11",
+        "6bb4dc360b8a90ee_chunk_0",
+        "56f8e1957ffabdf4_chunk_19"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_4"
+      ],
+      "scores": [
+        -7.696409702301025,
+        -8.022192001342773,
+        -8.280254364013672,
+        -8.538652420043945,
+        -8.87861442565918
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding However.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -5.460917568206787,
+      "top_score": -4.786769866943359,
+      "latency_ms": 9876.942500006407,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "614f1661afb67e64_chunk_30",
+        "7195214466c1a513_chunk_9",
+        "2a88218944672c3f_chunk_11",
+        "a31870e7f64208f6_chunk_2",
+        "e3fe3649342e859b_chunk_5"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_5"
+      ],
+      "scores": [
+        -4.786769866943359,
+        -4.941496849060059,
+        -5.418700218200684,
+        -5.973423004150391,
+        -6.184197902679443
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Setting.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -7.405240249633789,
+      "top_score": -5.546213150024414,
+      "latency_ms": 10772.134900093079,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "7195214466c1a513_chunk_9",
+        "614f1661afb67e64_chunk_30",
+        "c361742f40c85396_chunk_18",
+        "41f97a05d6120686_chunk_2",
+        "2a88218944672c3f_chunk_14"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_6"
+      ],
+      "scores": [
+        -5.546213150024414,
+        -6.847020626068115,
+        -7.9678730964660645,
+        -8.116434097290039,
+        -8.548660278320312
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Note?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -6.976665306091308,
+      "top_score": -6.11564826965332,
+      "latency_ms": 9449.259500019252,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "8d4f034f71e648c9_chunk_8",
+        "f9af44654a1c5251_chunk_0",
+        "a23341b93663c01a_chunk_11",
+        "bb181f945c7c22e5_chunk_2",
+        "0e328bb6998278c3_chunk_1"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_7"
+      ],
+      "scores": [
+        -6.11564826965332,
+        -6.60286283493042,
+        -7.307631492614746,
+        -7.411073684692383,
+        -7.446110248565674
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Specifically?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -5.85732479095459,
+      "top_score": -4.7019124031066895,
+      "latency_ms": 9088.11270003207,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "8d4f034f71e648c9_chunk_8",
+        "a23341b93663c01a_chunk_11",
+        "0e328bb6998278c3_chunk_1",
+        "6bb4dc360b8a90ee_chunk_0",
+        "1311e496d7659a33_chunk_17"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_8"
+      ],
+      "scores": [
+        -4.7019124031066895,
+        -5.3963775634765625,
+        -6.042343616485596,
+        -6.5043206214904785,
+        -6.641669750213623
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Stochastic.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -3.9362980365753173,
+      "top_score": -2.4524149894714355,
+      "latency_ms": 10456.110900035128,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "1e4be394e91166de_chunk_0",
+        "67c1b09b5ed30a18_chunk_16",
+        "1e4be394e91166de_chunk_6",
+        "1e4be394e91166de_chunk_4",
+        "1e4be394e91166de_chunk_10"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_9"
+      ],
+      "scores": [
+        -2.4524149894714355,
+        -2.4948890209198,
+        -4.313230037689209,
+        -4.956035614013672,
+        -5.464920520782471
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Examples?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -3.3967352390289305,
+      "top_score": -2.0611400604248047,
+      "latency_ms": 21919.986699940637,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "8d4f034f71e648c9_chunk_10",
+        "557c96a13c42ed29_chunk_16",
+        "8d4f034f71e648c9_chunk_8",
+        "557c96a13c42ed29_chunk_11",
+        "56f8e1957ffabdf4_chunk_19"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_11"
+      ],
+      "scores": [
+        -2.0611400604248047,
+        -2.5801889896392822,
+        -3.9273879528045654,
+        -3.974311113357544,
+        -4.440648078918457
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Estimation.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -3.9968276500701903,
+      "top_score": -2.6239049434661865,
+      "latency_ms": 17406.150799943134,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "0e5386eaa0d5998e_chunk_25",
+        "4e5eac8a96ea2f3f_chunk_12",
+        "0e5386eaa0d5998e_chunk_24",
+        "7195214466c1a513_chunk_9",
+        "eecf7ac13acf3007_chunk_0"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_13"
+      ],
+      "scores": [
+        -2.6239049434661865,
+        -2.8386898040771484,
+        -4.421984672546387,
+        -4.976185321807861,
+        -5.123373508453369
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Squaring?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -8.054091262817384,
+      "top_score": -7.346861839294434,
+      "latency_ms": 10914.592100074515,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "0e328bb6998278c3_chunk_1",
+        "6bb4dc360b8a90ee_chunk_0",
+        "8d4f034f71e648c9_chunk_8",
+        "a23341b93663c01a_chunk_11",
+        "56f8e1957ffabdf4_chunk_19"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_14"
+      ],
+      "scores": [
+        -7.346861839294434,
+        -7.694212436676025,
+        -7.757308483123779,
+        -8.444534301757812,
+        -9.027539253234863
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Then?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -6.304826164245606,
+      "top_score": -4.830154895782471,
+      "latency_ms": 10404.197399970144,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "8d4f034f71e648c9_chunk_8",
+        "a23341b93663c01a_chunk_11",
+        "0e328bb6998278c3_chunk_1",
+        "8d4f034f71e648c9_chunk_7",
+        "6bb4dc360b8a90ee_chunk_0"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_17"
+      ],
+      "scores": [
+        -4.830154895782471,
+        -6.171834945678711,
+        -6.4167962074279785,
+        -6.958157539367676,
+        -7.147187232971191
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Archived.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -6.46419734954834,
+      "top_score": -5.131865501403809,
+      "latency_ms": 10398.320300038904,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "67c1b09b5ed30a18_chunk_16",
+        "7195214466c1a513_chunk_9",
+        "0477ff2aab3ec20d_chunk_23",
+        "838555607d28672e_chunk_0",
+        "261ab68962cd5100_chunk_38"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_18"
+      ],
+      "scores": [
+        -5.131865501403809,
+        -5.504729747772217,
+        -6.584379196166992,
+        -7.475254535675049,
+        -7.624757766723633
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Some.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -5.722261381149292,
+      "top_score": -3.5212323665618896,
+      "latency_ms": 10356.457199901342,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "7195214466c1a513_chunk_9",
+        "557c96a13c42ed29_chunk_11",
+        "09a7951922de237f_chunk_23",
+        "3d611f7bb6c08042_chunk_5",
+        "1311e496d7659a33_chunk_8"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_0"
+      ],
+      "scores": [
+        -3.5212323665618896,
+        -4.595324993133545,
+        -6.167288303375244,
+        -7.129311561584473,
+        -7.198149681091309
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Theory?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -5.170807552337647,
+      "top_score": -3.002298355102539,
+      "latency_ms": 8739.862499991432,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "8d4f034f71e648c9_chunk_8",
+        "2a88218944672c3f_chunk_19",
+        "a23341b93663c01a_chunk_11",
+        "1311e496d7659a33_chunk_17",
+        "7195214466c1a513_chunk_14"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_1"
+      ],
+      "scores": [
+        -3.002298355102539,
+        -5.140860557556152,
+        -5.530978202819824,
+        -5.668702125549316,
+        -6.5111985206604
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of California?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -8.153563117980957,
+      "top_score": -7.675466537475586,
+      "latency_ms": 10720.769600011408,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "0e328bb6998278c3_chunk_1",
+        "c361742f40c85396_chunk_14",
+        "6bb4dc360b8a90ee_chunk_0",
+        "41f97a05d6120686_chunk_33",
+        "46b65400762fdd0a_chunk_22"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_2"
+      ],
+      "scores": [
+        -7.675466537475586,
+        -8.058427810668945,
+        -8.131950378417969,
+        -8.321426391601562,
+        -8.580544471740723
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Yoshua.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -9.376738929748536,
+      "top_score": -7.793087005615234,
+      "latency_ms": 9669.770000036806,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "ec46a5aaf2b07e78_chunk_3",
+        "7195214466c1a513_chunk_9",
+        "41f97a05d6120686_chunk_22",
+        "a1142babf2c56578_chunk_34",
+        "25371e233a5cfc20_chunk_19"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_3"
+      ],
+      "scores": [
+        -7.793087005615234,
+        -8.926265716552734,
+        -9.61972713470459,
+        -10.232009887695312,
+        -10.312604904174805
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Network.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -3.88242712020874,
+      "top_score": -1.495814323425293,
+      "latency_ms": 17916.88279993832,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "7195214466c1a513_chunk_9",
+        "f2099d1b04e6320e_chunk_7",
+        "b6549f4832c81329_chunk_11",
+        "4d260da8756c022e_chunk_0",
+        "4d260da8756c022e_chunk_10"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_4"
+      ],
+      "scores": [
+        -1.495814323425293,
+        -1.8839054107666016,
+        -5.192446708679199,
+        -5.292407989501953,
+        -5.547561168670654
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Neural.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -3.407289719581604,
+      "top_score": -0.594302773475647,
+      "latency_ms": 19198.64169997163,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "7195214466c1a513_chunk_9",
+        "4d260da8756c022e_chunk_0",
+        "b18168573356ff49_chunk_0",
+        "4d260da8756c022e_chunk_10",
+        "7195214466c1a513_chunk_8"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_5"
+      ],
+      "scores": [
+        -0.594302773475647,
+        -3.3813705444335938,
+        -4.040785789489746,
+        -4.431429386138916,
+        -4.588560104370117
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Rome.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -8.288902950286865,
+      "top_score": -7.226491451263428,
+      "latency_ms": 13329.56640003249,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "dcd7ecb736a95737_chunk_2",
+        "1000b34f98fdfd2f_chunk_15",
+        "0229b86e205282b0_chunk_24",
+        "1000b34f98fdfd2f_chunk_17",
+        "1000b34f98fdfd2f_chunk_16"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_6"
+      ],
+      "scores": [
+        -7.226491451263428,
+        -8.38129997253418,
+        -8.44317626953125,
+        -8.563777923583984,
+        -8.829769134521484
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding This.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -5.451354885101319,
+      "top_score": -3.862499713897705,
+      "latency_ms": 10232.931400183588,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "7195214466c1a513_chunk_9",
+        "998ac151e85e02c0_chunk_4",
+        "e3fe3649342e859b_chunk_5",
+        "7195214466c1a513_chunk_0",
+        "25371e233a5cfc20_chunk_21"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_7"
+      ],
+      "scores": [
+        -3.862499713897705,
+        -5.246946334838867,
+        -5.424620628356934,
+        -6.243809700012207,
+        -6.478898048400879
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Standard?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -6.844376182556152,
+      "top_score": -6.3989176750183105,
+      "latency_ms": 12244.278399972245,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "8d4f034f71e648c9_chunk_11",
+        "1311e496d7659a33_chunk_7",
+        "6bb4dc360b8a90ee_chunk_0",
+        "a1142babf2c56578_chunk_28",
+        "a23341b93663c01a_chunk_11"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_8"
+      ],
+      "scores": [
+        -6.3989176750183105,
+        -6.752074241638184,
+        -6.9409708976745605,
+        -6.989134788513184,
+        -7.140783309936523
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Such?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -4.446170520782471,
+      "top_score": -3.0980935096740723,
+      "latency_ms": 11615.704500116408,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "8d4f034f71e648c9_chunk_8",
+        "a23341b93663c01a_chunk_11",
+        "0e328bb6998278c3_chunk_1",
+        "1311e496d7659a33_chunk_17",
+        "1311e496d7659a33_chunk_16"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_9"
+      ],
+      "scores": [
+        -3.0980935096740723,
+        -3.8838863372802734,
+        -4.622628211975098,
+        -5.264272689819336,
+        -5.361971855163574
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Dafoe?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -4.985675692558289,
+      "top_score": -1.4231756925582886,
+      "latency_ms": 13084.870300022885,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "052f93d32723634d_chunk_11",
+        "c90d7d6e1350a3cc_chunk_40",
+        "7b7c1a6d0788c672_chunk_9",
+        "179030c73440d373_chunk_13",
+        "c51e540d8ea90e7a_chunk_0"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_10"
+      ],
+      "scores": [
+        -1.4231756925582886,
+        -3.9901795387268066,
+        -5.74012565612793,
+        -6.765707015991211,
+        -7.009190559387207
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding China.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -5.353164100646973,
+      "top_score": -4.645054817199707,
+      "latency_ms": 12623.583799926564,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "07a052cabbbe73a6_chunk_26",
+        "1311e496d7659a33_chunk_35",
+        "41f97a05d6120686_chunk_25",
+        "0229b86e205282b0_chunk_30",
+        "d4efa815ac65b857_chunk_9"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_12"
+      ],
+      "scores": [
+        -4.645054817199707,
+        -5.191213130950928,
+        -5.403995513916016,
+        -5.40920352935791,
+        -6.116353511810303
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of President?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -8.018619632720947,
+      "top_score": -5.75304651260376,
+      "latency_ms": 15273.63199996762,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "3d611f7bb6c08042_chunk_7",
+        "1311e496d7659a33_chunk_33",
+        "1311e496d7659a33_chunk_3",
+        "6bb4dc360b8a90ee_chunk_0",
+        "0e328bb6998278c3_chunk_1"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_14"
+      ],
+      "scores": [
+        -5.75304651260376,
+        -8.406599044799805,
+        -8.461441993713379,
+        -8.617903709411621,
+        -8.854106903076172
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Experts?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -3.023984456062317,
+      "top_score": -0.5045167207717896,
+      "latency_ms": 21382.856599986553,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "d15805aa4a295a21_chunk_0",
+        "d15805aa4a295a21_chunk_10",
+        "d15805aa4a295a21_chunk_9",
+        "d15805aa4a295a21_chunk_5",
+        "8d4f034f71e648c9_chunk_8"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_15"
+      ],
+      "scores": [
+        -0.5045167207717896,
+        -1.6056971549987793,
+        -2.945836067199707,
+        -4.905324935913086,
+        -5.158547401428223
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding March.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -7.6001842498779295,
+      "top_score": -4.990190029144287,
+      "latency_ms": 15975.401400122792,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "f52cc45ebc94dc1e_chunk_5",
+        "f52cc45ebc94dc1e_chunk_0",
+        "cc5792c6c25291aa_chunk_3",
+        "7195214466c1a513_chunk_9",
+        "d4efa815ac65b857_chunk_9"
+      ],
+      "expected_ids": [
+        "e35c84c3832e7d7e_chunk_0"
+      ],
+      "scores": [
+        -4.990190029144287,
+        -7.167245864868164,
+        -7.578711032867432,
+        -8.693000793457031,
+        -9.571773529052734
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Zen?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -8.583109283447266,
+      "top_score": -7.740811347961426,
+      "latency_ms": 16806.58799991943,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "8d4f034f71e648c9_chunk_8",
+        "a23341b93663c01a_chunk_11",
+        "0e328bb6998278c3_chunk_1",
+        "5fc50ad2e22c29a2_chunk_9",
+        "1311e496d7659a33_chunk_17"
+      ],
+      "expected_ids": [
+        "e35c84c3832e7d7e_chunk_1"
+      ],
+      "scores": [
+        -7.740811347961426,
+        -8.429670333862305,
+        -8.662067413330078,
+        -8.825874328613281,
+        -9.257122993469238
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Nature.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -6.145687770843506,
+      "top_score": -5.0582685470581055,
+      "latency_ms": 13564.652600092813,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "614f1661afb67e64_chunk_30",
+        "7195214466c1a513_chunk_9",
+        "6bb4dc360b8a90ee_chunk_0",
+        "e3fe3649342e859b_chunk_5",
+        "ca62a51652fcf787_chunk_0"
+      ],
+      "expected_ids": [
+        "e35c84c3832e7d7e_chunk_2"
+      ],
+      "scores": [
+        -5.0582685470581055,
+        -5.9982218742370605,
+        -6.194276809692383,
+        -6.6743268966674805,
+        -6.8033447265625
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Economist.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -6.46400785446167,
+      "top_score": -5.743771553039551,
+      "latency_ms": 11150.53560002707,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "af8dfd432be21f30_chunk_49",
+        "af8dfd432be21f30_chunk_4",
+        "1311e496d7659a33_chunk_8",
+        "7195214466c1a513_chunk_9",
+        "668f48af85a64545_chunk_8"
+      ],
+      "expected_ids": [
+        "e35c84c3832e7d7e_chunk_3"
+      ],
+      "scores": [
+        -5.743771553039551,
+        -6.026354789733887,
+        -6.676745414733887,
+        -6.8351240158081055,
+        -7.03804349899292
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Master?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -7.339082813262939,
+      "top_score": -5.273380756378174,
+      "latency_ms": 12642.671100096777,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "e35c84c3832e7d7e_chunk_5",
+        "8d4f034f71e648c9_chunk_8",
+        "a23341b93663c01a_chunk_11",
+        "dcfbde5ac736e079_chunk_8",
+        "0e328bb6998278c3_chunk_1"
+      ],
+      "expected_ids": [
+        "e35c84c3832e7d7e_chunk_4"
+      ],
+      "scores": [
+        -5.273380756378174,
+        -6.913722991943359,
+        -8.01019287109375,
+        -8.125490188598633,
+        -8.372627258300781
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    }
+  ],
+  "top_20_ambiguous": [],
+  "top_20_hallucination_triggers": [
+    {
+      "query": "Explain the context surrounding Wooldridge.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -10.258609008789062,
+      "top_score": -9.544607162475586,
+      "latency_ms": 12216.911100083962,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "7195214466c1a513_chunk_9",
+        "c51e540d8ea90e7a_chunk_3",
+        "42e07fbf85a1b96d_chunk_27",
+        "41f97a05d6120686_chunk_13",
+        "2a88218944672c3f_chunk_11"
+      ],
+      "expected_ids": [
+        "e35c84c3832e7d7e_chunk_10"
+      ],
+      "scores": [
+        -9.544607162475586,
+        -10.331818580627441,
+        -10.383537292480469,
+        -10.497648239135742,
+        -10.535433769226074
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Robbins\u2013Siegmund?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -9.423171710968017,
+      "top_score": -7.250046253204346,
+      "latency_ms": 10383.121299790218,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "0477ff2aab3ec20d_chunk_21",
+        "0e328bb6998278c3_chunk_1",
+        "8d4f034f71e648c9_chunk_8",
+        "a23341b93663c01a_chunk_11",
+        "6bb4dc360b8a90ee_chunk_0"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_2"
+      ],
+      "scores": [
+        -7.250046253204346,
+        -9.629598617553711,
+        -9.770400047302246,
+        -10.0767822265625,
+        -10.389031410217285
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Yoshua.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -9.376738929748536,
+      "top_score": -7.793087005615234,
+      "latency_ms": 9669.770000036806,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "ec46a5aaf2b07e78_chunk_3",
+        "7195214466c1a513_chunk_9",
+        "41f97a05d6120686_chunk_22",
+        "a1142babf2c56578_chunk_34",
+        "25371e233a5cfc20_chunk_19"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_3"
+      ],
+      "scores": [
+        -7.793087005615234,
+        -8.926265716552734,
+        -9.61972713470459,
+        -10.232009887695312,
+        -10.312604904174805
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Guardian.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -9.28073558807373,
+      "top_score": -7.847179412841797,
+      "latency_ms": 10710.904800100252,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "7195214466c1a513_chunk_9",
+        "1311e496d7659a33_chunk_17",
+        "42e07fbf85a1b96d_chunk_27",
+        "f54a908767f38cad_chunk_43",
+        "7195214466c1a513_chunk_8"
+      ],
+      "expected_ids": [
+        "25371e233a5cfc20_chunk_7"
+      ],
+      "scores": [
+        -7.847179412841797,
+        -9.446680068969727,
+        -9.51865005493164,
+        -9.650191307067871,
+        -9.940977096557617
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Guard.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 1.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -9.100619697570801,
+      "top_score": -7.952524185180664,
+      "latency_ms": 12652.453399961814,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "7195214466c1a513_chunk_9",
+        "052f93d32723634d_chunk_11",
+        "42e07fbf85a1b96d_chunk_27",
+        "2a88218944672c3f_chunk_11",
+        "7195214466c1a513_chunk_8"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_11"
+      ],
+      "scores": [
+        -7.952524185180664,
+        -8.261987686157227,
+        -9.683847427368164,
+        -9.736589431762695,
+        -9.868149757385254
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Heaviside?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -9.08398151397705,
+      "top_score": -8.415212631225586,
+      "latency_ms": 52180.25659979321,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "0e328bb6998278c3_chunk_1",
+        "3075ae1bba66029a_chunk_1",
+        "6bb4dc360b8a90ee_chunk_0",
+        "a23341b93663c01a_chunk_11",
+        "56f8e1957ffabdf4_chunk_19"
+      ],
+      "expected_ids": [
+        "4ff24688f2a0984b_chunk_1"
+      ],
+      "scores": [
+        -8.415212631225586,
+        -8.594590187072754,
+        -9.322021484375,
+        -9.329634666442871,
+        -9.758448600769043
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Richard.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -9.07328987121582,
+      "top_score": -8.13168716430664,
+      "latency_ms": 13565.291200065985,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "7195214466c1a513_chunk_9",
+        "c361742f40c85396_chunk_16",
+        "42e07fbf85a1b96d_chunk_27",
+        "614f1661afb67e64_chunk_3",
+        "7195214466c1a513_chunk_8"
+      ],
+      "expected_ids": [
+        "e35c84c3832e7d7e_chunk_9"
+      ],
+      "scores": [
+        -8.13168716430664,
+        -8.496916770935059,
+        -9.260099411010742,
+        -9.70010757446289,
+        -9.77763843536377
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of December?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -8.905278778076172,
+      "top_score": -8.084877014160156,
+      "latency_ms": 14904.921000124887,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "0e328bb6998278c3_chunk_1",
+        "a23341b93663c01a_chunk_11",
+        "6bb4dc360b8a90ee_chunk_0",
+        "56f8e1957ffabdf4_chunk_19",
+        "1311e496d7659a33_chunk_17"
+      ],
+      "expected_ids": [
+        "e35c84c3832e7d7e_chunk_6"
+      ],
+      "scores": [
+        -8.084877014160156,
+        -8.87120246887207,
+        -8.928638458251953,
+        -9.088058471679688,
+        -9.553617477416992
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of December?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -8.905278778076172,
+      "top_score": -8.084877014160156,
+      "latency_ms": 12074.678899953142,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "0e328bb6998278c3_chunk_1",
+        "a23341b93663c01a_chunk_11",
+        "6bb4dc360b8a90ee_chunk_0",
+        "56f8e1957ffabdf4_chunk_19",
+        "1311e496d7659a33_chunk_17"
+      ],
+      "expected_ids": [
+        "e35c84c3832e7d7e_chunk_7"
+      ],
+      "scores": [
+        -8.084877014160156,
+        -8.87120246887207,
+        -8.928638458251953,
+        -9.088058471679688,
+        -9.553617477416992
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Rohrer.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 1.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -8.87274169921875,
+      "top_score": -5.603808403015137,
+      "latency_ms": 9467.439000029117,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "25371e233a5cfc20_chunk_10",
+        "7195214466c1a513_chunk_9",
+        "42e07fbf85a1b96d_chunk_27",
+        "935a19548c91b3e1_chunk_25",
+        "7195214466c1a513_chunk_8"
+      ],
+      "expected_ids": [
+        "25371e233a5cfc20_chunk_10"
+      ],
+      "scores": [
+        -5.603808403015137,
+        -8.74634075164795,
+        -9.798678398132324,
+        -9.984845161437988,
+        -10.230035781860352
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Zen?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -8.583109283447266,
+      "top_score": -7.740811347961426,
+      "latency_ms": 16806.58799991943,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "8d4f034f71e648c9_chunk_8",
+        "a23341b93663c01a_chunk_11",
+        "0e328bb6998278c3_chunk_1",
+        "5fc50ad2e22c29a2_chunk_9",
+        "1311e496d7659a33_chunk_17"
+      ],
+      "expected_ids": [
+        "e35c84c3832e7d7e_chunk_1"
+      ],
+      "scores": [
+        -7.740811347961426,
+        -8.429670333862305,
+        -8.662067413330078,
+        -8.825874328613281,
+        -9.257122993469238
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Officer?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -8.491122627258301,
+      "top_score": -8.047000885009766,
+      "latency_ms": 9847.287000156939,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "dcfbde5ac736e079_chunk_8",
+        "8d4f034f71e648c9_chunk_8",
+        "dcfbde5ac736e079_chunk_7",
+        "0e328bb6998278c3_chunk_1",
+        "a23341b93663c01a_chunk_11"
+      ],
+      "expected_ids": [
+        "25371e233a5cfc20_chunk_11"
+      ],
+      "scores": [
+        -8.047000885009766,
+        -8.140483856201172,
+        -8.637290000915527,
+        -8.771577835083008,
+        -8.859260559082031
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Hollywood?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -8.413167953491211,
+      "top_score": -8.191478729248047,
+      "latency_ms": 12242.475500097498,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "07a052cabbbe73a6_chunk_0",
+        "a23341b93663c01a_chunk_11",
+        "8d4f034f71e648c9_chunk_8",
+        "dcd7ecb736a95737_chunk_7",
+        "0e328bb6998278c3_chunk_1"
+      ],
+      "expected_ids": [
+        "e35c84c3832e7d7e_chunk_12"
+      ],
+      "scores": [
+        -8.191478729248047,
+        -8.41923713684082,
+        -8.451395034790039,
+        -8.491803169250488,
+        -8.51192569732666
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "Explain the context surrounding Rome.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "analytical",
+      "intent_confidence": 0.92,
+      "avg_score": -8.288902950286865,
+      "top_score": -7.226491451263428,
+      "latency_ms": 13329.56640003249,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "dcd7ecb736a95737_chunk_2",
+        "1000b34f98fdfd2f_chunk_15",
+        "0229b86e205282b0_chunk_24",
+        "1000b34f98fdfd2f_chunk_17",
+        "1000b34f98fdfd2f_chunk_16"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_6"
+      ],
+      "scores": [
+        -7.226491451263428,
+        -8.38129997253418,
+        -8.44317626953125,
+        -8.563777923583984,
+        -8.829769134521484
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Sutton?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -8.28322458267212,
+      "top_score": -7.696409702301025,
+      "latency_ms": 12065.175999887288,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "8d4f034f71e648c9_chunk_8",
+        "0e328bb6998278c3_chunk_1",
+        "a23341b93663c01a_chunk_11",
+        "6bb4dc360b8a90ee_chunk_0",
+        "56f8e1957ffabdf4_chunk_19"
+      ],
+      "expected_ids": [
+        "1e4be394e91166de_chunk_4"
+      ],
+      "scores": [
+        -7.696409702301025,
+        -8.022192001342773,
+        -8.280254364013672,
+        -8.538652420043945,
+        -8.87861442565918
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Chikun?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -8.229859352111816,
+      "top_score": -7.941222190856934,
+      "latency_ms": 21775.12549981475,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "8d4f034f71e648c9_chunk_8",
+        "c90d7d6e1350a3cc_chunk_35",
+        "ec46a5aaf2b07e78_chunk_3",
+        "dcfbde5ac736e079_chunk_0",
+        "0e328bb6998278c3_chunk_1"
+      ],
+      "expected_ids": [
+        "e35c84c3832e7d7e_chunk_15"
+      ],
+      "scores": [
+        -7.941222190856934,
+        -8.132096290588379,
+        -8.28730297088623,
+        -8.325920104980469,
+        -8.46275520324707
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Pack?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -8.219864082336425,
+      "top_score": -7.82390022277832,
+      "latency_ms": 9500.811100006104,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "c51e540d8ea90e7a_chunk_0",
+        "0e328bb6998278c3_chunk_1",
+        "a23341b93663c01a_chunk_11",
+        "56f8e1957ffabdf4_chunk_19",
+        "0229b86e205282b0_chunk_0"
+      ],
+      "expected_ids": [
+        "25371e233a5cfc20_chunk_3"
+      ],
+      "scores": [
+        -7.82390022277832,
+        -7.857561111450195,
+        -8.28455924987793,
+        -8.448068618774414,
+        -8.68523120880127
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Adams?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -8.211319065093994,
+      "top_score": -7.435606479644775,
+      "latency_ms": 11040.642599808052,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "8d4f034f71e648c9_chunk_8",
+        "0e328bb6998278c3_chunk_1",
+        "a23341b93663c01a_chunk_11",
+        "c51e540d8ea90e7a_chunk_1",
+        "6bb4dc360b8a90ee_chunk_0"
+      ],
+      "expected_ids": [
+        "25371e233a5cfc20_chunk_4"
+      ],
+      "scores": [
+        -7.435606479644775,
+        -8.146903991699219,
+        -8.283158302307129,
+        -8.540092468261719,
+        -8.650834083557129
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of Bill?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -8.15681438446045,
+      "top_score": -7.576767921447754,
+      "latency_ms": 10041.274899849668,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "8d4f034f71e648c9_chunk_8",
+        "0e328bb6998278c3_chunk_1",
+        "56f8e1957ffabdf4_chunk_19",
+        "a23341b93663c01a_chunk_11",
+        "6bb4dc360b8a90ee_chunk_0"
+      ],
+      "expected_ids": [
+        "25371e233a5cfc20_chunk_19"
+      ],
+      "scores": [
+        -7.576767921447754,
+        -8.048681259155273,
+        -8.371766090393066,
+        -8.382621765136719,
+        -8.404234886169434
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    },
+    {
+      "query": "What is the definition or role of California?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "recall_at_5": 0.0,
+      "intent_type": "factual",
+      "intent_confidence": 0.9,
+      "avg_score": -8.153563117980957,
+      "top_score": -7.675466537475586,
+      "latency_ms": 10720.769600011408,
+      "retrieved_count": 5,
+      "retrieved_ids": [
+        "0e328bb6998278c3_chunk_1",
+        "c361742f40c85396_chunk_14",
+        "6bb4dc360b8a90ee_chunk_0",
+        "41f97a05d6120686_chunk_33",
+        "46b65400762fdd0a_chunk_22"
+      ],
+      "expected_ids": [
+        "052f93d32723634d_chunk_2"
+      ],
+      "scores": [
+        -7.675466537475586,
+        -8.058427810668945,
+        -8.131950378417969,
+        -8.321426391601562,
+        -8.580544471740723
+      ],
+      "is_ambiguous": false,
+      "is_hallucination_risk": true
+    }
+  ]
+}

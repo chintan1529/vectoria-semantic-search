@@ -9,10 +9,13 @@ from backend.observability.tracing import setup_tracing
 
 from contextlib import asynccontextmanager
 
+from backend.core.async_queue import async_worker_queue
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Setup tracing and metrics before starting core components
     setup_tracing(app)
+    async_worker_queue.start()
     startup_event()
     yield
     shutdown_event()
@@ -41,30 +44,25 @@ app.add_middleware(TelemetryMiddleware)
 # Mount Routers
 app.include_router(query_router, prefix="/api", tags=["Search & Generation"])
 
-# Health Checks
-@app.get("/health", tags=["System"])
-async def health_check():
-    """Basic alive check for load balancers."""
-    return {"status": "ok"}
+from backend.routes.knowledge_graph_routes import router as kg_router
+app.include_router(kg_router, prefix="/api/query/knowledge-graph", tags=["Intelligence"])
 
-@app.get("/ready", tags=["System"])
-async def readiness_check():
-    """Verifies that all models and indexes are loaded into memory."""
-    if state.is_ready:
-        return {
-            "status": "ready",
-            "model_state": state.model_state.value,
-            "startup_time_ms": state.startup_time_ms,
-        }
-    else:
-        from fastapi.responses import JSONResponse
-        return JSONResponse(
-            status_code=503,
-            content={
-                "status": state.model_state.value,
-                "startup_error": state.startup_error,
-            },
-        )
+from backend.routes.research import router as research_router
+app.include_router(research_router, prefix="/api/research", tags=["Research"])
+
+from backend.routes.inspect import router as inspect_router
+app.include_router(inspect_router, prefix="/api/query", tags=["Inspect"])
+
+from backend.routes.health import router as health_router
+app.include_router(health_router, prefix="/api", tags=["System"])
+
+from backend.routes.analytics import router as analytics_router
+app.include_router(analytics_router, prefix="/api", tags=["Analytics"])
+
+from backend.routes.performance_dashboard import router as perf_router
+app.include_router(perf_router, prefix="/api", tags=["Performance"])
+
+# Health and readiness routes are now handled by health_router (/api/health, /api/ready)
 
 # If running this file directly for debugging
 if __name__ == "__main__":

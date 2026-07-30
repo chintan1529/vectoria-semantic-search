@@ -1,0 +1,1131 @@
+{
+  "metadata": {
+    "version": "v1",
+    "generation_date": "2026-06-15T11:01:20.407571",
+    "generator_version": "vectoria-gen-v1",
+    "corpus_version": 3592,
+    "total_questions": 80
+  },
+  "questions": [
+    {
+      "id": "det_0",
+      "query": "What is the definition or role of Universal?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "universal"
+      ],
+      "expected_sources": [
+        "4ff24688f2a0984b_chunk_0"
+      ],
+      "expected_answer_summary": "In artificial neural networks, the activation function of a node is a function that calculates the output of the node based on its individual inputs and their weights. Nontrivial problems can be solve..."
+    },
+    {
+      "id": "det_1",
+      "query": "What is the definition or role of Heaviside?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "heaviside"
+      ],
+      "expected_sources": [
+        "4ff24688f2a0984b_chunk_1"
+      ],
+      "expected_answer_summary": "These properties do not decisively influence performance, nor are they the only mathematical properties that may be useful. For instance, the strictly positive range of the softplus makes it suitable ..."
+    },
+    {
+      "id": "det_2",
+      "query": "What is the definition or role of Neurons?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "neurons"
+      ],
+      "expected_sources": [
+        "4ff24688f2a0984b_chunk_2"
+      ],
+      "expected_answer_summary": "In biologically inspired neural networks, the activation function is usually an abstraction representing the rate of action potential firing in the cell. In its simplest form, this function is binary\u2014..."
+    },
+    {
+      "id": "det_3",
+      "query": "What is the definition or role of Fourier?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "fourier"
+      ],
+      "expected_sources": [
+        "4ff24688f2a0984b_chunk_3"
+      ],
+      "expected_answer_summary": "These activation functions can take many forms, but they are usually found as one of the following functions:\n\nGaussian: \n  \n    \n      \n        \n        \u03d5\n        (\n        \n          v\n        \n    ..."
+    },
+    {
+      "id": "det_4",
+      "query": "Explain the context surrounding Survey.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "survey"
+      ],
+      "expected_sources": [
+        "4ff24688f2a0984b_chunk_4"
+      ],
+      "expected_answer_summary": "^ For instance, \n  \n    \n      \n        j\n      \n    \n    {\\displaystyle j}\n  \n could be iterating through the number of kernels of the previous neural network layer while \n  \n    \n      \n        i\n  ..."
+    },
+    {
+      "id": "det_5",
+      "query": "Explain the context surrounding There.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "there"
+      ],
+      "expected_sources": [
+        "1e4be394e91166de_chunk_0"
+      ],
+      "expected_answer_summary": "Stochastic gradient descent (often abbreviated SGD) is an iterative method for optimizing an objective function with suitable smoothness properties (e.g. differentiable or subdifferentiable). It can b..."
+    },
+    {
+      "id": "det_6",
+      "query": "What is the definition or role of This?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "this"
+      ],
+      "expected_sources": [
+        "1e4be394e91166de_chunk_1"
+      ],
+      "expected_answer_summary": "The sum-minimization problem also arises for empirical risk minimization. There, \n  \n    \n      \n        \n          Q\n          \n            i\n          \n        \n        (\n        w\n        )\n      \n..."
+    },
+    {
+      "id": "det_7",
+      "query": "What is the definition or role of Robbins\u2013Siegmund?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "robbins\u2013siegmund"
+      ],
+      "expected_sources": [
+        "1e4be394e91166de_chunk_2"
+      ],
+      "expected_answer_summary": "{\\displaystyle w:=w-\\eta \\,\\nabla Q_{i}(w).}\n  \n\nAs the algorithm sweeps through the training set, it performs the above update for each training sample. Several passes can be made over the training s..."
+    },
+    {
+      "id": "det_8",
+      "query": "Explain the context surrounding This.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "this"
+      ],
+      "expected_sources": [
+        "1e4be394e91166de_chunk_3"
+      ],
+      "expected_answer_summary": "Suppose we want to fit a straight line \n  \n    \n      \n        \n          \n            \n              y\n              ^\n            \n          \n        \n        =\n        \n          w\n          \n     ..."
+    },
+    {
+      "id": "det_9",
+      "query": "What is the definition or role of Sutton?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "sutton"
+      ],
+      "expected_sources": [
+        "1e4be394e91166de_chunk_4"
+      ],
+      "expected_answer_summary": "In general, given a linear regression \n  \n    \n      \n        \n          \n            \n              y\n              ^\n            \n          \n        \n        =\n        \n          \u2211\n          \n      ..."
+    },
+    {
+      "id": "det_10",
+      "query": "Explain the context surrounding However.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "however"
+      ],
+      "expected_sources": [
+        "1e4be394e91166de_chunk_5"
+      ],
+      "expected_answer_summary": "By the 1980s, momentum had already been introduced, and was added to SGD optimization techniques in 1986. However, these optimization techniques assumed constant hyperparameters, i.e. a fixed learning..."
+    },
+    {
+      "id": "det_11",
+      "query": "Explain the context surrounding Setting.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "setting"
+      ],
+      "expected_sources": [
+        "1e4be394e91166de_chunk_6"
+      ],
+      "expected_answer_summary": "Many improvements on the basic stochastic gradient descent algorithm have been proposed and used. In particular, in machine learning, the need to set a learning rate (step size) has been recognized as..."
+    },
+    {
+      "id": "det_12",
+      "query": "What is the definition or role of Note?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "note"
+      ],
+      "expected_sources": [
+        "1e4be394e91166de_chunk_7"
+      ],
+      "expected_answer_summary": "{\\displaystyle w^{\\text{new}}:=\\arg \\min _{w}\\left\\{Q_{i}(w)+{\\frac {1}{2\\eta }}\\left\\|w-w^{\\text{old}}\\right\\|^{2}\\right\\}.}\n  \n\nAs an example, \nconsider least squares with features \n  \n    \n      \n ..."
+    },
+    {
+      "id": "det_13",
+      "query": "What is the definition or role of Specifically?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "specifically"
+      ],
+      "expected_sources": [
+        "1e4be394e91166de_chunk_8"
+      ],
+      "expected_answer_summary": "Such comparison between classical and implicit stochastic gradient descent in the least squares problem is very similar to the comparison between least mean squares (LMS) and \nnormalized least mean sq..."
+    },
+    {
+      "id": "det_14",
+      "query": "Explain the context surrounding Stochastic.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "stochastic"
+      ],
+      "expected_sources": [
+        "1e4be394e91166de_chunk_9"
+      ],
+      "expected_answer_summary": "In such settings, ISGD is simply implemented as follows. Let \n  \n    \n      \n        f\n        (\n        \u03be\n        )\n        =\n        \u03b7\n        q\n        (\n        \n          x\n          \n           ..."
+    },
+    {
+      "id": "det_15",
+      "query": "What is the definition or role of Momentum?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "momentum"
+      ],
+      "expected_sources": [
+        "1e4be394e91166de_chunk_10"
+      ],
+      "expected_answer_summary": "Stochastic gradient descent with momentum remembers the update \u0394w at each iteration, and determines the next update as a linear combination of the gradient and the previous update:\n\n  \n    \n      \n   ..."
+    },
+    {
+      "id": "det_16",
+      "query": "What is the definition or role of Examples?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "examples"
+      ],
+      "expected_sources": [
+        "1e4be394e91166de_chunk_11"
+      ],
+      "expected_answer_summary": "That is, the update is the same as for ordinary stochastic gradient descent, but the algorithm also keeps track of\n\n  \n    \n      \n        \n          \n            \n              w\n              \u00af\n    ..."
+    },
+    {
+      "id": "det_17",
+      "query": "Explain the context surrounding Adagrad.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "adagrad"
+      ],
+      "expected_sources": [
+        "1e4be394e91166de_chunk_12"
+      ],
+      "expected_answer_summary": "{\\displaystyle w_{j}:=w_{j}-{\\frac {\\eta }{\\sqrt {G_{j,j}}}}g_{j}.}\n  \n\nEach {G(i,i)}  gives rise to a scaling factor for the learning rate that applies to a single parameter wi. Since the denominator..."
+    },
+    {
+      "id": "det_18",
+      "query": "Explain the context surrounding Estimation.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "estimation"
+      ],
+      "expected_sources": [
+        "1e4be394e91166de_chunk_13"
+      ],
+      "expected_answer_summary": "And the parameters are updated as,\n\n  \n    \n      \n        w\n        :=\n        w\n        \u2212\n        \n          \n            \u03b7\n            \n              v\n              (\n              w\n             ..."
+    },
+    {
+      "id": "det_19",
+      "query": "What is the definition or role of Squaring?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "squaring"
+      ],
+      "expected_sources": [
+        "1e4be394e91166de_chunk_14"
+      ],
+      "expected_answer_summary": "Given parameters \n  \n    \n      \n        \n          w\n          \n            (\n            t\n            )\n          \n        \n      \n    \n    {\\displaystyle w^{(t)}}\n  \n and a loss function \n  \n    \n..."
+    },
+    {
+      "id": "det_20",
+      "query": "What is the definition or role of Adam?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "adam"
+      ],
+      "expected_sources": [
+        "1e4be394e91166de_chunk_15"
+      ],
+      "expected_answer_summary": "A factor \n  \n    \n      \n        \n          \n            \n              1\n              \n                1\n                \u2212\n                \n                  \u03b2\n                  \n                   ..."
+    },
+    {
+      "id": "det_21",
+      "query": "What is the definition or role of Hessian?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "hessian"
+      ],
+      "expected_sources": [
+        "1e4be394e91166de_chunk_16"
+      ],
+      "expected_answer_summary": "On the other hand, adaptive SGD does not guarantee the \"descent property\" \u2013 which Backtracking line search enjoys \u2013 which is that \n  \n    \n      \n        f\n        (\n        \n          x\n          \n  ..."
+    },
+    {
+      "id": "det_22",
+      "query": "What is the definition or role of Then?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "then"
+      ],
+      "expected_sources": [
+        "1e4be394e91166de_chunk_17"
+      ],
+      "expected_answer_summary": "When the objective is a  nonlinear least-squares loss\n\n  \n    \n      \n        Q\n        (\n        w\n        )\n        =\n        \n          \n            1\n            n\n          \n        \n        \n   ..."
+    },
+    {
+      "id": "det_23",
+      "query": "Explain the context surrounding Archived.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "archived"
+      ],
+      "expected_sources": [
+        "1e4be394e91166de_chunk_18"
+      ],
+      "expected_answer_summary": "Since this approximation does not capture the random fluctuations around the mean behavior of stochastic gradient descent solutions to stochastic differential equations (SDEs) have been proposed as li..."
+    },
+    {
+      "id": "det_24",
+      "query": "Explain the context surrounding Some.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "some"
+      ],
+      "expected_sources": [
+        "052f93d32723634d_chunk_0"
+      ],
+      "expected_answer_summary": "AI safety is an interdisciplinary field focused on preventing accidents, misuse, or other harmful consequences arising from artificial intelligence systems. It encompasses AI alignment (which aims to ..."
+    },
+    {
+      "id": "det_25",
+      "query": "What is the definition or role of Theory?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "theory"
+      ],
+      "expected_sources": [
+        "052f93d32723634d_chunk_1"
+      ],
+      "expected_answer_summary": "In two surveys of AI researchers, the median respondent was optimistic about AI overall, but placed a 5% probability on an \"extremely bad (e.g. human extinction)\" outcome of advanced AI. In a 2022 sur..."
+    },
+    {
+      "id": "det_26",
+      "query": "What is the definition or role of California?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "california"
+      ],
+      "expected_sources": [
+        "052f93d32723634d_chunk_2"
+      ],
+      "expected_answer_summary": "He has the opinion that the rise of AGI has the potential to create various societal issues, ranging from the displacement of the workforce by AI, manipulation of political and military structures, to..."
+    },
+    {
+      "id": "det_27",
+      "query": "Explain the context surrounding Yoshua.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "yoshua"
+      ],
+      "expected_sources": [
+        "052f93d32723634d_chunk_3"
+      ],
+      "expected_answer_summary": "In 2018, the DeepMind Safety team outlined AI safety problems in specification, robustness, and assurance. The following year, researchers organized a workshop at ICLR that focused on these problem ar..."
+    },
+    {
+      "id": "det_28",
+      "query": "Explain the context surrounding Network.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "network"
+      ],
+      "expected_sources": [
+        "052f93d32723634d_chunk_4"
+      ],
+      "expected_answer_summary": "For example, in 2013, Szegedy et al. discovered that adding specific imperceptible perturbations to an image could cause it to be misclassified with high confidence. This continues to be an issue with..."
+    },
+    {
+      "id": "det_29",
+      "query": "Explain the context surrounding Neural.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "neural"
+      ],
+      "expected_sources": [
+        "052f93d32723634d_chunk_5"
+      ],
+      "expected_answer_summary": "Prompt injection involves embedding instructions into prompts in order to bypass safety measures. Researchers in safety-critical AI have proposed using architectural redundancy and design diversity to..."
+    },
+    {
+      "id": "det_30",
+      "query": "Explain the context surrounding Rome.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "rome"
+      ],
+      "expected_sources": [
+        "052f93d32723634d_chunk_6"
+      ],
+      "expected_answer_summary": "Neural networks have often been described as black boxes, meaning that it is difficult to understand why they make the decisions they do as a result of the massive number of computations they perform...."
+    },
+    {
+      "id": "det_31",
+      "query": "Explain the context surrounding This.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "this"
+      ],
+      "expected_sources": [
+        "052f93d32723634d_chunk_7"
+      ],
+      "expected_answer_summary": "\"Inner\" interpretability research aims to make ML models less opaque. One goal of this research is to identify what the internal neuron activations represent. For example, researchers identified a neu..."
+    },
+    {
+      "id": "det_32",
+      "query": "What is the definition or role of Standard?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "standard"
+      ],
+      "expected_sources": [
+        "052f93d32723634d_chunk_8"
+      ],
+      "expected_answer_summary": "These \"sleeper agent\" models could be programmed to generate malicious outputs (such as vulnerable code) after a specific date, while behaving normally beforehand. Standard AI safety measures, such as..."
+    },
+    {
+      "id": "det_33",
+      "query": "What is the definition or role of Such?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "such"
+      ],
+      "expected_sources": [
+        "052f93d32723634d_chunk_9"
+      ],
+      "expected_answer_summary": "In order to mitigate this risk, some have advocated for an increased emphasis on cyber defense. In addition, software security is essential for preventing powerful AI models from being stolen and misu..."
+    },
+    {
+      "id": "det_34",
+      "query": "What is the definition or role of Dafoe?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "dafoe"
+      ],
+      "expected_sources": [
+        "052f93d32723634d_chunk_10"
+      ],
+      "expected_answer_summary": "A salient AI cooperation challenge is avoiding a 'race to the bottom'. In this scenario, countries or companies race to build more capable AI systems and neglect safety, leading to a catastrophic acci..."
+    },
+    {
+      "id": "det_35",
+      "query": "Explain the context surrounding Guard.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "guard"
+      ],
+      "expected_sources": [
+        "052f93d32723634d_chunk_11"
+      ],
+      "expected_answer_summary": "Allan Dafoe, the head of longterm governance and strategy at DeepMind has emphasized the dangers of racing and the potential need for cooperation: \"it may be close to a necessary and sufficient condit..."
+    },
+    {
+      "id": "det_36",
+      "query": "Explain the context surrounding China.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "china"
+      ],
+      "expected_sources": [
+        "052f93d32723634d_chunk_12"
+      ],
+      "expected_answer_summary": "Some experts have argued that it is too early to regulate AI, expressing concerns that regulations will hamper innovation and it would be foolish to \"rush to regulate in ignorance\". Others, such as bu..."
+    },
+    {
+      "id": "det_37",
+      "query": "Explain the context surrounding Trojan.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "trojan"
+      ],
+      "expected_sources": [
+        "052f93d32723634d_chunk_13"
+      ],
+      "expected_answer_summary": "China Media Project stated \"key aspects of its approach remain fundamentally unsafe by the standards of democratic societies worldwide\", arguing that part of China's AI safety approach is focused on s..."
+    },
+    {
+      "id": "det_38",
+      "query": "What is the definition or role of President?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "president"
+      ],
+      "expected_sources": [
+        "052f93d32723634d_chunk_14"
+      ],
+      "expected_answer_summary": "Additionally, the UK AI Safety Institute planned to open an office in San Francisco. In November 2024, then-President Joe Biden and Chinese President Xi Jinping affirmed the need to maintain human con..."
+    },
+    {
+      "id": "det_39",
+      "query": "What is the definition or role of Experts?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "experts"
+      ],
+      "expected_sources": [
+        "052f93d32723634d_chunk_15"
+      ],
+      "expected_answer_summary": "The executive order discouraged state governments from regulating AI, urging Congress to pass a law pre-empting such regulations. The White House cited economic and national security concerns as reaso..."
+    },
+    {
+      "id": "det_40",
+      "query": "Explain the context surrounding March.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "march"
+      ],
+      "expected_sources": [
+        "e35c84c3832e7d7e_chunk_0"
+      ],
+      "expected_answer_summary": "AlphaGo is a computer program that plays the board game Go. It was developed by the London-based DeepMind Technologies, an acquired subsidiary of Google. Subsequent versions of AlphaGo became increasi..."
+    },
+    {
+      "id": "det_41",
+      "query": "What is the definition or role of Zen?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "zen"
+      ],
+      "expected_sources": [
+        "e35c84c3832e7d7e_chunk_1"
+      ],
+      "expected_answer_summary": "In recognition of the victory, AlphaGo was awarded an honorary 9-dan by the Korea Baduk Association. The lead up and the challenge match with Lee Sedol were documented in a documentary film also title..."
+    },
+    {
+      "id": "det_42",
+      "query": "Explain the context surrounding Nature.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "nature"
+      ],
+      "expected_sources": [
+        "e35c84c3832e7d7e_chunk_2"
+      ],
+      "expected_answer_summary": "In 2013, Crazy Stone beat Yoshio Ishida (9p) at a four-stone handicap. According to DeepMind's David Silver, the AlphaGo research project was formed around 2014 to test how well a neural network using..."
+    },
+    {
+      "id": "det_43",
+      "query": "Explain the context surrounding Economist.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "economist"
+      ],
+      "expected_sources": [
+        "e35c84c3832e7d7e_chunk_3"
+      ],
+      "expected_answer_summary": "AlphaGo ran on Google's cloud computing with its servers located in the United States. The match used Chinese rules with a 7.5-point komi, and each side had two hours of thinking time plus three 60-se..."
+    },
+    {
+      "id": "det_44",
+      "query": "What is the definition or role of Master?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "master"
+      ],
+      "expected_sources": [
+        "e35c84c3832e7d7e_chunk_4"
+      ],
+      "expected_answer_summary": "Lee Sedol received $150,000 for participating in all five games and an additional $20,000 for his win in Game 4. In June 2016, at a presentation held at a university in the Netherlands, Aja Huang, one..."
+    },
+    {
+      "id": "det_45",
+      "query": "What is the definition or role of United?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "united"
+      ],
+      "expected_sources": [
+        "e35c84c3832e7d7e_chunk_5"
+      ],
+      "expected_answer_summary": "After losing to Master, Gu Li offered a bounty of 100,000 yuan (US$14,400) to the first human player who could defeat Master. Master played at the pace of 10 games per day. Many quickly suspected it t..."
+    },
+    {
+      "id": "det_46",
+      "query": "What is the definition or role of December?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "december"
+      ],
+      "expected_sources": [
+        "e35c84c3832e7d7e_chunk_6"
+      ],
+      "expected_answer_summary": "I would go as far as to say not a single human has touched the edge of the truth of Go.\"\n\nIn the Future of Go Summit held in Wuzhen in May 2017, AlphaGo Master played three games with Ke Jie, the worl..."
+    },
+    {
+      "id": "det_47",
+      "query": "What is the definition or role of December?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "december"
+      ],
+      "expected_sources": [
+        "e35c84c3832e7d7e_chunk_7"
+      ],
+      "expected_answer_summary": "On 11 December 2017, DeepMind released an AlphaGo teaching tool on its website to analyze winning rates of different Go openings as calculated by AlphaGo Master. The teaching tool collects 6,000 Go op..."
+    },
+    {
+      "id": "det_48",
+      "query": "What is the definition or role of Once?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "once"
+      ],
+      "expected_sources": [
+        "e35c84c3832e7d7e_chunk_8"
+      ],
+      "expected_answer_summary": "The networks are convolutional neural networks with 12 layers, trained by reinforcement learning. The system's neural networks were initially bootstrapped from human gameplay expertise. AlphaGo was in..."
+    },
+    {
+      "id": "det_49",
+      "query": "Explain the context surrounding Richard.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "richard"
+      ],
+      "expected_sources": [
+        "e35c84c3832e7d7e_chunk_9"
+      ],
+      "expected_answer_summary": "Most observers at the beginning of the 2016 matches expected Lee to beat AlphaGo. With games such as checkers (that has been solved by the Chinook computer engine), chess, and now Go won by computers,..."
+    },
+    {
+      "id": "det_50",
+      "query": "Explain the context surrounding Wooldridge.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "wooldridge"
+      ],
+      "expected_sources": [
+        "e35c84c3832e7d7e_chunk_10"
+      ],
+      "expected_answer_summary": "but I do think people should be paying attention.\"\nIn China, AlphaGo was a \"Sputnik moment\" which helped convince the Chinese government to prioritize and dramatically increase funding for artificial ..."
+    },
+    {
+      "id": "det_51",
+      "query": "What is the definition or role of Hui?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "hui"
+      ],
+      "expected_sources": [
+        "e35c84c3832e7d7e_chunk_11"
+      ],
+      "expected_answer_summary": "China's Ke Jie, an 18-year-old generally recognized as the world's best Go player at the time, initially claimed that he would be able to beat AlphaGo, but declined to play against it for fear that it..."
+    },
+    {
+      "id": "det_52",
+      "query": "What is the definition or role of Hollywood?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "hollywood"
+      ],
+      "expected_sources": [
+        "e35c84c3832e7d7e_chunk_12"
+      ],
+      "expected_answer_summary": "Michael Rechtshaffen of the Los Angeles Times gave the documentary a positive review and said: \"It helps matters when you have a group of engaging human subjects like soft-spoken Sedol, who's as inten..."
+    },
+    {
+      "id": "det_53",
+      "query": "What is the definition or role of Korean?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "korean"
+      ],
+      "expected_sources": [
+        "e35c84c3832e7d7e_chunk_13"
+      ],
+      "expected_answer_summary": "It allowed me to approach the action and interviews with pure curiosity, the kind that helps make any subject matter emotionally accessible.\" Kohs also said that \"Unlike the film's human characters \u2013 ..."
+    },
+    {
+      "id": "det_54",
+      "query": "What is the definition or role of Also?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "also"
+      ],
+      "expected_sources": [
+        "e35c84c3832e7d7e_chunk_14"
+      ],
+      "expected_answer_summary": "Fan Hui, a professional Go player, and former player with AlphaGo said that \"DeepMind had trained AlphaGo by showing it many strong amateur games of Go to develop its understanding of how a human play..."
+    },
+    {
+      "id": "det_55",
+      "query": "What is the definition or role of Chikun?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "chikun"
+      ],
+      "expected_sources": [
+        "e35c84c3832e7d7e_chunk_15"
+      ],
+      "expected_answer_summary": "\"More likely, the forces of automation we'll face will be impersonal and incomprehensible. They'll come in the form of star ratings we can't object to, and algorithms we can't fully understand. Dealin..."
+    },
+    {
+      "id": "det_56",
+      "query": "Explain the context surrounding Unlike.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "unlike"
+      ],
+      "expected_sources": [
+        "25371e233a5cfc20_chunk_0"
+      ],
+      "expected_answer_summary": "Artificial general intelligence (AGI) is a hypothetical type of artificial intelligence that matches or surpasses human capabilities across virtually all cognitive tasks. Beyond AGI, artificial superi..."
+    },
+    {
+      "id": "det_57",
+      "query": "What is the definition or role of They?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "they"
+      ],
+      "expected_sources": [
+        "25371e233a5cfc20_chunk_1"
+      ],
+      "expected_answer_summary": "In contrast, weak AI (or narrow AI) can solve a specific problem but lacks general cognitive abilities. Some academic sources use \"weak AI\" to refer more broadly to any programs that neither experienc..."
+    },
+    {
+      "id": "det_58",
+      "query": "What is the definition or role of \"Computing?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "\"computing"
+      ],
+      "expected_sources": [
+        "25371e233a5cfc20_chunk_2"
+      ],
+      "expected_answer_summary": "Many interdisciplinary approaches (e.g. cognitive science, computational intelligence, and decision making) consider additional traits such as imagination (the ability to form novel mental images and ..."
+    },
+    {
+      "id": "det_59",
+      "query": "What is the definition or role of Pack?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "pack"
+      ],
+      "expected_sources": [
+        "25371e233a5cfc20_chunk_3"
+      ],
+      "expected_answer_summary": "However, this claim was met with significant skepticism from the AI research community, who questioned the test's implementation and its relevance to AGI. In 2023, Kirk-Giannini and Goldstein argued t..."
+    },
+    {
+      "id": "det_60",
+      "query": "What is the definition or role of Adams?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "adams"
+      ],
+      "expected_sources": [
+        "25371e233a5cfc20_chunk_4"
+      ],
+      "expected_answer_summary": "It must find the coffee machine, find the coffee, add water, find a mug, and brew the coffee by pushing the proper buttons. This test has been substantially approached across multiple systems. In Janu..."
+    },
+    {
+      "id": "det_61",
+      "query": "What is the definition or role of Fifth?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "fifth"
+      ],
+      "expected_sources": [
+        "25371e233a5cfc20_chunk_5"
+      ],
+      "expected_answer_summary": "Clarke's fictional character HAL 9000, who embodied what AI researchers believed they could create by the year 2001. AI pioneer Marvin Minsky was a consultant on the project of making HAL 9000 as real..."
+    },
+    {
+      "id": "det_62",
+      "query": "What is the definition or role of However?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "however"
+      ],
+      "expected_sources": [
+        "25371e233a5cfc20_chunk_6"
+      ],
+      "expected_answer_summary": "These \"applied AI\" systems are now used extensively throughout the technology industry, and research in this vein is heavily funded in both academia and industry. As of 2018, development in this field..."
+    },
+    {
+      "id": "det_63",
+      "query": "Explain the context surrounding Guardian.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "guardian"
+      ],
+      "expected_sources": [
+        "25371e233a5cfc20_chunk_7"
+      ],
+      "expected_answer_summary": "As of 2023, the development and potential achievement of AGI remains a subject of intense debate within the AI community. While traditional consensus held that AGI was a distant goal, recent advanceme..."
+    },
+    {
+      "id": "det_64",
+      "query": "Explain the context surrounding They.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "they"
+      ],
+      "expected_sources": [
+        "25371e233a5cfc20_chunk_8"
+      ],
+      "expected_answer_summary": "Four polls conducted in 2012 and 2013 suggested that the median estimate among experts for when they would be 50% confident AGI would arrive was 2040 to 2050, depending on the poll, with the mean bein..."
+    },
+    {
+      "id": "det_65",
+      "query": "What is the definition or role of Ending?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "ending"
+      ],
+      "expected_sources": [
+        "25371e233a5cfc20_chunk_9"
+      ],
+      "expected_answer_summary": "Progress in artificial intelligence has historically gone through periods of rapid progress separated by periods when progress appeared to stop. Ending each hiatus were fundamental advances in hardwar..."
+    },
+    {
+      "id": "det_66",
+      "query": "Explain the context surrounding Rohrer.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "rohrer"
+      ],
+      "expected_sources": [
+        "25371e233a5cfc20_chunk_10"
+      ],
+      "expected_answer_summary": "At the maximum, these AIs reached an IQ value of about 47, which corresponds approximately to a six-year-old child in first grade. An adult comes to about 100 on average. Similar tests were carried ou..."
+    },
+    {
+      "id": "det_67",
+      "query": "What is the definition or role of Officer?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "officer"
+      ],
+      "expected_sources": [
+        "25371e233a5cfc20_chunk_11"
+      ],
+      "expected_answer_summary": "In March 2024, Nvidia's Chief Executive Officer (CEO), Jensen Huang, stated his expectation that within five years, AI would be capable of passing any test at least as well as humans. In June 2024, th..."
+    },
+    {
+      "id": "det_68",
+      "query": "Explain the context surrounding This.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "this"
+      ],
+      "expected_sources": [
+        "25371e233a5cfc20_chunk_12"
+      ],
+      "expected_answer_summary": "For low-level brain simulation, a very powerful cluster of computers or GPUs would be required, given the enormous quantity of synapses within the human brain. Each of the 1011 (one hundred billion) n..."
+    },
+    {
+      "id": "det_69",
+      "query": "Explain the context surrounding Weak.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "weak"
+      ],
+      "expected_sources": [
+        "25371e233a5cfc20_chunk_13"
+      ],
+      "expected_answer_summary": "The overhead introduced by full modeling of the biological, chemical, and physical details of neural behaviour (especially on a molecular scale) would require computational powers several orders of ma..."
+    },
+    {
+      "id": "det_70",
+      "query": "What is the definition or role of According?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "according"
+      ],
+      "expected_sources": [
+        "25371e233a5cfc20_chunk_14"
+      ],
+      "expected_answer_summary": "This is not the same as Searle's strong AI, unless it is assumed that consciousness is necessary for human-level AGI. Academic philosophers such as Searle do not believe that is the case, and to most ..."
+    },
+    {
+      "id": "det_71",
+      "query": "Explain the context surrounding This.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "this"
+      ],
+      "expected_sources": [
+        "25371e233a5cfc20_chunk_15"
+      ],
+      "expected_answer_summary": "Nagel uses the example of a bat: we can sensibly ask \"what does it feel like to be a bat?\" However, we are unlikely to ask \"what does it feel like to be a toaster?\" Nagel concludes that a bat appears ..."
+    },
+    {
+      "id": "det_72",
+      "query": "Explain the context surrounding This.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "this"
+      ],
+      "expected_sources": [
+        "25371e233a5cfc20_chunk_16"
+      ],
+      "expected_answer_summary": "It could offer fun, inexpensive and personalized education. The need to work to subsist could become obsolete if the wealth produced is properly redistributed. This also raises the question of the pla..."
+    },
+    {
+      "id": "det_73",
+      "query": "What is the definition or role of Additionally?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "additionally"
+      ],
+      "expected_sources": [
+        "25371e233a5cfc20_chunk_17"
+      ],
+      "expected_answer_summary": "AGI can become a tool for scientific research and innovation. In fields such as physics and mathematics, AGI could help solve complex problems that require massive computational power, such as modelin..."
+    },
+    {
+      "id": "det_74",
+      "query": "What is the definition or role of Mars?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "mars"
+      ],
+      "expected_sources": [
+        "25371e233a5cfc20_chunk_18"
+      ],
+      "expected_answer_summary": "It could also enhance weather prediction accuracy, allowing policymakers to implement more effective environmental regulations. Additionally, AGI could help regulate emerging technologies that carry s..."
+    },
+    {
+      "id": "det_75",
+      "query": "What is the definition or role of Bill?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "bill"
+      ],
+      "expected_sources": [
+        "25371e233a5cfc20_chunk_19"
+      ],
+      "expected_answer_summary": "Notably, it could be used to spread and preserve the set of values of whoever develops it. If humanity still has moral blind spots similar to slavery in the past, AGI might irreversibly entrench them,..."
+    },
+    {
+      "id": "det_76",
+      "query": "Explain the context surrounding Yann.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "yann"
+      ],
+      "expected_sources": [
+        "25371e233a5cfc20_chunk_20"
+      ],
+      "expected_answer_summary": "The comparison states that greater intelligence allowed humanity to dominate gorillas, which are now vulnerable in ways that they could not have anticipated. As a result, the gorilla has become an end..."
+    },
+    {
+      "id": "det_77",
+      "query": "What is the definition or role of Hinton?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "hinton"
+      ],
+      "expected_sources": [
+        "25371e233a5cfc20_chunk_21"
+      ],
+      "expected_answer_summary": "Former Google fraud czar Shuman Ghosemajumder considers that for many people outside of the technology industry, existing chatbots and LLMs are already perceived as though they were AGI, leading to fu..."
+    },
+    {
+      "id": "det_78",
+      "query": "Explain the context surrounding Artificial.",
+      "category": "Analytical",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "artificial"
+      ],
+      "expected_sources": [
+        "09a7951922de237f_chunk_0"
+      ],
+      "expected_answer_summary": "Artificial intelligence (AI) is the capability of computational systems to perform tasks typically associated with human intelligence, such as learning, reasoning, problem-solving, perception, and dec..."
+    },
+    {
+      "id": "det_79",
+      "query": "What is the definition or role of They?",
+      "category": "Factual",
+      "difficulty": "Medium",
+      "topic": "ai",
+      "expected_concepts": [
+        "they"
+      ],
+      "expected_sources": [
+        "09a7951922de237f_chunk_1"
+      ],
+      "expected_answer_summary": "In addition to AI safety and unintended consequences and harms from the use of AI, ethical concerns, AI's long-term effects, and potential existential risks have prompted discussions of AI regulation...."
+    }
+  ]
+}

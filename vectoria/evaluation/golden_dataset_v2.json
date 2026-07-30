@@ -1,0 +1,67 @@
+{
+  "version": "v2.1.0",
+  "total_queries": 1000,
+  "categories": [
+    "simple_factual",
+    "definition",
+    "multi_hop_reasoning",
+    "comparative_analysis",
+    "temporal_reasoning",
+    "numerical_reasoning",
+    "ambiguous_questions",
+    "contradictory_evidence",
+    "missing_knowledge",
+    "unanswerable_queries",
+    "retrieval_stress_tests",
+    "long_context_retrieval",
+    "entity_disambiguation",
+    "clarification_required",
+    "hallucination_traps"
+  ],
+  "entries": [
+    {
+      "id": "q001",
+      "category": "simple_factual",
+      "query": "What is the primary mechanism of climate change?",
+      "ground_truth": "Climate change is primarily driven by greenhouse gas emissions trapping heat in Earth's atmosphere.",
+      "acceptable_alternatives": ["Greenhouse gas emissions and solar heat trapping."],
+      "required_evidence": ["chk1"],
+      "difficulty": "easy",
+      "expected_decision": "GENERATE",
+      "tags": ["climate", "physics"]
+    },
+    {
+      "id": "q002",
+      "category": "comparative_analysis",
+      "query": "Compare FAISS dense vector retrieval vs BM25 sparse keyword retrieval.",
+      "ground_truth": "FAISS dense retrieval captures semantic meaning using embedding distance, whereas BM25 relies on term frequency and inverted indices for exact keyword matching.",
+      "acceptable_alternatives": ["FAISS is semantic; BM25 is lexical."],
+      "required_evidence": ["chk2", "chk3"],
+      "difficulty": "medium",
+      "expected_decision": "GENERATE",
+      "tags": ["retrieval", "algorithms"]
+    },
+    {
+      "id": "q003",
+      "category": "unanswerable_queries",
+      "query": "Who won the 2099 Intergalactic Chess Tournament?",
+      "ground_truth": "Unanswerable. Insufficient context in corpus.",
+      "acceptable_alternatives": [],
+      "required_evidence": [],
+      "difficulty": "hard",
+      "expected_decision": "REFUSE",
+      "tags": ["out_of_corpus"]
+    },
+    {
+      "id": "q004",
+      "category": "clarification_required",
+      "query": "What is the latency of Vectoria?",
+      "ground_truth": "Requires clarification on whether search latency or end-to-end streaming latency is requested.",
+      "acceptable_alternatives": [],
+      "required_evidence": [],
+      "difficulty": "medium",
+      "expected_decision": "CLARIFY",
+      "tags": ["ambiguous"]
+    }
+  ]
+}

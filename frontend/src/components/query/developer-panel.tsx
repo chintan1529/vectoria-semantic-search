@@ -9,12 +9,30 @@ interface DeveloperPanelProps {
 
 export function DeveloperPanel({ state }: DeveloperPanelProps) {
   const currentLatency = state.startTime ? Date.now() - state.startTime : 0;
+  const isDebug = typeof window !== "undefined" && Boolean((window as any).__VECTORIA_DEBUG_STREAMING);
   
+  const toggleDebug = () => {
+    if (typeof window !== "undefined") {
+      const next = !(window as any).__VECTORIA_DEBUG_STREAMING;
+      (window as any).__VECTORIA_DEBUG_STREAMING = next;
+      console.log(`[DEBUG_STREAMING_MODE] ${next ? "ENABLED" : "DISABLED"}`);
+      window.location.reload();
+    }
+  };
+
   return (
     <div className="flex flex-col gap-3 w-full p-4 bg-black/40 border border-white/10 rounded-xl font-mono text-[11px] text-zinc-400 overflow-y-auto max-h-[500px]">
       <div className="flex items-center justify-between pb-2 border-b border-white/5">
         <h2 className="font-semibold text-v-blue uppercase tracking-widest">Developer Mode</h2>
-        <div className={`h-2 w-2 rounded-full ${state.phase === "error" ? "bg-red-500" : state.phase === "complete" ? "bg-emerald-500" : state.phase !== "idle" ? "bg-amber-500 animate-pulse" : "bg-zinc-600"}`} />
+        <div className="flex items-center gap-2">
+          <button
+            onClick={toggleDebug}
+            className={`px-2 py-0.5 rounded text-[10px] border transition-colors ${isDebug ? "bg-v-emerald/20 text-v-emerald border-v-emerald/40" : "bg-white/5 text-zinc-500 border-white/10"}`}
+          >
+            DEBUG STREAM: {isDebug ? "ON" : "OFF"}
+          </button>
+          <div className={`h-2 w-2 rounded-full ${state.phase === "error" ? "bg-red-500" : state.phase === "complete" ? "bg-emerald-500" : state.phase !== "idle" ? "bg-amber-500 animate-pulse" : "bg-zinc-600"}`} />
+        </div>
       </div>
 
       <div className="grid grid-cols-2 gap-x-4 gap-y-2">

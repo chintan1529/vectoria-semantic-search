@@ -1,0 +1,37 @@
+# ─────────────────────────────────────────────
+# Vectoria — Docker Compose (Production)
+# ─────────────────────────────────────────────
+
+services:
+  vectoria:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: vectoria-platform
+    ports:
+      - "8000:8000"   # Backend API
+      - "3000:3000"   # Frontend UI
+    env_file:
+      - .env
+    environment:
+      - PYTHONPATH=/app
+      - NODE_ENV=production
+    volumes:
+      - vectoria-storage:/app/storage
+      - vectoria-logs:/app/logs
+      - vectoria-data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+volumes:
+  vectoria-storage:
+    driver: local
+  vectoria-logs:
+    driver: local
+  vectoria-data:
+    driver: local

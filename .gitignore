@@ -13,6 +13,10 @@ data/wikipedia/sustainability/*.txt
 # Runtime logs
 logs/
 
+# Pytest & Test Cache
+.pytest_cache/
+.coverage
+
 # Python bytecode
 __pycache__/
 *.pyc
