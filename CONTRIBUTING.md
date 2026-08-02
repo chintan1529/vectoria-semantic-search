@@ -83,7 +83,7 @@ docs/                  # Documentation
 pytest tests/
 
 # Run evaluation suite
-python evaluate.py
+python scripts/run_competitive_benchmark.py
 ```
 
 ### Commit Messages

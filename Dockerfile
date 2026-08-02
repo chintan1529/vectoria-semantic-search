@@ -33,7 +33,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY vectoria/ ./vectoria/
 COPY backend/ ./backend/
 COPY scripts/ ./scripts/
-COPY build_index.py evaluate.py ./
+COPY build_index.py ./
 COPY docs/ ./docs/
 
 # Copy storage artifacts (pre-built index)
