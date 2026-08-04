@@ -10,6 +10,10 @@ jobs:
   backend-tests:
     name: Backend Test Suite
     runs-on: ubuntu-latest
+    env:
+      PYTHONPATH: ${{ github.workspace }}
+      GEMINI_API_KEY: "test-dummy-key"
+      HUGGINGFACE_API_KEY: "test-dummy-key"
     steps:
       - uses: actions/checkout@v4
 
@@ -26,7 +30,7 @@ jobs:
 
       - name: Run Pytest Suite
         run: |
-          pytest tests/ --ignore=tests/e2e
+          pytest tests/ --ignore=tests/e2e -v
 
   frontend-build:
     name: Frontend Typecheck & Build
