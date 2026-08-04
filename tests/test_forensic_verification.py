@@ -10,6 +10,7 @@ Verifies:
 
 import time
 import pytest
+from vectoria.config import CHUNKS_PATH
 from vectoria.reranking.reranker import CrossEncoderReranker
 from vectoria.retrieval.engine import SearchEngine
 from backend.providers.failover import FailoverProviderWrapper
@@ -65,6 +66,8 @@ def test_reranker_preloaded_once():
 
 def test_first_query_no_load_penalty():
     """Verify engine search on pre-warmed engine takes sub-second latency."""
+    if not CHUNKS_PATH.exists():
+        pytest.skip("storage/chunks.jsonl not found (storage not pre-indexed in CI environment)")
     engine = SearchEngine()
     engine.load()
 
